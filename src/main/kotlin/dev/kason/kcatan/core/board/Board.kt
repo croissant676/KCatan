@@ -146,6 +146,7 @@ fun generateStrategyProvider(firstTile: Int, isClockwise: Boolean): List<Int> =
         12 -> listOf(12, 7, 3, 0, 1, 2, 6, 11, 15, 18, 17, 16, 13, 8, 4, 5, 10, 14, 9)
         15 -> listOf(15, 18, 17, 16, 12, 7, 3, 0, 1, 2, 6, 11, 10, 14, 13, 8, 4, 5, 9)
         16 -> listOf(16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 18, 17, 13, 8, 4, 5, 10, 14, 9)
+        17 -> listOf(17, 16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 18, 14, 13, 8, 4, 5, 10, 9)
         18 -> listOf(18, 17, 16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 14, 13, 8, 4, 5, 10, 9)
         else -> throw IllegalStateException("Unexpected value: $firstTile");
     } else when (firstTile) {

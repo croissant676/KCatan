@@ -46,7 +46,7 @@ data class SimpleResources(private val map: Map<Resources, Int>) : Map<Resources
 }
 
 data class PlayerResources(private val hashMap: MutableMap<Resources, Int> = EnumMap(Resources::class.java)) :
-    Map<Resources, Int> by hashMap {
+    MutableMap<Resources, Int> by hashMap {
     constructor(simpleResources: SimpleResources) : this(EnumMap(simpleResources))
     constructor(
         lumber: Int,
@@ -61,4 +61,12 @@ data class PlayerResources(private val hashMap: MutableMap<Resources, Int> = Enu
         it[Resources.BRICK] = brick
         it[Resources.ORE] = ore
     })
+}
+
+operator fun Map<Resources, Int>.minus(map: Map<Resources, Int>): Map<Resources, Int> {
+    val result = EnumMap<Resources, Int>(Resources::class.java)
+    for (resource in Resources.values()) {
+        result[resource] = getOrDefault(resource, 0) - map.getOrDefault(resource, 0)
+    }
+    return result
 }
