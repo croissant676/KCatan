@@ -8,14 +8,12 @@ import tornadofx.*
 class CatanStyles : Stylesheet() {
     companion object : KLogging() {
         val menuTitle by cssclass()
-        val menuButton by cssclass()
-        val centered by cssclass()
-        val menuBottomSection by cssclass()
-        val menuTopSection by cssclass()
+        val playerSelectBackground by cssclass()
+        val genericDarkButton by cssclass()
     }
 
     init {
-        centered {
+        container {
             alignment = Pos.CENTER
         }
         button {
@@ -25,47 +23,33 @@ class CatanStyles : Stylesheet() {
             borderColor += box(c("b2b2b2"))
             borderWidth += box(2.px)
         }
-        menuButton {
-            padding = box(10.px)
-            borderRadius += box(0.px)
-            backgroundRadius += box(0.px)
-            backgroundColor += c("55c655")
-            and(hover) {
-                backgroundColor += c("38a838")
-            }
-        }
         label {
             fontFamily = "Century Gothic"
             fontSize = 20.px
             textFill = Color.WHITE
-        }
-        menuBottomSection {
-            padding = box(40.px)
-            backgroundColor += c("3aae3a")
         }
         menuTitle {
             fontSize = 40.px
             fontFamily = "Century Gothic"
             textFill = Color.WHITE
         }
-        menuTopSection {
-            backgroundColor += RadialGradient(
-                90.0,
-                0.0,
-                300.0,
-                300.0,
-                350.0,
-                false,
-                CycleMethod.REFLECT,
-                mutableListOf(
-                    Stop(0.0, c("ffeccd")),
-                    Stop(0.25, c("ffcf80")),
-                    Stop(0.45, c("ffaf80")),
-                    Stop(0.6, c("ffaea4")),
-                    Stop(0.8, c("ffa4c8"))
-                )
-            )
-            padding = box(120.px)
+        playerSelectBackground {
+            backgroundColor += c("000000")
+            padding = box(10.px)
+        }
+        comboBox {
+            fontFamily = "Century Gothic"
+            fontSize = 20.px
+            textFill = Color.WHITE
+        }
+        genericDarkButton {
+            backgroundColor += c("1e90ff")
+            padding = box(10.px)
+            borderColor += box(c("b2b2b2"))
+            borderWidth += box(2.px)
+            and(hover) {
+                backgroundColor += c("528fcb")
+            }
         }
     }
 }
