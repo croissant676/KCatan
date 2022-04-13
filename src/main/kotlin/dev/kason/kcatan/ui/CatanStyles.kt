@@ -2,6 +2,7 @@ package dev.kason.kcatan.ui
 
 import javafx.geometry.Pos
 import javafx.scene.paint.*
+import javafx.scene.shape.Polygon
 import mu.KLogging
 import tornadofx.*
 

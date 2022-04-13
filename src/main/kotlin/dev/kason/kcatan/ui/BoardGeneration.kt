@@ -10,8 +10,8 @@ import tornadofx.*
 
 object GameSettingModel {
     val playerCountProperty = SimpleStringProperty("2 Players")
-    val comboboxGenerationProperty = SimpleIntegerProperty(0)
     val gameIntProperty = SimpleIntegerProperty(0)
+    val playerColorListProperty = SimpleStringProperty("")
 }
 
 class BoardGenerationView : View("Catan > View") {
@@ -66,32 +66,13 @@ class BoardGenerationView : View("Catan > View") {
                     }
                 }
             }
-            fieldset("Board generation") {
-                field("Clockwise") {
-                    label.addClass(Styles.boardGenerationLabel)
-                    checkbox()
+            button("Next >") {
+                action {
+
                 }
-                field("First Tile") {
-                    label.addClass(Styles.boardGenerationLabel)
-                    combobox(
-                        GameSettingModel.comboboxGenerationProperty,
-                        listOf(0, 1, 2, 3, 6, 7, 11, 12, 15, 16, 17, 18)
-                    )
-                }
-                hbox(20) {
-                    button("Generate") {
-                        action {
-                            logger.info("Generate button clicked")
-                        }
-                    }.addClass(Styles.boardGenerationButton)
-                    button("Generate all randomly") {
-                        action {
-                            logger.info("Generate all randomly button clicked")
-                        }
-                    }.addClass(Styles.boardGenerationButton)
-                }
-            }
+            }.addClass(Styles.boardGenerationButton)
             addClass(Styles.boardGenerationView)
         }
+        bottom = label("Group KasonG - Catan 2022 - All rights reserved")
     }
 }

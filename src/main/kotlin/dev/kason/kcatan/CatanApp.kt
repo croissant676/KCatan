@@ -16,7 +16,8 @@ fun main(args: Array<String>) {
 }
 
 class CatanApp : App(
-    MenuView::class, CatanStyles::class,
+    MenuView::class,
+    CatanStyles::class,
     MenuView.Styles::class,
     BoardGenerationView.Styles::class
 ) {

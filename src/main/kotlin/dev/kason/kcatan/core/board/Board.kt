@@ -28,6 +28,9 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
     val tiles = mutableListOf<Tile>()
     val edges = mutableListOf<Edge>()
     val intersections = mutableListOf<Intersection>()
+    var robberIndex: Int
+    val robber: Tile
+        get() = tiles[robberIndex]
 
     init {
         val tileTypes = Tile.Type.values()
@@ -91,6 +94,7 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
         tiles.forEach {
             if (it.type != Tile.Type.DESERT) it.value = generationStrategy.removeFirst()
         }
+        robberIndex = tiles.first { it.type == Tile.Type.DESERT }.id
     }
 
     private fun generateGraph() = tiles.forEach {

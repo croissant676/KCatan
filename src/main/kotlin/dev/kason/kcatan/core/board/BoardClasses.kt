@@ -5,7 +5,7 @@ import dev.kason.kcatan.core.player.Player
 class Intersection(val tiles: MutableList<Tile> = mutableListOf()) : List<Tile> by tiles {
     var player: Player? = null
     var isCity: Boolean = false
-    val isConstruction get() = player != null
+    val hasConstruction get() = player != null
     val isSettlement get() = player != null && !isCity
 }
 

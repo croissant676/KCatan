@@ -58,7 +58,6 @@ class MenuView : View("Menu") {
             }
         }
         //</editor-fold>
-        // ^ Fold open to see CSS
     }
 
     override val root = borderpane {
@@ -87,7 +86,7 @@ class MenuView : View("Menu") {
         }
     }
 
-//    override fun onDock() {
-//        currentStage!!.isResizable = false
-//    }
+    override fun onDock() {
+        currentStage!!.isResizable = false
+    }
 }
