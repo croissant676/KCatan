@@ -11,7 +11,6 @@ class MenuView : View("Menu") {
         //<editor-fold desc="CSS">
         companion object {
             val background by cssclass()
-            val title by cssclass()
             val grass by cssclass()
             val menuButton by cssclass()
         }
