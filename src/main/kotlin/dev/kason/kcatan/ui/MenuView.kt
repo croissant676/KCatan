@@ -5,7 +5,6 @@ import mu.KLogging
 import tornadofx.*
 
 class MenuView : View("Menu") {
-    companion object : KLogging()
 
     class Styles : Stylesheet() {
         //<editor-fold desc="CSS">
