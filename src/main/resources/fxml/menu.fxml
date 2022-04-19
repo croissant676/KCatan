@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="menu-background" stylesheets="/css/styles.css"
+            xmlns="http://javafx.com/javafx/11.0.2">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="138.0" layoutY="262.0" width="600.0"/>
+      <Button layoutX="55.0" layoutY="289.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="119.0"
+              styleClass="menu-button" text="Create Game"/>
+      <Button layoutX="217.0" layoutY="289.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0"
+              styleClass="menu-button" text="Load Previous Game"/>
+      <Button layoutX="431.0" layoutY="289.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="110.0"
+              styleClass="menu-button" text=" View Rules"/>
+      <Label layoutX="55.0" layoutY="351.0" text="Group KasonG - Licensed under MIT License"/>
+   </children>
+</AnchorPane>

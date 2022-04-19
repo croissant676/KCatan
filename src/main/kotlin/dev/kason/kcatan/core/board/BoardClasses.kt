@@ -9,18 +9,9 @@ class Intersection(val tiles: MutableList<Tile> = mutableListOf()) : List<Tile> 
     val isSettlement get() = player != null && !isCity
 }
 
-
 @Suppress("MemberVisibilityCanBePrivate")
-class Edge(
-    /** First is always the tile to the top, and in the case that the edge is vertical, it is the left tile. */
-    val first: Tile
-) {
-    var player: Player? = null
+class Edge(val first: Tile) {
     var second: Tile? = null
-        private set
-    val tiles: List<Tile>
-        get() = listOfNotNull(first, second)
+    var player: Player? = null
     val hasRoad: Boolean get() = player != null
-    operator fun plusAssign(tile: Tile) =
-        if (second == null) second = tile else Unit
 }

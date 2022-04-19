@@ -1,0 +1,56 @@
+/*
+ * Copyright (C) 2022, Group KasonG.
+ * The use of this code is governed by the MIT
+ * License, which can be viewed online at:
+ * https://opensource.org/licenses/MIT
+ */
+
+.menu-background {
+    -fx-background-color: radial-gradient(
+            focus-angle 90.0deg,
+            focus-distance 0.0%,
+            center 300.0px 300.0px,
+            radius 350.0px,
+            reflect,
+            #faecd8 0.0%,
+            #fac774 25.0%,
+            #fca777 45.0%,
+            #f5aca4 60.0%,
+            #ffa4c8 80.0%,
+            #ea82aa 90.0%
+    );
+}
+
+.menu-grass {
+    -fx-background-color: #43a543;
+    -fx-border-width: 2 0 0 0;
+    -fx-border-color: #b5b4b4;
+}
+
+.menu-button {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-border-color: rgb(178, 178, 178);
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(111, 197, 111);
+}
+
+.menu-button:hover {
+    -fx-background-color: rgb(75, 182, 75);
+}
+
+.label {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+#menu-title {
+    -fx-font-size: 40px;
+}

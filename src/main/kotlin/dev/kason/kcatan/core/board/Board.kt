@@ -3,7 +3,6 @@ package dev.kason.kcatan.core.board
 import java.util.EnumSet
 import kotlin.random.Random
 
-
 private val leftMost = intArrayOf(0, 3, 7, 12, 16)
 private val rightMost = intArrayOf(2, 6, 11, 15, 18)
 private val edgeTileLocations = EnumSet.of(
@@ -29,7 +28,7 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
     val edges = mutableListOf<Edge>()
     val intersections = mutableListOf<Intersection>()
     var robberIndex: Int
-    val robber: Tile
+    val robberTile: Tile
         get() = tiles[robberIndex]
 
     init {
@@ -37,26 +36,24 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
             .flatMap { type -> List(type.numberOfTiles) { type } }
         tileTypes.shuffled(random).forEachIndexed { index, type -> tiles.add(Tile(type, index)) }
         generateGraph()
-        // Generate edges
+        val (value, isClockwise) = generationArgs
+        val generationStrategy = ArrayDeque(generateStrategyProvider(value, isClockwise))
         tiles.forEach { tile ->
+            if (tile.type != Tile.Type.DESERT) tile.value = generationStrategy.removeFirst()
             val neighbors = tile.neighbors
             val keys = neighbors.keys
-            fun check(location: Location) {
-                if (location !in keys) return
-                val edge = neighbors[location]!!.edges[location.opposite]!!
-                tile.edges[location] = edge
-                edge += tile
+            fun check(vararg locations: Location) = locations.forEach {
+                if (it !in keys) return
+                val edge = neighbors[it]!!.edges[it.opposite]!!
+                tile.edges[it] = edge
+                edge.second = tile
             }
-            check(Location.TOP_LEFT)
-            check(Location.TOP_RIGHT)
-            check(Location.LEFT)
-            edgeTileLocations.forEach { location ->
-                if (location !in tile.edges.keys)
-                    tile.edges[location] = Edge(tile)
+            check(Location.TOP_LEFT, Location.TOP_RIGHT, Location.LEFT)
+            edgeTileLocations.forEach {
+                if (it !in tile.edges.keys) tile.edges[it] = Edge(tile)
             }
             edges += tile.edges.values
         }
-        // Generate intersections
         tiles.forEach { tile ->
             val intersections = tile.intersections
             val neighborKeys = tile.neighbors.keys
@@ -88,12 +85,6 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
                 this.intersections += intersections[it]!!
             }
         }
-        // Generate tile values
-        val (value, isClockwise) = generationArgs
-        val generationStrategy = ArrayDeque(generateStrategyProvider(value, isClockwise))
-        tiles.forEach {
-            if (it.type != Tile.Type.DESERT) it.value = generationStrategy.removeFirst()
-        }
         robberIndex = tiles.first { it.type == Tile.Type.DESERT }.id
     }
 
@@ -101,7 +92,6 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
         val neighbors = it.neighbors
         if (it.id !in leftMost) neighbors[Location.LEFT] = tiles[it.id - 1]
         if (it.id !in rightMost) neighbors[Location.RIGHT] = tiles[it.id + 1]
-        //<editor-fold desc="Generating graph">
         when (it.id) {
             0, 1, 2 -> {
                 neighbors[Location.BOTTOM_LEFT] = tiles[it.id + 3]
@@ -134,11 +124,10 @@ class Board(random: Random = Random, generationArgs: Pair<Int, Boolean> = 1 to f
                 neighbors[Location.TOP_RIGHT] = tiles[it.id - 3]
             }
         }
-        //</editor-fold>
     }
 }
 
-fun generateStrategyProvider(firstTile: Int, isClockwise: Boolean): List<Int> =
+internal fun generateStrategyProvider(firstTile: Int, isClockwise: Boolean): List<Int> =
     if (isClockwise) when (firstTile) {
         0 -> listOf(0, 1, 2, 6, 11, 15, 18, 17, 16, 12, 7, 3, 4, 5, 10, 14, 13, 8, 9)
         1 -> listOf(1, 2, 6, 11, 15, 18, 17, 16, 12, 7, 3, 0, 4, 5, 10, 14, 13, 8, 9)
@@ -152,7 +141,7 @@ fun generateStrategyProvider(firstTile: Int, isClockwise: Boolean): List<Int> =
         16 -> listOf(16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 18, 17, 13, 8, 4, 5, 10, 14, 9)
         17 -> listOf(17, 16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 18, 14, 13, 8, 4, 5, 10, 9)
         18 -> listOf(18, 17, 16, 12, 7, 3, 0, 1, 2, 6, 11, 15, 14, 13, 8, 4, 5, 10, 9)
-        else -> throw IllegalStateException("Unexpected value: $firstTile");
+        else -> throw IllegalStateException("Unexpected value: $firstTile")
     } else when (firstTile) {
         0 -> listOf(0, 3, 7, 12, 16, 17, 18, 15, 11, 6, 2, 1, 4, 8, 13, 14, 10, 5, 9)
         1 -> listOf(1, 0, 3, 7, 12, 16, 17, 18, 15, 11, 6, 2, 5, 4, 8, 13, 14, 10, 9)
@@ -166,7 +155,7 @@ fun generateStrategyProvider(firstTile: Int, isClockwise: Boolean): List<Int> =
         16 -> listOf(16, 17, 18, 15, 11, 6, 2, 1, 0, 3, 7, 12, 13, 14, 10, 5, 4, 8, 9)
         17 -> listOf(17, 18, 15, 11, 6, 2, 1, 0, 3, 7, 12, 16, 13, 14, 10, 5, 4, 8, 9)
         18 -> listOf(18, 15, 11, 6, 2, 1, 0, 3, 7, 12, 16, 17, 14, 10, 5, 4, 8, 13, 9)
-        else -> throw IllegalStateException("Unexpected value: $firstTile");
+        else -> throw IllegalStateException("Unexpected value: $firstTile")
     }
 
 

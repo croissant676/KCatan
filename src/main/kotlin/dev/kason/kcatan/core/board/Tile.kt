@@ -6,11 +6,8 @@ import kotlin.math.absoluteValue
 class Tile(val type: Type, val id: Int) {
     var value: Int = 0
         internal set
-    /** Only board class should edit this map. */
     val neighbors: MutableMap<Location, Tile> = mutableMapOf()
-    /** Only board class should edit this map. */
     val edges: MutableMap<Location, Edge> = mutableMapOf()
-    /** Only board class should edit this map. */
     val intersections: MutableMap<Location, Intersection> = mutableMapOf()
     val displayDots get() = 6 - (value - 7).absoluteValue
 
