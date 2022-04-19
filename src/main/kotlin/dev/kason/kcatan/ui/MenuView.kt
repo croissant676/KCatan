@@ -5,13 +5,11 @@ import mu.KLogging
 import tornadofx.*
 
 class MenuView : View("Menu") {
-    companion object : KLogging()
 
     class Styles : Stylesheet() {
         //<editor-fold desc="CSS">
         companion object {
             val background by cssclass()
-            val title by cssclass()
             val grass by cssclass()
             val menuButton by cssclass()
         }
