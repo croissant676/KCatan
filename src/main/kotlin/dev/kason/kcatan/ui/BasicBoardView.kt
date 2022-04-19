@@ -7,5 +7,7 @@ import mu.KLogging
 class BasicBoardView : View() {
     companion object : KLogging()
 
-    override val root: BorderPane by fxml("/resources/Hexagon.fxml")
+    override val root: BorderPane by fxml("/resources/BasicBoardView.fxml")
+
+
 } // waht the fawc am i doing

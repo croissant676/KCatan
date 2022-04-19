@@ -6,23 +6,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hexagon">
    <children>
-      <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
-        <points>
-          <Double fx:value="0" />
-          <Double fx:value="0" />
-          <Double fx:value="40" />
-          <Double fx:value="0" />
-          <Double fx:value="60" />
-          <Double fx:value="34.64" />
-          <Double fx:value="40" />
-          <Double fx:value="69.28" />
-          <Double fx:value="0" />
-          <Double fx:value="69.28" />
-          <Double fx:value="-20" />
-          <Double fx:value="34.64" />
-        </points>
-      </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="207.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -38,7 +22,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="240.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="207.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -54,7 +38,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="190.5" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="240.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -70,7 +54,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="240.0" layoutY="131.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="190.5" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -86,7 +70,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="307.0" layoutY="131.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="240.0" layoutY="131.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -102,7 +86,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="307.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="307.0" layoutY="131.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -118,7 +102,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="172.0" layoutY="132.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="307.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -134,7 +118,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="410.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="172.0" layoutY="132.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -150,7 +134,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="375.0" layoutY="132.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="410.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -166,7 +150,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="206.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="375.0" layoutY="132.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -182,7 +166,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="206.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -198,7 +182,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="139.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -214,7 +198,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="139.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -230,7 +214,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="375.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="72.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -246,7 +230,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="375.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -262,7 +246,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="342.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -278,7 +262,7 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="206.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
@@ -294,7 +278,23 @@
                <Double fx:value="34.64" />
            </points>
        </Polygon>
-       <Polygon fill="DODGERBLUE" layoutX="172.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE">
+       <Polygon fill="DODGERBLUE" layoutX="206.0" layoutY="308.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
+           <points>
+               <Double fx:value="0" />
+               <Double fx:value="0" />
+               <Double fx:value="40" />
+               <Double fx:value="0" />
+               <Double fx:value="60" />
+               <Double fx:value="34.64" />
+               <Double fx:value="40" />
+               <Double fx:value="69.28" />
+               <Double fx:value="0" />
+               <Double fx:value="69.28" />
+               <Double fx:value="-20" />
+               <Double fx:value="34.64" />
+           </points>
+       </Polygon>
+       <Polygon fill="DODGERBLUE" layoutX="172.0" layoutY="250.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />
                <Double fx:value="0" />
