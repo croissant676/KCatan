@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hexagon">
    <children>
+      <Button contentDisplay="TOP" graphicTextGap="0.0" layoutX="548.0" layoutY="353.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="52.0" text="Roll Dice" />
        <Polygon fill="DODGERBLUE" layoutX="274.0" layoutY="191.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" translateX="-80.0" translateY="-40.0">
            <points>
                <Double fx:value="0" />

@@ -1,13 +1,24 @@
 package dev.kason.kcatan.ui
 
+import javafx.scene.layout.*
 import tornadofx.*
-import javafx.scene.layout.BorderPane
 import mu.KLogging
 
 class BasicBoardView : View() {
     companion object : KLogging()
 
-    override val root: BorderPane by fxml("/resources/BasicBoardView.fxml")
+    override val root: AnchorPane by fxml("/resources/BasicBoardView.fxml") {
+        button("Roll Dice") {
+
+        }
+    }
+
+
+    class BoardStyles : Stylesheet() { //just copying code dont mind me <33
+        companion object {
+
+        }
+    }
 
 
 } // waht the fawc am i doing
