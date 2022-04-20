@@ -7,20 +7,20 @@ import java.util.Collections
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-private val diceRange = 1..6
-
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class Game(val random: Random = Random, playerOrder: List<Player.Color>) {
     val players = playerOrder.mapIndexed { index, color -> Player(index, color) }
     var currentPlayerTurn = 0
     val currentPlayer get() = players[currentPlayerTurn]
     var diceRolls = 0 to 0
     val diceRollValue get() = diceRolls.first + diceRolls.second
-
     var longestRoadPlayer: Player? = null
+        private set
     var longestRoadLength = 0
+        private set
+    val deck by lazy { generateDeck() }
 
-    // use removeFirst() to get the first element, add() to add the element to the end
-    val deck = ArrayDeque(DevCard.values().flatMap {
+    fun generateDeck() = ArrayDeque(DevCard.values().flatMap {
         when (it) {
             DevCard.KNIGHT -> Collections.nCopies(14, it)
             DevCard.VICTORY -> Collections.nCopies(5, it)
@@ -31,34 +31,33 @@ class Game(val random: Random = Random, playerOrder: List<Player.Color>) {
     fun nextPlayerTurn(): Player = players[currentPlayerTurn++ % players.size]
     fun checkWinConditions(): Player? = players.firstOrNull { it.calculateVictoryPoints() > 10 }
     fun rollDie(): Pair<Int, Int> {
-        diceRolls = random.nextInt(diceRange) to random.nextInt(diceRange)
+        diceRolls = random.nextInt(1..6) to random.nextInt(1..6)
         return diceRolls
     }
 
     fun buildRoad(player: Player, edge: Edge): Boolean {
         if (edge.hasRoad) return false
-        if (!player.resources.hasResources(Costs.road)) return false
+        if (!player.resources.has(Costs.road)) return false
         edge.player = player
         player.roads += edge
         player.resources -= Costs.road
         return true
     }
 
-    fun buildSettlement(player: Player, intersection: Intersection): Boolean {
-        if (intersection.hasConstruction) return false
-        if (!player.resources.hasResources(Costs.settlement)) return false
+    fun buildSettlement(player: Player, intersection: Intersection) {
+        check(!intersection.hasConstruction)
+        check(player.resources has Costs.settlement)
         intersection.player = player
-        player.settlements.add(intersection)
+        player.settlements += intersection
         player.resources -= Costs.settlement
-        return true
     }
 
-    fun buildCity(player: Player, intersection: Intersection): Boolean {
-        if (intersection.isCity) return false
-        if (!player.resources.hasResources(Costs.city)) return false
+    fun buildCity(player: Player, intersection: Intersection) {
+        check(!intersection.isCity)
+        check(intersection.player == player)
+        check(player.resources has Costs.city)
         intersection.isCity = true
         player.resources -= Costs.city
-        return true
     }
 
 
@@ -69,18 +68,13 @@ class Game(val random: Random = Random, playerOrder: List<Player.Color>) {
         return draw
     }
 
-    fun findLongestRoad(): Int {
-        val playerLengths = players.map { it.calculateLongestRoad() }
-        playerLengths.forEachIndexed { index, length ->
-            if (length > longestRoadLength) {
-                longestRoadLength = length
-                longestRoadPlayer = if (length <= 5) {
-                    null
-                } else {
-                    players[index]
-                }
-            }
-        }
-        return longestRoadLength
+    fun findLongestRoad() {
+        val lengths = players.map { it.calculateLongestRoad() }
+        Array<String>(10) {""}.forEach {  }
+        longestRoadLength = lengths.maxOrNull() ?: 0
+        if (longestRoadLength < 5) return
+        val longestRoadPlayers = lengths.indices.filter { lengths[it] == longestRoadLength }.map { players[it] }
+        if (longestRoadPlayers.size == 1) longestRoadPlayer = longestRoadPlayers.first()
+        else if (longestRoadPlayer !in longestRoadPlayers) longestRoadPlayer = longestRoadPlayers.random(random)
     }
 }

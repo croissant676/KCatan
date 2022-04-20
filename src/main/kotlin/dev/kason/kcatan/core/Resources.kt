@@ -30,7 +30,7 @@ enum class Resources {
         }
 }
 
-data class SimpleResources(private val map: Map<Resources, Int>) : Map<Resources, Int> by map {
+data class SimpleResources (private val map: Map<Resources, Int>) : Map<Resources, Int> by map {
     constructor(
         lumber: Int = 0,
         wool: Int = 0,
@@ -49,25 +49,9 @@ data class SimpleResources(private val map: Map<Resources, Int>) : Map<Resources
 data class PlayerResources(
     private val player: Player,
     private val hashMap: MutableMap<Resources, Int> = EnumMap(Resources::class.java)
-) : MutableMap<Resources, Int> by hashMap {
-    constructor(player: Player, simpleResources: SimpleResources) : this(player, EnumMap(simpleResources))
-    constructor(
-        player: Player,
-        lumber: Int,
-        wool: Int,
-        grain: Int,
-        brick: Int,
-        ore: Int
-    ) : this(player, EnumMap<Resources, Int>(Resources::class.java).also {
-        it[Resources.LUMBER] = lumber
-        it[Resources.WOOL] = wool
-        it[Resources.GRAIN] = grain
-        it[Resources.BRICK] = brick
-        it[Resources.ORE] = ore
-    })
-}
+) : MutableMap<Resources, Int> by hashMap
 
-fun Map<Resources, Int>.hasResources(map: Map<Resources, Int>): Boolean {
+infix fun Map<Resources, Int>.has(map: Map<Resources, Int>): Boolean {
     return map.all { (resource, amount) ->
         this[resource]?.let { it >= amount } ?: false
     }
