@@ -13,6 +13,7 @@ import dev.kason.catan.core.board.Vertex
 class Player (val id: Int, val color: Color) {
     val settlements: MutableList<Vertex> = mutableListOf()
     val resources = PlayerResourceMap(this)
+    val developmentCards = null
 
     @Suppress("MemberVisibilityCanBePrivate")
     enum class Color {
