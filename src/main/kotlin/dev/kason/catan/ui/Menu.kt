@@ -6,12 +6,12 @@
 
 package dev.kason.catan.ui
 
- import dev.kason.catan.catan
+import dev.kason.catan.catan
 import javafx.scene.Parent
-import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
+import javafx.scene.control.Button
 import mu.KLogging
-import tornadofx.View
+import tornadofx.*
 
 class MenuView: View(catan("Menu")) {
     companion object: KLogging()
@@ -20,6 +20,15 @@ class MenuView: View(catan("Menu")) {
     private val continueButton: Button by fxid()
     private val ruleButton: Button by fxid()
     override fun onDock() {
+        startButton.setOnAction {
+            replaceWith<UserCountSettingView>(ViewTransition.Fade(0.5.seconds))
+        }
+        continueButton.setOnAction {
+            logger.info("Continue button clicked")
+        }
+        ruleButton.setOnAction {
+            logger.info("Rule button clicked")
+        }
     }
 }
 

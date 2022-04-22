@@ -7,7 +7,6 @@
 package dev.kason.catan.core.player
 
 import javafx.scene.paint.Color as JFXColor
-import com.sun.prism.image.Coords
 import dev.kason.catan.core.board.Vertex
 
 class Player (val id: Int, val color: Color) {
@@ -28,6 +27,6 @@ class Player (val id: Int, val color: Color) {
                 White -> "ffb75a"
                 Orange -> "ff655a"
             }
-        val color: javafx.scene.paint.Color get() = JFXColor.web("#${colorHex}")
+        val color: JFXColor get() = JFXColor.web("#${colorHex}")
     }
 }

@@ -10,7 +10,6 @@ package dev.kason.catan.core.player
 
 import dev.kason.catan.core.board.Tile
 import java.util.EnumMap
-import jdk.internal.loader.Resource
 
 enum class ResourceType {
     Lumber,

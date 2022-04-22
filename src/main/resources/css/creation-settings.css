@@ -4,10 +4,11 @@
  * https://opensource.org/licenses/MIT
  */
 
-.menu-background {
+
+.settings-background {
     -fx-background-color: radial-gradient(
             focus-distance 0%,
-            center 50% 60%,
+            center 50% 90%,
             radius 90%,
             reflect,
             #ffeccd,
@@ -19,20 +20,10 @@
     -fx-border-radius: 5px;
 }
 
-.catan-menu-button {
-    -fx-padding: 10px;
-    -fx-background-color: #79b379;
+.large-label {
+    -fx-font-size: 20px;
 }
 
-.catan-menu-button:hover {
-    -fx-background-color: #69aa69;
-}
+.combo-box {
 
-.title {
-    -fx-font-size: 40px;
-    -fx-text-fill: white;
-}
-
-.catan-grass {
-    -fx-background-color: #79b379;
 }

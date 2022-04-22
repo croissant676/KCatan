@@ -6,18 +6,19 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="133.0" layoutY="274.0" stroke="BLACK"
-              strokeType="INSIDE" strokeWidth="0.0" width="600.0"/>
-   <Button fx:id="startButton" layoutX="79.0" layoutY="307.0" mnemonicParsing="false" text="Start Game"/>
-   <Button fx:id="continueButton" layoutX="227.0" layoutY="307.0" mnemonicParsing="false"
-           text="Continue Previous Game"/>
-   <Button fx:id="ruleButton" layoutX="440.0" layoutY="307.0" mnemonicParsing="false" text="View Rules"/>
-   <Label layoutX="251.0" layoutY="64.0" text="Welcome to Catan"/>
-   <Label layoutX="37.0" layoutY="368.0" text="Catan 2022 - Group KasonG MIT License"/>
+<AnchorPane prefHeight="393.0" prefWidth="590.0" styleClass="menu-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <Region layoutY="240.0" prefHeight="160.0" prefWidth="601.0" styleClass="catan-grass" />
+   <Button fx:id="startButton" layoutX="79.0" layoutY="307.0" mnemonicParsing="false" styleClass="catan-menu-button" text="Start Game" />
+   <Button fx:id="continueButton" layoutX="227.0" layoutY="307.0" mnemonicParsing="false" styleClass="catan-menu-button" text="Continue Previous Game" />
+   <Button fx:id="ruleButton" layoutX="440.0" layoutY="307.0" mnemonicParsing="false" styleClass="catan-menu-button" text="View Rules" />
+   <Label layoutX="123.0" layoutY="64.0" styleClass="title" text="Welcome to Catan" />
+   <Label layoutX="37.0" layoutY="368.0" text="Catan 2022 - Group KasonG MIT License" />
+   <stylesheets>
+      <URL value="@../css/generic.css" />
+      <URL value="@../css/menu.css" />
+   </stylesheets>
 </AnchorPane>
