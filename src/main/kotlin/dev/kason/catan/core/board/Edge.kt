@@ -13,7 +13,6 @@ class Edge(val first: Tile) {
         internal set
     var player: Player? = null
     val isEmpty get() = player == null
-    val isOccupied get() = player != null
     val vertices: List<Vertex> by lazy {
         first.vertices.values.filter { this in it.edges }
     }

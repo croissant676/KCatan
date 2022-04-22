@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="522.0" prefWidth="615.0" styleClass="board-background" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Polygon fx:id="tile0" layoutX="206.0" layoutY="73.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile1" layoutX="274.0" layoutY="73.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile2" layoutX="342.0" layoutY="73.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile3" layoutX="172.0" layoutY="132.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile4" layoutX="240.0" layoutY="132.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile5" layoutX="307.0" layoutY="132.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile6" layoutX="375.0" layoutY="132.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile7" layoutX="139.0" layoutY="191.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile8" layoutX="207.0" layoutY="191.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile9" layoutX="274.0" layoutY="191.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile10" layoutX="342.0" layoutY="191.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile11" layoutX="410.0" layoutY="191.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile12" layoutX="172.0" layoutY="250.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile13" layoutX="240.0" layoutY="250.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile14" layoutX="307.0" layoutY="250.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile15" layoutX="375.0" layoutY="250.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile16" layoutX="206.0" layoutY="308.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile17" layoutX="274.0" layoutY="308.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+    <Polygon fx:id="tile18" layoutX="342.0" layoutY="308.0" rotate="30.0" translateX="-80.0" translateY="-40.0">
+        <points>
+            <Double fx:value="0" />
+            <Double fx:value="0" />
+            <Double fx:value="40" />
+            <Double fx:value="0" />
+            <Double fx:value="60" />
+            <Double fx:value="34.64" />
+            <Double fx:value="40" />
+            <Double fx:value="69.28" />
+            <Double fx:value="0" />
+            <Double fx:value="69.28" />
+            <Double fx:value="-20" />
+            <Double fx:value="34.64" />
+        </points>
+    </Polygon>
+</AnchorPane>

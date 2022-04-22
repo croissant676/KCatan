@@ -92,7 +92,6 @@ class Board(
                 _edges += this
             }
         }
-
     }
 
     private fun vertexGraph() = tiles.forEach {
@@ -128,6 +127,32 @@ class Board(
                 newVertex
             }
             vertex._tiles[location.opposite] = it
+        }
+        _vertices += it._vertices.values
+    }
+
+    fun debugString(): String = buildString {
+        append("Tiles: \n")
+        tiles.forEach {
+            append("Tile: ${it.id} \n")
+            for ((key, value) in it.neighbors) {
+                append("\t$key -> ${value.id} \n")
+            }
+        }
+        append("Edges: \n")
+        tiles.forEach {
+            append("\tFor Tile: ${it.id} \n")
+            for ((key, value) in it.edges) {
+                append("\t\t$key -> ${if(it.id == value.first.id) value.second?.id else value.first.id} \n")
+            }
+        }
+        append("Vertices: \n")
+        vertices.forEach {
+            append("\tVertex with (")
+            for ((key, value) in it.tiles) {
+                append("$key -> ${value.id}, ")
+            }
+            append(") \n")
         }
     }
 }
