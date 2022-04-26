@@ -9,3 +9,42 @@
     -fx-background-color: #73baff;
 }
 
+.pasture {
+    -fx-fill: #93c47d;
+}
+
+.forest {
+    -fx-fill: #529636;
+}
+
+.fields {
+    -fx-fill: #ffe687;
+}
+
+.hills {
+    -fx-fill: #e06f46;
+}
+
+.desert {
+    -fx-fill: #fff2cc;
+}
+
+.mountains {
+    -fx-fill: #b7b7b7;
+}
+
+.circle {
+    -fx-fill: #f5f5dc;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 1px;
+}
+
+.text {
+    -fx-font-size: 20px;
+    -fx-font-family: "Century Gothic";
+    -fx-text-alignment: center;
+}
+
+.dark-label {
+    -fx-text-fill: black;
+}

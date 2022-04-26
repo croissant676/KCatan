@@ -41,5 +41,4 @@ enum class Location {
 
 typealias LocationMap<T> = Map<Location, T>
 typealias LocationMutableMap<T> = MutableMap<Location, T>
-
 fun <T> createLocationMap(): LocationMutableMap<T> = EnumMap(Location::class.java)

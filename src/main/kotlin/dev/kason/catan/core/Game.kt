@@ -14,7 +14,11 @@ import kotlin.random.nextInt
 @Suppress("MemberVisibilityCanBePrivate")
 class Game(
     val random: Random = Random,
-    playerOrder: List<Player.Color>
+    numberOfPlayers: Int = 4,
+    playerOrder: List<Player.Color> = Player.Color.values().run {
+        val shuffled = toMutableList().shuffled(random)
+        shuffled.subList(0, numberOfPlayers).toList()
+    }
 ) {
     val board = Board(random)
     val players = playerOrder.mapIndexed(::Player)
@@ -25,12 +29,12 @@ class Game(
         private set
     val developmentCardDeck by lazy { }
 
-    fun generateRoll(): RollResults = (random.nextInt(0..6) to random.nextInt(0..6)).also { roll = it }
+    fun generateRoll(): RollResults = (random.nextInt(1..6) to random.nextInt(1..6)).apply { roll = this }
     fun nextPlayer(): Player = players[(currentPlayerIndex++) % players.size]
 
     fun canBuildRoad(player: Player, edge: Edge): Boolean {
         if (player.resources doesNotHave Constants.roadCost) return false
-        if (edge.player != null) return false
+        if (!edge.isEmpty) return false
         return true
     }
 
