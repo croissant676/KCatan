@@ -1,0 +1,11 @@
+/*
+ * Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+ * Use of this code is governed by the MIT Licensed, which can be obtained at:
+ * https://opensource.org/licenses/MIT
+ */
+
+
+.board-background {
+    -fx-background-color: #73baff;
+}
+
