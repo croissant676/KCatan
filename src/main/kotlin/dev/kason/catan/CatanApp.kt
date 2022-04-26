@@ -8,7 +8,7 @@ package dev.kason.catan
 
 import com.google.common.io.Resources.getResource
 import com.google.common.io.Resources.readLines
-import dev.kason.catan.ui.BoardView
+import dev.kason.catan.ui.GameView
 import org.slf4j.bridge.SLF4JBridgeHandler
 import tornadofx.App
 import tornadofx.launch
@@ -21,4 +21,4 @@ fun main(args: Array<String>) {
     launch<CatanApp>(args)
 }
 
-class CatanApp: App(BoardView::class)
+class CatanApp: App(GameView::class)

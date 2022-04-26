@@ -11,16 +11,9 @@ import java.util.Collections
 import kotlin.random.Random
 
 class Board(
-    private val random: Random
-) {
-
-    val tiles by lazy {
-        val types = Tile.Type.values()
-            .flatMap { Collections.nCopies(it.numberOfTiles, it) }.shuffled(random)
-        List(19) {
-            Tile(it, types[it])
-        }
-    }
+    private val random: Random,
+    private val tiles: List<Tile> = generateTiles(random)
+) : List<Tile> by tiles {
 
     private val _edges = mutableListOf<Edge>()
     val edges by lazy { _edges.toList() }
@@ -39,6 +32,7 @@ class Board(
         tileGraph()
         edgeGraph()
         vertexGraph()
+        generateTileValues()
     }
 
     private fun tileGraph() = tiles.forEach {
@@ -131,6 +125,15 @@ class Board(
         _vertices += it._vertices.values
     }
 
+    private fun generateTileValues(firstTile: Int = 0, clockwise: Boolean = random.nextBoolean()) {
+        check(firstTile in validFirstTiles) { "Invalid first tile: $firstTile" }
+        boardRotations(firstTile, clockwise).forEach {
+            if(this[it].type == Tile.Type.Desert) return@forEach
+            this[it]._value = orderOfNumbers.removeFirst()
+        }
+    }
+
+
     fun debugString(): String = buildString {
         append("Tiles: \n")
         tiles.forEach {
@@ -157,3 +160,10 @@ class Board(
     }
 }
 
+private val orderOfNumbers = ArrayDeque(listOf(5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11))
+
+fun generateTiles(random: Random = Random): List<Tile> {
+    return Tile.Type.values()
+        .flatMap { Collections.nCopies(it.numberOfTiles, it) }.shuffled(random)
+        .mapIndexed { index, type -> Tile(index, type) }
+}

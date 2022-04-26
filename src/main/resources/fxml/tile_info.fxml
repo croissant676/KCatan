@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="160.0" prefWidth="232.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="tileIdLabel" layoutX="14.0" layoutY="33.0" styleClass="dark-label" text="Label" />
+      <Label fx:id="tileValueLabel" layoutX="14.0" layoutY="68.0" prefHeight="36.0" prefWidth="163.0" styleClass="dark-label" text="Label" />
+      <Label fx:id="chanceLabel" layoutX="14.0" layoutY="119.0" styleClass="dark-label" text="Chance: " />
+      <Circle fx:id="colorCircle" layoutX="187.0" layoutY="46.0" radius="18.0" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/generic.css" />
+      <URL value="@../css/board.css" />
+   </stylesheets>
+</AnchorPane>

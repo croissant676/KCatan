@@ -26,11 +26,6 @@ data class Vertex(
 
     val edges: List<Edge> by lazy {
         val _edges = mutableListOf<Edge>()
-        if(rotation == Rotation.Top) {
-
-        } else {
-
-        }
         _edges
     }
 

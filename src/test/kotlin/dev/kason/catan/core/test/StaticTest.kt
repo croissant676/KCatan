@@ -19,7 +19,7 @@ fun main() {
     val newLines = lines.map { s ->
         s.split("\"").joinToString(separator = "\"") {
             val x = it.toDoubleOrNull()
-            if (x != null) (x / 2).toString() else it
+            if (x != null) (x * 2).toString() else it
         }
     }
     println(newLines.joinToString(separator = "\n"))
