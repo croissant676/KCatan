@@ -12,8 +12,8 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="board-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-    <Polygon fx:id="tile0" layoutX="356.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="board-background" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Polygon fx:id="tile0" layoutX="356.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -29,7 +29,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile1" layoutX="459.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile1" layoutX="459.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -45,7 +45,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile2" layoutX="561.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile2" layoutX="561.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -61,7 +61,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile3" layoutX="303.0" layoutY="212.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile3" layoutX="303.0" layoutY="212.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -77,7 +77,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile4" layoutX="407.0" layoutY="214.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile4" layoutX="407.0" layoutY="214.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -93,7 +93,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile5" layoutX="511.0" layoutY="213.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile5" layoutX="511.0" layoutY="213.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -109,7 +109,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile6" layoutX="614.0" layoutY="214.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile6" layoutX="614.0" layoutY="214.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -125,7 +125,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile7" layoutX="253.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile7" layoutX="253.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -141,7 +141,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile8" layoutX="357.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile8" layoutX="357.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -157,7 +157,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile9" layoutX="460.0" layoutY="304.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile9" layoutX="460.0" layoutY="304.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -173,7 +173,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile10" layoutX="562.0" layoutY="305.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile10" layoutX="562.0" layoutY="305.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -189,7 +189,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile11" layoutX="666.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile11" layoutX="666.0" layoutY="303.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -205,7 +205,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile12" layoutX="307.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile12" layoutX="307.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -221,7 +221,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile13" layoutX="410.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile13" layoutX="410.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -237,7 +237,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile14" layoutX="512.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile14" layoutX="512.0" layoutY="397.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -253,7 +253,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile15" layoutX="615.0" layoutY="398.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile15" layoutX="615.0" layoutY="398.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -269,7 +269,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile16" layoutX="358.0" layoutY="486.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile16" layoutX="358.0" layoutY="486.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -285,7 +285,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile17" layoutX="461.0" layoutY="487.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile17" layoutX="461.0" layoutY="487.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -301,7 +301,7 @@
             <Double fx:value="34.64" />
         </points>
     </Polygon>
-    <Polygon fx:id="tile18" layoutX="563.0" layoutY="487.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
+    <Polygon fx:id="tile18" layoutX="563.0" layoutY="487.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="5.0" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />
             <Double fx:value="0" />
@@ -341,25 +341,25 @@
     <Circle fx:id="circle16" layoutX="298.0" layoutY="481.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle17" layoutX="401.0" layoutY="481.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle18" layoutX="503.0" layoutY="482.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
-    <Text fx:id="label0" layoutX="277.0" layoutY="119.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label1" layoutX="380.0" layoutY="119.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label2" layoutX="482.0" layoutY="120.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label3" layoutX="224.0" layoutY="210.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label4" layoutX="329.0" layoutY="212.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label5" layoutX="432.0" layoutY="212.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label6" layoutX="536.0" layoutY="212.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label7" layoutX="174.0" layoutY="303.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label8" layoutX="278.0" layoutY="304.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label9" layoutX="381.0" layoutY="302.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label10" layoutX="483.0" layoutY="303.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label11" layoutX="587.0" layoutY="303.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label12" layoutX="228.0" layoutY="394.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label13" layoutX="331.0" layoutY="396.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label14" layoutX="433.0" layoutY="395.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label15" layoutX="536.0" layoutY="396.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label16" layoutX="278.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label17" layoutX="382.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label18" layoutX="484.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label0" layoutX="292.0" layoutY="120.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label1" layoutX="395.0" layoutY="120.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label2" layoutX="497.0" layoutY="121.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label3" layoutX="239.0" layoutY="211.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label4" layoutX="344.0" layoutY="213.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label5" layoutX="447.0" layoutY="213.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label6" layoutX="551.0" layoutY="213.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label7" layoutX="189.0" layoutY="304.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label8" layoutX="293.0" layoutY="305.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label9" layoutX="396.0" layoutY="303.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label10" layoutX="498.0" layoutY="304.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label11" layoutX="602.0" layoutY="304.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label12" layoutX="243.0" layoutY="395.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label13" layoutX="346.0" layoutY="397.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label14" layoutX="448.0" layoutY="396.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label15" layoutX="551.0" layoutY="397.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label16" layoutX="293.0" layoutY="486.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label17" layoutX="397.0" layoutY="486.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Text fx:id="label18" layoutX="499.0" layoutY="486.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
     <stylesheets>
         <URL value="@../css/board.css" />
         <URL value="@../css/generic.css" />
