@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="481.0" prefWidth="548.0" styleClass="board-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="board-background" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <Polygon fx:id="tile0" layoutX="218.0" layoutY="107.0" rotate="30.0" scaleX="1.125" scaleY="1.125" scaleZ="1.125" translateX="-80.0" translateY="-40.0">
         <points>
             <Double fx:value="0" />

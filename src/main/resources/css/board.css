@@ -48,3 +48,9 @@
 .dark-label {
     -fx-text-fill: black;
 }
+
+.base-hexagon {
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-border-width: 5px;
+}
