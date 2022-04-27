@@ -23,11 +23,12 @@ class GameView(private val game: Game = Game) : View(catan("Game")) {
         }
         right { add(sidePanelViewProperty.value) }
         bottom {
-            add(BoardBottomView())
+            add(BoardBottomView(game))
         }
     }
 }
 
-class BoardBottomView: View() {
+class BoardBottomView(val game: Game): View() {
     override val root: Parent by fxml("/fxml/board_bottom.fxml")
+
 }
