@@ -14,7 +14,6 @@ import javafx.scene.control.Label
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Polygon
 import javafx.scene.text.*
-import javafx.stage.Stage
 import mu.KLogging
 import tornadofx.*
 
@@ -132,8 +131,7 @@ class BoardView(
     )
 
 
-    private
-    val listOfLabels = listOf(
+    private val listOfLabels = listOf(
         label0,
         label1,
         label2,
@@ -178,7 +176,7 @@ class BoardView(
             if (tile.type == Tile.Type.Desert) isVisible = false
             if (value == 6 || value == 8) {
                 fill = c("#ff002d")
-                logger.debug { "Styled tile ${tile.id} with red with value ${tile.value}" }
+                logger.debug { "Styled ${tile.id} with red, value = ${tile.value}" }
             }
             font = Font.font("Century Gothic", 20.0)
             textAlignment = TextAlignment.CENTER

@@ -8,11 +8,13 @@ package dev.kason.catan.ui
 
 import dev.kason.catan.core.player.*
 import javafx.scene.Parent
+import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
 import javafx.scene.text.Text
+import mu.KLogging
 import tornadofx.*
 import kotlin.random.Random
 
@@ -20,11 +22,25 @@ class BaseSidePanel(val player: Player) : View() {
     override val root: Parent = borderpane {
         top { add(costView(player.color.jfxColor)) }
         center { add(PlayerResourceCosts(player.resources)) }
+        bottom { add(BaseSidePanelBottom(player)) }
     }
 }
 
 class BaseSidePanelBottom(val player: Player) : View() {
+    companion object: KLogging()
     override val root: Parent by fxml("/fxml/base_side.fxml")
+    private val buildCity: Button by fxid()
+    private val buildConstruction: Button by fxid()
+    private val devCardBuyButton: Button by fxid()
+    private val maritimeTradeButton: Button by fxid()
+    private val devCardUseButton: Button by fxid()
+    private val defaultTradeButton: Button by fxid()
+    private val othersTradeButton: Button by fxid()
+    init {
+        buildCity.action {
+            logger.info { "Building city" }
+        }
+    }
 }
 
 class CostsView(color: Color) : Fragment() {

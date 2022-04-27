@@ -22,5 +22,12 @@ class GameView(private val game: Game = Game) : View(catan("Game")) {
             oldValue.replaceWith(newValue, ViewTransition.Fade(0.5.seconds))
         }
         right { add(sidePanelViewProperty.value) }
+        bottom {
+            add(BoardBottomView())
+        }
     }
+}
+
+class BoardBottomView: View() {
+    override val root: Parent by fxml("/fxml/board_bottom.fxml")
 }

@@ -65,16 +65,6 @@ open class Game(
         vertex.isCity = true
         player.resources -= Constants.cityCost
     }
-
-    inner class Initializer {
-        fun turn() {
-
-        }
-
-        fun finishInitialization() {
-
-        }
-    }
 }
 
 typealias RollResults = Pair<Int, Int>
