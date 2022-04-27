@@ -4,15 +4,17 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.core.player
 
-import dev.kason.catan.core.board.Tile
-
-enum class DevelopmentCards {
-    VictoryPoint,
-    YearOfPlenty,
-    RoadBuilding,
-    Monopoly,
-    Knight;
+.costs-background {
+    -fx-fill: #ffffff;
 }
 
+.cost-title {
+    -fx-font-size: 30px;
+    -fx-text-fill: #545454;
+}
+
+.cost-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #545454;
+}

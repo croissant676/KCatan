@@ -8,6 +8,7 @@ package dev.kason.catan.core.board
 
 import dev.kason.catan.core.Constants
 import java.util.Collections
+import mu.KLogging
 import kotlin.random.Random
 
 class Board(
@@ -15,6 +16,7 @@ class Board(
     private val tiles: List<Tile> = generateTiles(random)
 ) : List<Tile> by tiles {
 
+    companion object: KLogging()
     private val _edges = mutableListOf<Edge>()
     val edges by lazy { _edges.toList() }
 
@@ -125,8 +127,9 @@ class Board(
         _vertices += it._vertices.values
     }
 
-    private fun generateTileValues(firstTile: Int = 0, clockwise: Boolean = random.nextBoolean()) {
+    private fun generateTileValues(firstTile: Int = validFirstTiles.random(random), clockwise: Boolean = random.nextBoolean()) {
         check(firstTile in validFirstTiles) { "Invalid first tile: $firstTile" }
+        logger.debug { "Generating tile values with first tile: $firstTile and clockwise: $clockwise" }
         boardRotations(firstTile, clockwise).forEach {
             if(this[it].type == Tile.Type.Desert) return@forEach
             this[it]._value = orderOfNumbers.removeFirst()

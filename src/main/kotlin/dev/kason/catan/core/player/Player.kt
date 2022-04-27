@@ -28,6 +28,6 @@ class Player (val id: Int, val color: Color) {
                 White -> "ffb75a"
                 Orange -> "ff655a"
             }
-        val color: JFXColor get() = JFXColor.web("#${colorHex}")
+        val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")
     }
 }

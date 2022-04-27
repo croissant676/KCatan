@@ -11,32 +11,44 @@
 
 .pasture {
     -fx-fill: #93c47d;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .forest {
     -fx-fill: #529636;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .fields {
     -fx-fill: #ffe687;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .hills {
     -fx-fill: #e06f46;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .desert {
     -fx-fill: #fff2cc;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .mountains {
     -fx-fill: #b7b7b7;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
 }
 
 .circle {
     -fx-fill: #f5f5dc;
     -fx-border-color: #b3b3b3;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
 }
 
 .text {
@@ -47,4 +59,14 @@
 
 .dark-label {
     -fx-text-fill: black;
+}
+
+.new_player_screen {
+    -fx-background-color: black;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 1px;
+}
+
+.player-resource-background {
+    -fx-background-color: #ffe385;
 }

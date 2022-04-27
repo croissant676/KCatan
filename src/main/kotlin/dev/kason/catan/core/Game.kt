@@ -8,18 +8,21 @@ package dev.kason.catan.core
 
 import dev.kason.catan.core.board.*
 import dev.kason.catan.core.player.*
+import mu.KotlinLogging
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 @Suppress("MemberVisibilityCanBePrivate")
-class Game(
+open class Game(
     val random: Random = Random,
     numberOfPlayers: Int = 4,
-    playerOrder: List<Player.Color> = Player.Color.values().run {
-        val shuffled = toMutableList().shuffled(random)
-        shuffled.subList(0, numberOfPlayers).toList()
-    }
+    playerOrder: List<Player.Color> = Player.Color.values()
+        .run { toMutableList().shuffled(random).subList(0, numberOfPlayers) }
 ) {
+    companion object Sample : Game(Random(6)) {
+        val logger = KotlinLogging.logger {}
+    }
+
     val board = Board(random)
     val players = playerOrder.mapIndexed(::Player)
     var currentPlayerIndex = 0
@@ -63,6 +66,15 @@ class Game(
         player.resources -= Constants.cityCost
     }
 
+    inner class Initializer {
+        fun turn() {
+
+        }
+
+        fun finishInitialization() {
+
+        }
+    }
 }
 
 typealias RollResults = Pair<Int, Int>
