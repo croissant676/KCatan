@@ -326,12 +326,7 @@
     <Circle fx:id="circle6" layoutX="554.0" layoutY="209.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle7" layoutX="193.0" layoutY="298.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle8" layoutX="297.0" layoutY="298.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
-    <Circle fx:id="circle9" layoutX="400.0" layoutY="299.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5">
-        <styleClass>
-            <String fx:value="circle" />
-            <String fx:value="forest" />
-        </styleClass>
-    </Circle>
+    <Circle fx:id="circle9" layoutX="400.0" layoutY="299.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle10" layoutX="502.0" layoutY="300.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle11" layoutX="605.0" layoutY="298.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
     <Circle fx:id="circle12" layoutX="247.0" layoutY="391.0" radius="23.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" styleClass="circle" />
@@ -360,6 +355,24 @@
     <Text fx:id="label16" layoutX="278.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
     <Text fx:id="label17" layoutX="382.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
     <Text fx:id="label18" layoutX="484.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
+    <Polygon fx:id="boat6" layoutX="689.0" layoutY="242.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat1" layoutX="160.0" layoutY="172.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat2" layoutX="160.0" layoutY="346.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat7" layoutX="596.0" layoutY="96.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat8" layoutX="441.0" layoutY="4.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat4" layoutX="442.0" layoutY="512.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat5" layoutX="596.0" layoutY="427.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat0" layoutX="248.0" layoutY="11.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="boat3" layoutX="248.0" layoutY="498.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
+    <Polygon fx:id="sail3" layoutX="209.0" layoutY="503.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail4" layoutX="403.0" layoutY="517.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail5" layoutX="557.0" layoutY="432.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail6" layoutX="649.0" layoutY="247.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail7" layoutX="556.0" layoutY="102.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail8" layoutX="402.0" layoutY="10.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail0" layoutX="209.0" layoutY="16.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail1" layoutX="121.0" layoutY="178.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Polygon fx:id="sail2" layoutX="120.0" layoutY="347.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
     <stylesheets>
         <URL value="@../css/board.css" />
         <URL value="@../css/generic.css" />

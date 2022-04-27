@@ -9,9 +9,14 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="170.0" prefWidth="400.0" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="14.0" layoutY="275.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="buildCity" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="purple-button" text="Build City" />
+      <Button fx:id="buildConstruction" layoutX="201.0" mnemonicParsing="false" prefHeight="46.0" styleClass="purple-button" prefWidth="202.0" text="Build Construction" />
+      <Button fx:id="devCardBuyButton" layoutY="45.0" mnemonicParsing="false" prefHeight="46.0" styleClass="blue-button" prefWidth="202.0" text="Buy Dev Card" />
+      <Button fx:id="maritimeTradeButton" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0"  styleClass="green-button" prefWidth="202.0" text="Maritime Trade" />
+      <Button fx:id="devCardUseButton" layoutX="201.0" layoutY="45.0" mnemonicParsing="false" styleClass="blue-button" prefHeight="46.0" prefWidth="202.0" text="Use Dev Card" />
+      <Button fx:id="defaultTradeButton" layoutX="201.0" layoutY="90.0" mnemonicParsing="false" styleClass="green-button"  prefHeight="46.0" prefWidth="202.0" text="Default Trade" />
+      <Button fx:id="othersTradeButton" layoutY="134.0" mnemonicParsing="false" prefHeight="46.0" styleClass="green-button"  prefWidth="403.0" text="Trade with others" />
    </children>
 </AnchorPane>

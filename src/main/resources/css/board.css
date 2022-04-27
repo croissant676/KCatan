@@ -15,10 +15,18 @@
     -fx-stroke-width: 3px;
 }
 
+.pasture:hover {
+    -fx-fill: #76b45a;
+}
+
 .forest {
     -fx-fill: #529636;
     -fx-stroke: #b3b3b3;
     -fx-stroke-width: 3px;
+}
+
+.forest:hover {
+    -fx-fill: #3e7e2a;
 }
 
 .fields {
@@ -27,10 +35,18 @@
     -fx-stroke-width: 3px;
 }
 
+.fields:hover {
+    -fx-fill: #ffd966;
+}
+
 .hills {
     -fx-fill: #e06f46;
     -fx-stroke: #b3b3b3;
     -fx-stroke-width: 3px;
+}
+
+.hills:hover {
+    -fx-fill: #d65d2f;
 }
 
 .desert {
@@ -39,10 +55,18 @@
     -fx-stroke-width: 3px;
 }
 
+.desert:hover {
+    -fx-fill: #ffecb3;
+}
+
 .mountains {
     -fx-fill: #b7b7b7;
     -fx-stroke: #b3b3b3;
     -fx-stroke-width: 3px;
+}
+
+.mountains:hover {
+    -fx-fill: #989797;
 }
 
 .circle {
@@ -69,4 +93,92 @@
 
 .player-resource-background {
     -fx-background-color: #ffe385;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.purple-button {
+    -fx-text-fill: white;
+    -fx-background-color: #c838ef;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.purple-button:hover {
+    -fx-background-color: #b92ede;
+}
+
+.green-button {
+    -fx-text-fill: white;
+    -fx-background-color: #93c47d;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.green-button:hover {
+    -fx-background-color: #6ea454;
+}
+
+.blue-button {
+    -fx-text-fill: white;
+    -fx-background-color: #3894ef;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.blue-button:hover {
+    -fx-background-color: #0463c2;
+}
+
+.text {
+    -fx-font-size: 18px;
+}
+
+.bordered {
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.boat {
+    -fx-fill: #ad6531;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.boat:hover {
+    -fx-fill: #9b4d1e;
+}
+
+.sail {
+    -fx-fill: white;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.sail:hover {
+    -fx-fill: #d9d9d9;
+}
+
+.red-button {
+    -fx-text-fill: white;
+    -fx-background-color: #e06666;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.red-button:hover {
+    -fx-background-color: #c44444;
+}
+
+.bottom-pane {
+    -fx-background-color: #9c82ff;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+    -fx-padding: 0px;
+}
+
+.shiny {
+    -fx-effect: dropshadow(one-pass-box, rgba(246, 230, 131, 50), 50, 0.0, 0, 1);
 }

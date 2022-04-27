@@ -26,8 +26,6 @@ class Board(
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
 
-
-
     // ----------------- Initialization -------------------
 
     init {

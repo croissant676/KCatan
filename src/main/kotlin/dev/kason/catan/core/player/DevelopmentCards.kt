@@ -6,8 +6,6 @@
 
 package dev.kason.catan.core.player
 
-import dev.kason.catan.core.board.Tile
-
 enum class DevelopmentCards {
     VictoryPoint,
     YearOfPlenty,

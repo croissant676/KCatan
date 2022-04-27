@@ -12,7 +12,7 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<AnchorPane fx:id="rootPane" prefHeight="278.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" prefHeight="278.0" prefWidth="400.0" styleClass="bordered" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="249.0" layoutX="14.0" layoutY="15.0" styleClass="costs-background" width="374.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="16.0" prefHeight="44.0" prefWidth="287.0" styleClass="cost-title" text="Building Costs" textFill="#545454">
