@@ -16,4 +16,5 @@ class Edge(val first: Tile) {
     val vertices: List<Vertex> by lazy {
         first.vertices.values.filter { this in it.edges }
     }
+    val isPort = false;
 }
