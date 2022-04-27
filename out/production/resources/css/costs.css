@@ -1,0 +1,20 @@
+/*
+ * Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+ * Use of this code is governed by the MIT Licensed, which can be obtained at:
+ * https://opensource.org/licenses/MIT
+ */
+
+
+.costs-background {
+    -fx-fill: #ffffff;
+}
+
+.cost-title {
+    -fx-font-size: 30px;
+    -fx-text-fill: #545454;
+}
+
+.cost-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #545454;
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="152.0" prefWidth="400.0" styleClass="player-resource-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />
+    <Circle layoutX="41.0" layoutY="80.0" radius="15.0" styleClass="forest" />
+    <Circle layoutX="41.0" layoutY="128.0" radius="15.0" styleClass="pasture" />
+    <Circle layoutX="207.0" layoutY="80.0" radius="15.0" styleClass="fields" />
+    <Circle layoutX="207.0" layoutY="27.0" radius="15.0" styleClass="mountains" />
+
+    <Circle layoutX="207.0" layoutY="127.0" radius="7.0" styleClass="hills" />
+    <Circle layoutX="221.0" layoutY="127.0" radius="7.0" styleClass="forest" />
+    <Circle layoutX="193.0" layoutY="127.0" radius="7.0" styleClass="pasture" />
+    <Circle layoutX="214.0" layoutY="138.0" radius="7.0" styleClass="fields" />
+    <Circle layoutX="200.0" layoutY="138.0" radius="7.0" styleClass="mountains" />
+    <Text fx:id="hillResources" layoutX="73.0" layoutY="33.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <Text fx:id="forestResources" layoutX="73.0" layoutY="86.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <Text fx:id="pastureResources" layoutX="73.0" layoutY="137.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <Text fx:id="mountainResources" layoutX="239.0" layoutY="33.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <Text fx:id="fieldResources" layoutX="239.0" layoutY="86.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <Text fx:id="totalResources" layoutX="239.0" layoutY="137.0" text="Label">
+        <font>
+            <Font name="Century Gothic" size="17.0" />
+        </font>
+    </Text>
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+</AnchorPane>
