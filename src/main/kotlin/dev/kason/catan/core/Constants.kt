@@ -7,6 +7,7 @@
 package dev.kason.catan.core
 
 import dev.kason.catan.core.player.ResourceMap
+import kotlin.math.sin
 
 object Constants {
     val leftMost = setOf(0, 3, 7, 12, 16)
@@ -16,4 +17,10 @@ object Constants {
     val settlementCost = ResourceMap(brick = 1, lumber = 1, wool = 1, grain = 1)
     val cityCost = ResourceMap(ore = 3, grain = 2)
     val developmentCardCost = ResourceMap(ore = 1, grain = 1, wool = 1)
+    val sin = sin(20.0)
+
+    const val maxRoads = 15
+    const val maxSettlements = 5
+    const val maxCities = 4
+
 }

@@ -31,7 +31,11 @@ enum class ResourceType {
 data class PlayerResourceMap(
     val player: Player,
     val resources: MutableMap<ResourceType, Int> = EnumMap(ResourceType::class.java)
-) : MutableMap<ResourceType, Int> by resources
+) : MutableMap<ResourceType, Int> by resources {
+    init {
+        ResourceType.values().forEach { resources[it] = 0 }
+    }
+}
 
 data class ResourceMap(val resources: Map<ResourceType, Int>) : Map<ResourceType, Int> by resources {
     constructor(

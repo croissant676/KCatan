@@ -182,3 +182,23 @@
 .shiny {
     -fx-effect: dropshadow(one-pass-box, rgba(246, 230, 131, 50), 50, 0.0, 0, 1);
 }
+
+.alert-dialog {
+    -fx-font-size: 20px;
+    -fx-font-family: "Century Gothic";
+    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.alert-dialog .button {
+    -fx-text-fill: white;
+    -fx-background-color: #5ca4e5;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3px;
+}
+
+.alert-dialog .button:hover {
+    -fx-background-color: #3880c2;
+}

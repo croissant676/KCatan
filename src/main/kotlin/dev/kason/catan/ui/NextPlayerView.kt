@@ -16,13 +16,14 @@ import tornadofx.View
 import tornadofx.action
 
 class NextPlayerView(val player: Player) : View(catan("Next Player")) {
-    companion object: KLogging()
+    companion object : KLogging()
+
     override val root: Parent by fxml("/fxml/player_turn.fxml")
     private val nextPlayerLabel: Label by fxid()
     private val continueButton: Button by fxid()
     private val exitButton: Button by fxid()
 
-    override fun onDock() {
+    init {
         nextPlayerLabel.text = "Next Player: ${player.color.name}"
         continueButton.action {
             logger.info { "Next player button clicked!" }
@@ -30,5 +31,9 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
         exitButton.action {
             logger.info { "Closing application" }
         }
+    }
+
+    override fun onDock() {
+        primaryStage.sizeToScene()
     }
 }

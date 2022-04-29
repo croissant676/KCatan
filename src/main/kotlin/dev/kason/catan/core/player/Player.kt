@@ -7,12 +7,17 @@
 package dev.kason.catan.core.player
 
 import javafx.scene.paint.Color as JFXColor
+import dev.kason.catan.core.board.Edge
 import dev.kason.catan.core.board.Vertex
 
-class Player (val id: Int, val color: Color) {
+data class Player(val id: Int, val color: Color) {
+    val roads: MutableList<Edge> = mutableListOf()
     val settlements: MutableList<Vertex> = mutableListOf()
     val resources = PlayerResourceMap(this)
+    val cities get() = settlements.filter { it.isCity }
     val developmentCards = null
+
+    val name get() = color.name
 
     @Suppress("MemberVisibilityCanBePrivate")
     enum class Color {
@@ -26,7 +31,7 @@ class Player (val id: Int, val color: Color) {
                 Red -> "5aa2ff"
                 Blue -> "fafafa"
                 White -> "ffb75a"
-                Orange -> "ff655a"
+                Orange -> "e3e3e3"
             }
         val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")
     }

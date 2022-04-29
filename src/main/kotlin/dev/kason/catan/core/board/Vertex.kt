@@ -8,11 +8,14 @@ package dev.kason.catan.core.board
 
 import dev.kason.catan.core.player.Player
 
+private var currentVertexNum = 0
+
 @Suppress("PropertyName", "LocalVariableName")
 data class Vertex(
     internal val _tiles: LocationMutableMap<Tile> = createLocationMap(),
     var player: Player? = null,
-    var isCity: Boolean = false
+    var isCity: Boolean = false,
+    val vertexNum: Int = currentVertexNum++
 ) {
     val tiles: LocationMap<Tile> = _tiles
 
@@ -34,5 +37,9 @@ data class Vertex(
     val isSettlement: Boolean get() = player != null && !isCity
 
     enum class Rotation { Top, Bottom }
+
+    override fun equals(other: Any?): Boolean = other is Vertex && other.vertexNum == vertexNum
+    override fun hashCode(): Int = vertexNum
+
 
 }

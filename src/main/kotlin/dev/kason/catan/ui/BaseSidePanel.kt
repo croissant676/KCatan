@@ -6,8 +6,11 @@
 
 package dev.kason.catan.ui
 
+import dev.kason.catan.catanAlert
+import dev.kason.catan.core.Constants
 import dev.kason.catan.core.player.*
 import javafx.scene.Parent
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
 import javafx.scene.paint.Color
@@ -38,7 +41,22 @@ class BaseSidePanelBottom(val player: Player) : View() {
     private val othersTradeButton: Button by fxid()
     init {
         buildCity.action {
-            logger.info { "Building city" }
+            logger.debug { "Attempted to build a city: $player :: ${player.resources}" }
+            if (player.resources doesNotHave Constants.cityCost) {
+                catanAlert(
+                    header = "Not enough resources",
+                    content = "You do not have enough resources to build a city."
+                )
+            }
+        }
+        devCardBuyButton.action {
+            logger.debug { "Attempted to buy a dev card: $player :: ${player.resources}" }
+            if (player.resources doesNotHave Constants.developmentCardCost) {
+                catanAlert(
+                    header = "Not enough resources",
+                    content = "You do not have enough resources to buy a development card."
+                )
+            }
         }
     }
 }
@@ -72,9 +90,6 @@ class PlayerResourceCosts(playerResources: PlayerResourceMap): Fragment() {
     private val fieldResources: Text by fxid()
     private val totalResources: Text by fxid()
     init {
-        ResourceType.values().forEach {
-            playerResources.resources += it to Random.nextInt(8)
-        }
         hillResources.text = playerResources.brick.toString()
         forestResources.text = playerResources.lumber.toString()
         pastureResources.text = playerResources.wool.toString()
