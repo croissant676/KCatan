@@ -10,6 +10,7 @@ import dev.kason.catan.core.board.*
 import dev.kason.catan.core.player.*
 import dev.kason.catan.ui.GameCreationSettings
 import mu.KLogging
+import tornadofx.find
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -97,6 +98,84 @@ open class Game(
         require(canBuildCity(player, vertex))
         vertex.isCity = true
         player.resources -= Constants.cityCost
+    }
+
+    fun longestRoad(player: Player): Int {
+        //find groups of roads
+        var roadGroups = mutableSetOf<MutableSet<Edge>>()
+        var unmarkedRoads = player.roads.toMutableSet()
+        fun findGroup(edge: Edge): MutableSet<Edge> {
+            var group = mutableSetOf<Edge>()
+            group.add(edge)
+            unmarkedRoads.remove(edge)
+            edge.vertices.forEach { vertex ->
+                if (vertex.player == player || vertex.player == null) {
+                    vertex.edges.forEach { edge1 ->
+                        if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
+                            group.addAll(findGroup(edge1))
+                        }
+                    }
+                }
+            }
+            return group
+        }
+        player.roads.forEach {
+            if (unmarkedRoads.contains(it)) {
+                roadGroups.add(findGroup(it))
+            }
+        }
+        var longest = 0;
+        //find longest road in each group     needle: a road with only 1 vertex that has another road connected to it
+        //case 1: no needles
+        //case 2: 1 or 2 needles
+        //case 3: 3+ needles
+        roadGroups.forEach {
+            //count needles
+            var needles = mutableListOf<Edge>()
+            it.forEach {
+                var count = 0
+                it.vertices.forEach {
+                    var roadCount = 0
+                    it.edges.forEach {
+                        if (it.player == player) {
+                            roadCount++
+                        }
+                    }
+                    if (roadCount > 1) {
+                        count++
+                    }
+                }
+                if (count > 0) {
+                    needles.add(it)
+                }
+            }
+            when (needles.size) {
+                0->if (longest < it.size) longest = it.size
+                else->{
+                    for (i in 0 until needles.size) {
+                        var length = roadDFS(player, needles.get(i), it).size
+                        if (longest < length) longest = length
+                    }
+                }
+            }
+        }
+        return longest
+    }
+
+    fun roadDFS (player: Player, edge: Edge, unmarkedRoads: MutableSet<Edge>): MutableSet<Edge> {
+        var roads = mutableSetOf<Edge>()
+        roads.add(edge)
+        unmarkedRoads.remove(edge)
+        edge.vertices.forEach { vertex ->
+            if (vertex.player == player || vertex.player == null) {
+                vertex.edges.forEach { edge1 ->
+                    if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
+                        roads.addAll(roadDFS(player, edge1, unmarkedRoads))
+                    }
+                }
+            }
+        }
+        return roads
     }
 }
 

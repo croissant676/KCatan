@@ -23,7 +23,7 @@ data class Board(
     val edges by lazy { _edges.toList() }
 
     private val _vertices = mutableListOf<Vertex>()
-    val vertices by lazy { _vertices.toList() }
+    val vertices by lazy { _vertices.toSet().toList() }
 
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
@@ -37,6 +37,7 @@ data class Board(
         tileGraph()
         edgeGraph()
         vertexGraph()
+        verticesAndEdges()
         generateTileValues()
         generatePortValues()
     }
@@ -131,6 +132,121 @@ data class Board(
         _vertices += it._vertices.values
     }
 
+
+    private fun verticesAndEdges() {
+        vertices.get(0).edges.add(edges[0])
+        vertices.get(0).edges.add(edges[1])
+
+        vertices.get(1).edges.add(edges[0])
+        vertices.get(1).edges.add(edges[2])
+
+        vertices.get(2).edges.add(edges[1])
+        vertices.get(2).edges.add(edges[2])
+        vertices.get(2).edges.add(edges[6])
+
+        vertices.get(3).edges.add(edges[4])
+        vertices.get(3).edges.add(edges[5])
+        vertices.get(3).edges.add(edges[18])
+
+        vertices.get(4).edges.add(edges[2])
+        vertices.get(4).edges.add(edges[4])
+        vertices.get(4).edges.add(edges[16])
+
+        vertices.get(5).edges.add(edges[3])
+        vertices.get(5).edges.add(edges[5])
+        vertices.get(5).edges.add(edges[9])
+
+        vertices.get(6).edges.add(edges[6])
+        vertices.get(6).edges.add(edges[7])
+
+        vertices.get(7).edges.add(edges[7])
+        vertices.get(7).edges.add(edges[11])
+        vertices.get(7).edges.add(edges[8])
+
+        vertices.get(8).edges.add(edges[9])
+        vertices.get(8).edges.add(edges[10])
+        vertices.get(8).edges.add(edges[21])
+
+        vertices.get(9).edges.add(edges[8])
+        vertices.get(9).edges.add(edges[10])
+        vertices.get(9).edges.add(edges[14])
+
+        vertices.get(10).edges.add(edges[11])
+        vertices.get(10).edges.add(edges[12])
+
+        vertices.get(11).edges.add(edges[12])
+        vertices.get(11).edges.add(edges[13])
+
+        vertices.get(12).edges.add(edges[14])
+        vertices.get(12).edges.add(edges[15])
+        vertices.get(12).edges.add(edges[24])
+
+        vertices.get(13).edges.add(edges[13])
+        vertices.get(13).edges.add(edges[15])
+        vertices.get(13).edges.add(edges[27])
+
+        vertices.get(14).edges.add(edges[16])
+        vertices.get(14).edges.add(edges[17])
+
+        vertices.get(15).edges.add(edges[19])
+        vertices.get(15).edges.add(edges[20])
+        vertices.get(15).edges.add(edges[33])
+
+        vertices.get(16).edges.add(edges[17])
+        vertices.get(16).edges.add(edges[19])
+        vertices.get(16).edges.add(edges[31])
+
+        vertices.get(17).edges.add(edges[18])
+        vertices.get(17).edges.add(edges[20])
+        vertices.get(17).edges.add(edges[22])
+
+        vertices.get(18).edges.add(edges[22])
+        vertices.get(18).edges.add(edges[23])
+        vertices.get(18).edges.add(edges[36])
+
+        vertices.get(19).edges.add(edges[21])
+        vertices.get(19).edges.add(edges[23])
+        vertices.get(19).edges.add(edges[25])
+
+        vertices.get(20).edges.add(edges[25])
+        vertices.get(20).edges.add(edges[26])
+        vertices.get(20).edges.add(edges[39])
+
+        vertices.get(21).edges.add(edges[24])
+        vertices.get(21).edges.add(edges[26])
+        vertices.get(21).edges.add(edges[29])
+
+        vertices.get(22).edges.add(edges[27])
+        vertices.get(22).edges.add(edges[28])
+
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[42])
+
+        vertices.get(24).edges.add(edges[28])
+        vertices.get(24).edges.add(edges[30])
+        vertices.get(24).edges.add(edges[45])
+
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+    }
+
     private fun generateTileValues(
         firstTile: Int = validFirstTiles.random(random),
         clockwise: Boolean = random.nextBoolean()
@@ -200,12 +316,12 @@ data class Board(
         tiles.forEach {
             append("\tFor Tile: ${it.id} \n")
             for ((key, value) in it.edges) {
-                append("\t\t$key -> ${if(it.id == value.first.id) value.second?.id else value.first.id} \n")
+                append("\t\t$key -> ${value.id} \n")
             }
         }
         append("Vertices: \n")
         vertices.forEach {
-            append("\tVertex with (")
+            append("\tVertex ${it.id} with (")
             for ((key, value) in it.tiles) {
                 append("$key -> ${value.id}, ")
             }
