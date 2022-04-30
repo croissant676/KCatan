@@ -13,7 +13,7 @@
             xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="170.0" layoutY="130.0" text="Next Player: $playerName" textFill="WHITE" fx:id="nextPlayerLabel"/>
-      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Next Turn" fx:id="continueButton"/>
-      <Button layoutY="375.0" mnemonicParsing="false" text="Exit Game" fx:id="exitButton"/>
+      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Button" fx:id="continueButton"/>
+      <Button layoutY="375.0" mnemonicParsing="false" text="Button" fx:id="exitButton"/>
    </children>
 </AnchorPane>
