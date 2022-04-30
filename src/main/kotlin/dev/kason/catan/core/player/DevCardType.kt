@@ -6,7 +6,7 @@
 
 package dev.kason.catan.core.player
 
-enum class DevelopmentCards {
+enum class DevCardType {
     VictoryPoint,
     YearOfPlenty,
     RoadBuilding,

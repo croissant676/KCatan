@@ -16,7 +16,6 @@ data class Player(val id: Int, val color: Color) {
     val resources = PlayerResourceMap(this)
     val cities get() = settlements.filter { it.isCity }
     val developmentCards = null
-
     val name get() = color.name
 
     @Suppress("MemberVisibilityCanBePrivate")
@@ -29,9 +28,9 @@ data class Player(val id: Int, val color: Color) {
         val colorHex: String
             get() = when (this) {
                 Red -> "5aa2ff"
-                Blue -> "fafafa"
+                Blue -> "5ca4e5"
                 White -> "ffb75a"
-                Orange -> "e3e3e3"
+                Orange -> "ffba67"
             }
         val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")
     }

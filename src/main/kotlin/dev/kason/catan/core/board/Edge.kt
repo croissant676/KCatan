@@ -8,7 +8,9 @@ package dev.kason.catan.core.board
 
 import dev.kason.catan.core.player.Player
 
-class Edge(val first: Tile) {
+private var currentEdgeNumber = 0
+
+data class Edge(val first: Tile, val id: Int = currentEdgeNumber++) {
     var second: Tile? = null
         internal set
     var player: Player? = null
@@ -16,5 +18,5 @@ class Edge(val first: Tile) {
     val vertices: List<Vertex> by lazy {
         first.vertices.values.filter { this in it.edges }
     }
-    val isPort = false;
+    val isPort = false
 }

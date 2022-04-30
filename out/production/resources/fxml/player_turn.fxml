@@ -6,14 +6,13 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="new_player_screen" stylesheets="@../css/board.css"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1215.0" styleClass="new_player_screen" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="170.0" layoutY="130.0" text="Next Player: $playerName" textFill="WHITE" fx:id="nextPlayerLabel"/>
-      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Next Turn" fx:id="continueButton"/>
-      <Button layoutY="375.0" mnemonicParsing="false" text="Exit Game" fx:id="exitButton"/>
+      <Label fx:id="nextPlayerLabel" layoutX="528.0" layoutY="186.0" styleClass="title" stylesheets="@../css/menu.css" text="Next player thingy" textFill="WHITE" />
+      <Button fx:id="continueButton" layoutX="543.0" layoutY="507.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="129.0" styleClass="blue-button" text="Ok" />
+      <Button fx:id="exitButton" layoutX="14.0" layoutY="626.0" mnemonicParsing="false" styleClass="red-button" text="Exit Game" />
    </children>
 </AnchorPane>

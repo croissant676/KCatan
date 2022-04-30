@@ -8,12 +8,13 @@ package dev.kason.catan.core
 
 import dev.kason.catan.core.board.*
 import dev.kason.catan.core.player.*
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import mu.KotlinLogging
+import dev.kason.catan.ui.GameCreationSettings
+import mu.KLogging
+import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.random.nextInt
+
+var game by Delegates.notNull<Game>()
 
 @Suppress("MemberVisibilityCanBePrivate")
 open class Game(
@@ -21,10 +22,15 @@ open class Game(
     numberOfPlayers: Int = 4,
     playerOrder: List<Player.Color> = Player.Color.values()
         .run { toMutableList().shuffled(random).subList(0, numberOfPlayers) },
-    val gameName: String = LocalDateTime.now().toString()
+    val gameName: String
 ) {
-    companion object Sample : Game(Random(6)) {
-        val logger = KotlinLogging.logger {}
+
+    companion object Sample : KLogging() {
+        fun createGameFromSettings() = Game(
+            Random(GameCreationSettings.seed),
+            GameCreationSettings.numberOfPlayers,
+            gameName = GameCreationSettings.gameName
+        )
     }
 
     val board = Board(random)
@@ -43,7 +49,9 @@ open class Game(
     )
 
     val developmentCardDeck by lazy {
-
+        ArrayDeque(
+            DevCardType.values().toMutableList().shuffled(random)
+        )
     }
 
     fun generateRoll(): RollResults = (random.nextInt(1..6) to random.nextInt(1..6)).apply {

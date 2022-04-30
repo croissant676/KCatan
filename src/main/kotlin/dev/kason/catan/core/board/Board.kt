@@ -7,16 +7,18 @@
 package dev.kason.catan.core.board
 
 import dev.kason.catan.core.Constants
+import dev.kason.catan.core.player.ResourceType
 import java.util.Collections
 import mu.KLogging
 import kotlin.random.Random
 
-class Board(
+data class Board(
     private val random: Random,
     private val tiles: List<Tile> = generateTiles(random)
 ) : List<Tile> by tiles {
 
-    companion object: KLogging()
+    companion object : KLogging()
+
     private val _edges = mutableListOf<Edge>()
     val edges by lazy { _edges.toList() }
 
@@ -26,6 +28,9 @@ class Board(
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
 
+    private val _ports = mutableListOf<Port>()
+    val ports: List<Port> = _ports
+
     // ----------------- Initialization -------------------
 
     init {
@@ -33,6 +38,7 @@ class Board(
         edgeGraph()
         vertexGraph()
         generateTileValues()
+        generatePortValues()
     }
 
     private fun tileGraph() = tiles.forEach {
@@ -125,15 +131,62 @@ class Board(
         _vertices += it._vertices.values
     }
 
-    private fun generateTileValues(firstTile: Int = validFirstTiles.random(random), clockwise: Boolean = random.nextBoolean()) {
+    private fun generateTileValues(
+        firstTile: Int = validFirstTiles.random(random),
+        clockwise: Boolean = random.nextBoolean()
+    ) {
         check(firstTile in validFirstTiles) { "Invalid first tile: $firstTile" }
         logger.debug { "Generating tile values with first tile: $firstTile and clockwise: $clockwise" }
         boardRotations(firstTile, clockwise).forEach {
-            if(this[it].type == Tile.Type.Desert) return@forEach
+            if (this[it].type == Tile.Type.Desert) return@forEach
             this[it]._value = orderOfNumbers.removeFirst()
         }
     }
 
+    private fun generatePortValues() {
+        logger.debug { "Generating port values" }
+        val ports = ArrayDeque((listOf(*ResourceType.values()) + Collections.nCopies(4, null)).shuffled(random))
+        _ports.apply {
+            clear()
+            var curPort = Port(ports.removeFirst(), size)
+            val board = this@Board
+            board[0].vertices[Location.TopLeft]!!._port = curPort
+            board[0].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[3].vertices[Location.TopLeft]!!._port = curPort
+            board[3].vertices[Location.BottomLeft]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[12].vertices[Location.TopLeft]!!._port = curPort
+            board[12].vertices[Location.BottomLeft]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[16].vertices[Location.BottomLeft]!!._port = curPort
+            board[16].vertices[Location.Bottom]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[17].vertices[Location.Bottom]!!._port = curPort
+            board[17].vertices[Location.BottomRight]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[15].vertices[Location.BottomRight]!!._port = curPort
+            board[15].vertices[Location.Bottom]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[11].vertices[Location.BottomRight]!!._port = curPort
+            board[11].vertices[Location.TopRight]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[6].vertices[Location.TopRight]!!._port = curPort
+            board[6].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[1].vertices[Location.TopRight]!!._port = curPort
+            board[1].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+        }
+    }
 
     fun debugString(): String = buildString {
         append("Tiles: \n")
