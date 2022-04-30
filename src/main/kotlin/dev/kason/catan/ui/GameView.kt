@@ -20,7 +20,7 @@ import mu.KLogging
 import tornadofx.*
 import kotlin.system.exitProcess
 
-class GameView(private val game: Game = Game) : View(catan("Game")) {
+class GameView : View(catan("Game")) {
     private val sidePanelViewProperty = SimpleObjectProperty<View>(BaseSidePanel(game.currentPlayer))
     var sidePanel by sidePanelViewProperty
     override val root: Parent = borderpane {
@@ -34,6 +34,8 @@ class GameView(private val game: Game = Game) : View(catan("Game")) {
         bottom {
             add(BoardBottomView(game, this@GameView))
         }
+        primaryStage.width = 1215.0
+        primaryStage.height = 720.0
     }
 }
 
@@ -62,7 +64,7 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
 
     init {
         players.forEachIndexed { index, circle ->
-            if (index > game.players.size) {
+            if (index >= game.players.size) {
                 circle.isVisible = false
             } else {
                 circle.fill = game.players[index].color.jfxColor
@@ -126,5 +128,8 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                 polygon.fill = Color.TRANSPARENT
             }
         }
+    }
+
+    override fun onDock() {
     }
 }

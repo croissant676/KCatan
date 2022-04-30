@@ -202,3 +202,13 @@
 .alert-dialog .button:hover {
     -fx-background-color: #3880c2;
 }
+
+.generic-port {
+    -fx-fill: #ffffff;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.generic-port:hover {
+    -fx-fill: #e0e0e0;
+}

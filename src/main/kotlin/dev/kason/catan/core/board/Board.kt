@@ -7,24 +7,29 @@
 package dev.kason.catan.core.board
 
 import dev.kason.catan.core.Constants
+import dev.kason.catan.core.player.ResourceType
 import java.util.Collections
 import mu.KLogging
 import kotlin.random.Random
 
-class Board(
+data class Board(
     private val random: Random,
     private val tiles: List<Tile> = generateTiles(random)
 ) : List<Tile> by tiles {
 
-    companion object: KLogging()
+    companion object : KLogging()
+
     private val _edges = mutableListOf<Edge>()
     val edges by lazy { _edges.toList() }
 
     private val _vertices = mutableListOf<Vertex>()
-    val vertices by lazy { _vertices.toList() }
+    val vertices by lazy { _vertices.toSet().toList() }
 
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
+
+    private val _ports = mutableListOf<Port>()
+    val ports: List<Port> = _ports
 
     // ----------------- Initialization -------------------
 
@@ -32,7 +37,9 @@ class Board(
         tileGraph()
         edgeGraph()
         vertexGraph()
+        verticesAndEdges()
         generateTileValues()
+        generatePortValues()
     }
 
     private fun tileGraph() = tiles.forEach {
@@ -125,15 +132,177 @@ class Board(
         _vertices += it._vertices.values
     }
 
-    private fun generateTileValues(firstTile: Int = validFirstTiles.random(random), clockwise: Boolean = random.nextBoolean()) {
+
+    private fun verticesAndEdges() {
+        vertices.get(0).edges.add(edges[0])
+        vertices.get(0).edges.add(edges[1])
+
+        vertices.get(1).edges.add(edges[0])
+        vertices.get(1).edges.add(edges[2])
+
+        vertices.get(2).edges.add(edges[1])
+        vertices.get(2).edges.add(edges[2])
+        vertices.get(2).edges.add(edges[6])
+
+        vertices.get(3).edges.add(edges[4])
+        vertices.get(3).edges.add(edges[5])
+        vertices.get(3).edges.add(edges[18])
+
+        vertices.get(4).edges.add(edges[2])
+        vertices.get(4).edges.add(edges[4])
+        vertices.get(4).edges.add(edges[16])
+
+        vertices.get(5).edges.add(edges[3])
+        vertices.get(5).edges.add(edges[5])
+        vertices.get(5).edges.add(edges[9])
+
+        vertices.get(6).edges.add(edges[6])
+        vertices.get(6).edges.add(edges[7])
+
+        vertices.get(7).edges.add(edges[7])
+        vertices.get(7).edges.add(edges[11])
+        vertices.get(7).edges.add(edges[8])
+
+        vertices.get(8).edges.add(edges[9])
+        vertices.get(8).edges.add(edges[10])
+        vertices.get(8).edges.add(edges[21])
+
+        vertices.get(9).edges.add(edges[8])
+        vertices.get(9).edges.add(edges[10])
+        vertices.get(9).edges.add(edges[14])
+
+        vertices.get(10).edges.add(edges[11])
+        vertices.get(10).edges.add(edges[12])
+
+        vertices.get(11).edges.add(edges[12])
+        vertices.get(11).edges.add(edges[13])
+
+        vertices.get(12).edges.add(edges[14])
+        vertices.get(12).edges.add(edges[15])
+        vertices.get(12).edges.add(edges[24])
+
+        vertices.get(13).edges.add(edges[13])
+        vertices.get(13).edges.add(edges[15])
+        vertices.get(13).edges.add(edges[27])
+
+        vertices.get(14).edges.add(edges[16])
+        vertices.get(14).edges.add(edges[17])
+
+        vertices.get(15).edges.add(edges[19])
+        vertices.get(15).edges.add(edges[20])
+        vertices.get(15).edges.add(edges[33])
+
+        vertices.get(16).edges.add(edges[17])
+        vertices.get(16).edges.add(edges[19])
+        vertices.get(16).edges.add(edges[31])
+
+        vertices.get(17).edges.add(edges[18])
+        vertices.get(17).edges.add(edges[20])
+        vertices.get(17).edges.add(edges[22])
+
+        vertices.get(18).edges.add(edges[22])
+        vertices.get(18).edges.add(edges[23])
+        vertices.get(18).edges.add(edges[36])
+
+        vertices.get(19).edges.add(edges[21])
+        vertices.get(19).edges.add(edges[23])
+        vertices.get(19).edges.add(edges[25])
+
+        vertices.get(20).edges.add(edges[25])
+        vertices.get(20).edges.add(edges[26])
+        vertices.get(20).edges.add(edges[39])
+
+        vertices.get(21).edges.add(edges[24])
+        vertices.get(21).edges.add(edges[26])
+        vertices.get(21).edges.add(edges[29])
+
+        vertices.get(22).edges.add(edges[27])
+        vertices.get(22).edges.add(edges[28])
+
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[42])
+
+        vertices.get(24).edges.add(edges[28])
+        vertices.get(24).edges.add(edges[30])
+        vertices.get(24).edges.add(edges[45])
+
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+        vertices.get(23).edges.add(edges[29])
+        vertices.get(23).edges.add(edges[30])
+    }
+
+    private fun generateTileValues(
+        firstTile: Int = validFirstTiles.random(random),
+        clockwise: Boolean = random.nextBoolean()
+    ) {
         check(firstTile in validFirstTiles) { "Invalid first tile: $firstTile" }
         logger.debug { "Generating tile values with first tile: $firstTile and clockwise: $clockwise" }
         boardRotations(firstTile, clockwise).forEach {
-            if(this[it].type == Tile.Type.Desert) return@forEach
+            if (this[it].type == Tile.Type.Desert) return@forEach
             this[it]._value = orderOfNumbers.removeFirst()
         }
     }
 
+    private fun generatePortValues() {
+        logger.debug { "Generating port values" }
+        val ports = ArrayDeque((listOf(*ResourceType.values()) + Collections.nCopies(4, null)).shuffled(random))
+        _ports.apply {
+            clear()
+            var curPort = Port(ports.removeFirst(), size)
+            val board = this@Board
+            board[0].vertices[Location.TopLeft]!!._port = curPort
+            board[0].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[3].vertices[Location.TopLeft]!!._port = curPort
+            board[3].vertices[Location.BottomLeft]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[12].vertices[Location.TopLeft]!!._port = curPort
+            board[12].vertices[Location.BottomLeft]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[16].vertices[Location.BottomLeft]!!._port = curPort
+            board[16].vertices[Location.Bottom]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[17].vertices[Location.Bottom]!!._port = curPort
+            board[17].vertices[Location.BottomRight]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[15].vertices[Location.BottomRight]!!._port = curPort
+            board[15].vertices[Location.Bottom]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[11].vertices[Location.BottomRight]!!._port = curPort
+            board[11].vertices[Location.TopRight]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[6].vertices[Location.TopRight]!!._port = curPort
+            board[6].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+            curPort = Port(ports.removeFirst(), size)
+            board[1].vertices[Location.TopRight]!!._port = curPort
+            board[1].vertices[Location.Top]!!._port = curPort
+            add(curPort)
+        }
+    }
 
     fun debugString(): String = buildString {
         append("Tiles: \n")
@@ -147,12 +316,12 @@ class Board(
         tiles.forEach {
             append("\tFor Tile: ${it.id} \n")
             for ((key, value) in it.edges) {
-                append("\t\t$key -> ${if(it.id == value.first.id) value.second?.id else value.first.id} \n")
+                append("\t\t$key -> ${value.id} \n")
             }
         }
         append("Vertices: \n")
         vertices.forEach {
-            append("\tVertex with (")
+            append("\tVertex ${it.id} with (")
             for ((key, value) in it.tiles) {
                 append("$key -> ${value.id}, ")
             }

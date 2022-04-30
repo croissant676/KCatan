@@ -58,6 +58,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
                 )
             }
         }
+        devCardUseButton.action {
+        }
     }
 }
 
