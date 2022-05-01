@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane prefHeight="170.0" prefWidth="400.0" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="buildCity" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="purple-button2" text="Build City" />
+      <Button fx:id="buildConstruction" layoutX="201.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="purple-button2" text="Build Construction" />
+      <Button fx:id="devCardBuyButton" layoutY="45.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="blue-button" text="Buy Dev Card" />
+      <Button fx:id="maritimeTradeButton" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="green-button" text="Maritime Trade" />
+      <Button fx:id="devCardUseButton" layoutX="201.0" layoutY="45.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="blue-button" text="Use Dev Card" />
+      <Button fx:id="defaultTradeButton" layoutX="201.0" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="green-button" text="Default Trade" />
+      <Button fx:id="othersTradeButton" layoutY="134.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="403.0" styleClass="green-button" text="Trade with others" />
+   </children>
+</AnchorPane>

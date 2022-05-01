@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane fx:id="rootPane" prefHeight="278.0" prefWidth="400.0" styleClass="bordered" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="249.0" layoutX="14.0" layoutY="15.0" styleClass="costs-background" width="374.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="16.0" prefHeight="44.0" prefWidth="287.0" styleClass="cost-title" text="Building Costs" textFill="#545454">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Line endX="200.0" layoutX="150.0" layoutY="68.0" startX="-100.0" />
+      <Circle fx:id="settlementCircle" layoutX="160.0" layoutY="199.0" radius="9.0" />
+      <Circle fx:id="cityCircle" layoutX="351.0" layoutY="112.0" radius="18.0" />
+      <Label layoutX="23.0" layoutY="87.0" styleClass="cost-label" text="Road" />
+      <Text fill="#545454" layoutX="23.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Worth 0 VP">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+      <Text fill="#545454" layoutX="23.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Worth 1 VP">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+      <Text fill="#545454" layoutX="191.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Worth 2 VP">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+      <Text fill="#545454" layoutX="191.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Worth ? VP">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+      <Label layoutX="189.0" layoutY="87.0" styleClass="cost-label" text="City" />
+      <Label layoutX="23.0" layoutY="186.0" styleClass="cost-label" text="Settlement" />
+      <Label layoutX="189.0" layoutY="186.0" styleClass="cost-label" text="Development Card" />
+      <Line fx:id="roadLine" endX="-50.0" endY="25.0" layoutX="226.0" layoutY="104.0" startX="-100.0" />
+      <Circle layoutX="293.0" layoutY="167.0" radius="9.0" styleClass="fields" />
+      <Circle layoutX="269.0" layoutY="167.0" radius="9.0" styleClass="fields" />
+      <Circle layoutX="246.0" layoutY="167.0" radius="9.0" styleClass="mountains" />
+      <Circle layoutX="223.0" layoutY="167.0" radius="9.0" styleClass="mountains" />
+      <Circle layoutX="201.0" layoutY="167.0" radius="9.0" styleClass="mountains" />
+      <Circle layoutX="255.0" layoutY="248.0" radius="9.0" styleClass="pasture" />
+      <Circle layoutX="227.0" layoutY="248.0" radius="9.0" styleClass="fields" />
+      <Circle layoutX="201.0" layoutY="248.0" radius="9.0" styleClass="mountains" />
+      <Circle layoutX="59.0" layoutY="167.0" radius="9.0" styleClass="hills" />
+      <Circle layoutX="32.0" layoutY="167.0" radius="9.0" styleClass="forest" />
+      <Circle layoutX="32.0" layoutY="248.0" radius="9.0" styleClass="forest" />
+      <Circle layoutX="103.0" layoutY="248.0" radius="9.0" styleClass="pasture" />
+      <Circle layoutX="79.0" layoutY="248.0" radius="9.0" styleClass="fields" />
+      <Circle layoutX="55.0" layoutY="248.0" radius="9.0" styleClass="hills" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/board.css" />
+      <URL value="@../css/generic.css" />
+      <URL value="@../css/costs.css" />
+   </stylesheets>
+</AnchorPane>

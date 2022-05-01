@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="settings-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@../css/creation-settings.css" />
+      <URL value="@../css/generic.css" />
+      <URL value="@../css/menu.css" />
+   </stylesheets>
+   <children>
+      <Region layoutY="320.0" prefHeight="80.0" prefWidth="601.0" styleClass="catan-grass" />
+      <Button fx:id="nextButton" layoutX="214.0" layoutY="344.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" styleClass="catan-menu-button" text="Create Game!" />
+      <Label layoutX="76.0" layoutY="99.0" prefHeight="42.0" prefWidth="225.0" styleClass="large-label" text="Select the number of players:" />
+      <ComboBox fx:id="playerComboBox" layoutX="346.0" layoutY="108.0" prefWidth="150.0" />
+      <Label layoutX="30.0" layoutY="163.0" text="Select the name of this game (optional)" />
+      <TextField fx:id="gameNameField" layoutX="347.0" layoutY="159.0" />
+      <Label layoutX="147.0" layoutY="217.0" text="Game Seed" />
+      <Spinner fx:id="seedSpinner" layoutX="347.0" layoutY="213.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+/*
+ * Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+ * Use of this code is governed by the MIT Licensed, which can be obtained at:
+ * https://opensource.org/licenses/MIT
+ */
+
+
+.settings-background {
+    -fx-background-color: radial-gradient(
+            focus-distance 0%,
+            center 50% 90%,
+            radius 90%,
+            reflect,
+            #ffeccd,
+            #ffcf80,
+            #ffaf80,
+            #ffaea4,
+            #ffa4c8
+    );
+    -fx-border-radius: 5px;
+}
+
+.large-label {
+    -fx-font-size: 20px;
+}
+
+.combo-box {
+
+}

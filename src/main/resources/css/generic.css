@@ -1,0 +1,31 @@
+/*
+ * Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+ * Use of this code is governed by the MIT Licensed, which can be obtained at:
+ * https://opensource.org/licenses/MIT
+ */
+
+.button {
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-border-width: 2px;
+    -fx-border-color: #777777;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.label {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+.catan-container {
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-border-width: 2px;
+    -fx-border-color: #777777;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

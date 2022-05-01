@@ -1,0 +1,38 @@
+/*
+ * Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+ * Use of this code is governed by the MIT Licensed, which can be obtained at:
+ * https://opensource.org/licenses/MIT
+ */
+
+.menu-background {
+    -fx-background-color: radial-gradient(
+            focus-distance 0%,
+            center 50% 60%,
+            radius 80%,
+            reflect,
+            #ffeccd,
+            #ffcf80,
+            #ffaf80,
+            #ffaea4,
+            #ffa4c8
+    );
+    -fx-border-radius: 5px;
+}
+
+.catan-menu-button {
+    -fx-padding: 10px;
+    -fx-background-color: #79b379;
+}
+
+.catan-menu-button:hover {
+    -fx-background-color: #69aa69;
+}
+
+.title {
+    -fx-font-size: 40px;
+    -fx-text-fill: white;
+}
+
+.catan-grass {
+    -fx-background-color: #79b379;
+}

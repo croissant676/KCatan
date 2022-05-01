@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane prefHeight="0.0" prefWidth="1200.0" styleClass="bottom-pane" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="56.0" layoutX="1122.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="56.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="56.0" layoutX="1057.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="56.0" />
+      <Button fx:id="rollButton" layoutX="284.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="157.0" styleClass="red-button" text="Roll the dice" />
+      <Button fx:id="passButton" layoutX="438.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="157.0" styleClass="red-button" text="Pass the dice" />
+      <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="135.0" styleClass="purple-button" text="Exit Game" />
+      <Button fx:id="exitSaveButton" layoutX="135.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="149.0" styleClass="purple-button" text="Exit and Save" />
+      <Label fx:id="sum" layoutX="950.0" prefHeight="56.0" prefWidth="88.0" text="Sum: 10" textFill="WHITE" />
+      <Circle fx:id="player0" layoutX="788.0" layoutY="29.0" radius="13.0" styleClass="bordered" />
+      <Circle fx:id="player1" layoutX="832.0" layoutY="29.0" radius="13.0" styleClass="bordered" />
+      <Circle fx:id="player2" layoutX="875.0" layoutY="29.0" radius="13.0" styleClass="bordered" />
+      <Circle fx:id="player3" layoutX="917.0" layoutY="29.0" radius="13.0" styleClass="bordered" />
+      <Circle fx:id="leftDice2" layoutX="1070.0" layoutY="42.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice3" layoutX="1085.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice6" layoutX="1100.0" layoutY="42.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice0" layoutX="1070.0" layoutY="13.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice4" layoutX="1100.0" layoutY="13.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice5" layoutX="1100.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="leftDice1" layoutX="1070.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice3" layoutX="1150.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice1" layoutX="1135.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice5" layoutX="1165.0" layoutY="28.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice6" layoutX="1165.0" layoutY="42.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice4" layoutX="1165.0" layoutY="13.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice2" layoutX="1135.0" layoutY="42.0" radius="5.0" styleClass="bordered" />
+      <Circle fx:id="rightDice0" layoutX="1135.0" layoutY="13.0" radius="5.0" styleClass="bordered" />
+      <Polygon fx:id="playerIndicator0" layoutX="820.0" layoutY="26.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+      <Polygon fx:id="playerIndicator1" layoutX="864.0" layoutY="26.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+      <Polygon fx:id="playerIndicator2" layoutX="907.0" layoutY="26.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+      <Polygon fx:id="playerIndicator3" layoutX="949.0" layoutY="26.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+      <Button fx:id="backButton" layoutX="589.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="157.0" styleClass="blue-button" text="Back" />
+   </children>
+</AnchorPane>
