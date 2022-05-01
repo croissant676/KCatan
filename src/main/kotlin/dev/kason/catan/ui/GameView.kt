@@ -21,7 +21,7 @@ import tornadofx.*
 import kotlin.system.exitProcess
 
 class GameView : View(catan("Game")) {
-    private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game.currentPlayer))
+    private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game, game.currentPlayer))
     var sidePanel by sidePanelViewProperty
     override val root: Parent = borderpane {
         left {
@@ -93,7 +93,7 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                         NextPlayerView(game.nextPlayer())
                     )
                     updateCurrentPlayer()
-                    gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+                    gameView.sidePanel = BaseSidePanel(game, game.currentPlayer)
                 } else {
                     catanAlert(
                         header = "You have not rolled the dice",
@@ -104,7 +104,7 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
         }
         backButton.action {
             logger.info { "Back button pressed, switching to a base side panel" }
-            gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+            gameView.sidePanel = BaseSidePanel(game, game.currentPlayer)
         }
         updateCurrentPlayer()
     }

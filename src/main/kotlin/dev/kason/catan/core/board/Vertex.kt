@@ -85,6 +85,9 @@ data class Vertex(
 
     override fun equals(other: Any?): Boolean = other is Vertex && other.vertexNum == vertexNum
     override fun hashCode(): Int = vertexNum
+    override fun toString(): String {
+        return "Vertex(player=$player, vertexNum=$vertexNum)"
+    }
 }
 
 data class Port(

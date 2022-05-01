@@ -57,6 +57,10 @@ data class Tile(
                 Pasture -> "#93c47d"
             }
     }
+
+    override fun toString(): String {
+        return "Tile(id=$id, type=$type)"
+    }
 }
 
 // Tile value generation

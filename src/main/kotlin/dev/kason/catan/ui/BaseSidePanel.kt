@@ -8,6 +8,7 @@ package dev.kason.catan.ui
 
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.Constants
+import dev.kason.catan.core.Game
 import dev.kason.catan.core.player.*
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
@@ -20,8 +21,8 @@ import javafx.scene.text.Text
 import mu.KLogging
 import tornadofx.*
 
-class BaseSidePanel(val player: Player) : Fragment() {
-    private val bottomPanelProperty = SimpleObjectProperty<UIComponent>(BaseSidePanelBottom(player))
+class BaseSidePanel(val game: Game, val player: Player) : Fragment() {
+    private val bottomPanelProperty = SimpleObjectProperty<UIComponent>(BaseSidePanelBottom(game, player))
     var bottomPanel by bottomPanelProperty
     override val root: Parent = borderpane {
         top { add(costView(player.color.jfxColor)) }
@@ -35,7 +36,7 @@ class BaseSidePanel(val player: Player) : Fragment() {
     }
 }
 
-class BaseSidePanelBottom(val player: Player) : View() {
+class BaseSidePanelBottom(val game: Game, val player: Player) : View() {
     companion object: KLogging()
     private val gameView: GameView by inject()
     override val root: Parent by fxml("/fxml/base_side.fxml")
@@ -54,6 +55,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     header = "Not enough resources",
                     content = "You do not have enough resources to build a city."
                 )
+            } else {
+                //show bulid city screen
             }
         }
         devCardBuyButton.action {
@@ -63,14 +66,17 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     header = "Not enough resources",
                     content = "You do not have enough resources to buy a development card."
                 )
+            } else {
+                //buy a dev card and add to hand
             }
         }
         devCardUseButton.action {
-
+            logger.debug { "Switching to dev card menu." }
+            //show dev card menu
         }
         buildConstruction.action {
             logger.info { "Switching to the build construction." }
-            (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView()
+            (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView(game, player)
         }
         defaultTradeButton.action {
             gameView.sidePanel = DefaultTradeFragment(player)

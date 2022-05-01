@@ -27,17 +27,11 @@ data class Player(val id: Int, val color: Color) {
 
         val colorHex: String
             get() = when (this) {
-                Red -> "5aa2ff"
+                Red -> "f54040"
                 Blue -> "5ca4e5"
-                White -> "ffb75a"
+                White -> "f0f0f0"
                 Orange -> "ffba67"
             }
         val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")
-    }
-
-    fun giveRoad(edge: Edge) {
-        roads.add(edge)
-        edge.player = this
-        //recalculate longest road
     }
 }

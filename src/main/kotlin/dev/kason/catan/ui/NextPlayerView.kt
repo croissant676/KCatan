@@ -7,6 +7,7 @@
 package dev.kason.catan.ui
 
 import dev.kason.catan.catan
+import dev.kason.catan.core.Game
 import dev.kason.catan.core.player.Player
 import javafx.scene.Parent
 import javafx.scene.control.Button
@@ -27,6 +28,7 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
         nextPlayerLabel.text = "Next Player: ${player.color.name}"
         continueButton.action {
             logger.info { "Next player button clicked!" }
+            replaceWith<GameView>()
         }
         exitButton.action {
             logger.info { "Closing application" }
