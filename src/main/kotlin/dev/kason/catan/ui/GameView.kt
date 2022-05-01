@@ -21,14 +21,14 @@ import tornadofx.*
 import kotlin.system.exitProcess
 
 class GameView : View(catan("Game")) {
-    private val sidePanelViewProperty = SimpleObjectProperty<View>(BaseSidePanel(game.currentPlayer))
+    private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game.currentPlayer))
     var sidePanel by sidePanelViewProperty
     override val root: Parent = borderpane {
         left {
             add(BoardView(game.board))
         }
         sidePanelViewProperty.addListener { _, oldValue, newValue ->
-            oldValue.replaceWith(newValue, ViewTransition.Slide(0.5.seconds))
+            oldValue.replaceWith(newValue, ViewTransition.Slide(0.5.seconds, ViewTransition.Direction.UP))
         }
         right { add(sidePanelViewProperty.value) }
         bottom {
@@ -52,6 +52,7 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
     private val playerIndicators = List(4) { fxmlLoader.namespace["playerIndicator$it"] as Polygon }
     private val leftDice = List(7) { fxmlLoader.namespace["leftDice$it"] as Circle }
     private val rightDice = List(7) { fxmlLoader.namespace["rightDice$it"] as Circle }
+    private val backButton: Button by fxid()
 
     private val mapOfResults = mapOf(
         1 to arrayOf(3),
@@ -100,6 +101,10 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                     )
                 }
             }
+        }
+        backButton.action {
+            logger.info { "Back button pressed, switching to a base side panel" }
+            gameView.sidePanel = BaseSidePanel(game.currentPlayer)
         }
         updateCurrentPlayer()
     }

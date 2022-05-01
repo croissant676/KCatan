@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.*?>
+
 <!--
   ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
   ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
   ~ https://opensource.org/licenses/MIT
   -->
 
-<?import java.net.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
 
 <AnchorPane prefHeight="152.0" prefWidth="400.0" styleClass="player-resource-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />

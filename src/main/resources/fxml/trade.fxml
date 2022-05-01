@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane layoutY="1.0" prefHeight="378.0" prefWidth="400.0" styleClass="blue-button" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="359.0" layoutX="12.0" layoutY="14.0" stroke="#d7d7d7" strokeType="INSIDE" width="377.0" />
+        <AnchorPane layoutX="21.0" layoutY="35.0" prefHeight="148.0" prefWidth="360.0">
+            <children>
+                <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />
+                <Circle layoutX="41.0" layoutY="80.0" radius="15.0" styleClass="forest" />
+                <Circle layoutX="41.0" layoutY="128.0" radius="15.0" styleClass="pasture" />
+                <Circle layoutX="207.0" layoutY="100.0" radius="15.0" styleClass="fields" />
+                <Circle layoutX="207.0" layoutY="47.0" radius="15.0" styleClass="mountains" />
+                <Spinner fx:id="tradeSpinnerBrick" layoutX="79.0" layoutY="15.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerLumber" layoutX="79.0" layoutY="68.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerWool" layoutX="79.0" layoutY="116.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerOre" layoutX="237.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerGrain" layoutX="237.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="17.0" layoutY="213.0" prefHeight="162.0" prefWidth="368.0">
+            <children>
+                <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />
+                <Circle layoutX="41.0" layoutY="80.0" radius="15.0" styleClass="forest" />
+                <Circle layoutX="41.0" layoutY="128.0" radius="15.0" styleClass="pasture" />
+                <Circle layoutX="207.0" layoutY="100.0" radius="15.0" styleClass="fields" />
+                <Circle layoutX="207.0" layoutY="47.0" radius="15.0" styleClass="mountains" />
+                <Spinner fx:id="forSpinnerBrick" layoutX="75.0" layoutY="15.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerLumber" layoutX="75.0" layoutY="68.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerWool" layoutX="75.0" layoutY="116.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerOre" layoutX="238.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerGrain" layoutX="238.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
+            </children>
+        </AnchorPane>
+        <Text layoutX="167.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade">
+            <font>
+                <Font name="Century Gothic" size="24.0" />
+            </font>
+        </Text>
+        <Text layoutX="174.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For" wrappingWidth="34.5703125">
+            <font>
+                <Font name="Century Gothic" size="24.0" />
+            </font>
+        </Text>
+    </children>
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+</AnchorPane>

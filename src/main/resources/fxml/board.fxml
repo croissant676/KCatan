@@ -6,12 +6,12 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.Double?>
+<?import java.net.URL?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="board-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <Polygon fx:id="tile0" layoutX="356.0" layoutY="121.0" rotate="30.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" stroke="#989898" strokeWidth="3.0" translateX="-80.0" translateY="-40.0">
         <points>
@@ -353,28 +353,28 @@
     <Text fx:id="label14" layoutX="433.0" layoutY="395.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
     <Text fx:id="label15" layoutX="536.0" layoutY="396.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
     <Text fx:id="label16" layoutX="278.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label17" layoutX="382.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Text fx:id="label18" layoutX="484.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1" />
-    <Polygon fx:id="boat6" layoutX="689.0" layoutY="242.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat1" layoutX="160.0" layoutY="172.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat2" layoutX="160.0" layoutY="346.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat7" layoutX="596.0" layoutY="96.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat8" layoutX="441.0" layoutY="4.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat4" layoutX="442.0" layoutY="512.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat5" layoutX="596.0" layoutY="427.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat0" layoutX="248.0" layoutY="11.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="boat3" layoutX="248.0" layoutY="498.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat" />
-    <Polygon fx:id="sail3" layoutX="209.0" layoutY="503.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail4" layoutX="403.0" layoutY="517.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail5" layoutX="557.0" layoutY="432.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail6" layoutX="649.0" layoutY="247.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail7" layoutX="556.0" layoutY="102.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail8" layoutX="402.0" layoutY="10.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail0" layoutX="209.0" layoutY="16.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail1" layoutX="121.0" layoutY="178.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
-    <Polygon fx:id="sail2" layoutX="120.0" layoutY="347.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail" />
+    <Text fx:id="label17" layoutX="382.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1"/>
+    <Text fx:id="label18" layoutX="484.0" layoutY="485.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="1"/>
+    <Polygon fx:id="boat6" layoutX="689.0" layoutY="242.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat1" layoutX="160.0" layoutY="172.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat2" layoutX="160.0" layoutY="346.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat7" layoutX="596.0" layoutY="96.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat8" layoutX="441.0" layoutY="4.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat4" layoutX="442.0" layoutY="512.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat5" layoutX="596.0" layoutY="427.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat0" layoutX="248.0" layoutY="11.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="boat3" layoutX="248.0" layoutY="498.0" points="-27, 48, 25, 48, -1, 62" styleClass="boat"/>
+    <Polygon fx:id="sail3" layoutX="209.0" layoutY="503.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail4" layoutX="403.0" layoutY="517.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail5" layoutX="557.0" layoutY="432.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail6" layoutX="649.0" layoutY="247.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail7" layoutX="556.0" layoutY="102.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail8" layoutX="402.0" layoutY="10.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail0" layoutX="209.0" layoutY="16.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail1" layoutX="121.0" layoutY="178.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
+    <Polygon fx:id="sail2" layoutX="120.0" layoutY="347.0" points="27, 40.0, 50.0, 40.0, 27, 10" styleClass="sail"/>
     <stylesheets>
-        <URL value="@../css/board.css" />
-        <URL value="@../css/generic.css" />
+        <URL value="@../css/board.css"/>
+        <URL value="@../css/generic.css"/>
     </stylesheets>
 </AnchorPane>

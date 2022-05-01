@@ -22,7 +22,9 @@ open class Game(
     numberOfPlayers: Int = 4,
     playerOrder: List<Player.Color> = Player.Color.values()
         .run { toMutableList().shuffled(random).subList(0, numberOfPlayers) },
-    val gameName: String
+    val players: List<Player> = playerOrder.mapIndexed(::Player),
+    val gameName: String = "TestGame",
+    val board: Board = Board(random)
 ) {
 
     companion object Sample : KLogging() {
@@ -32,9 +34,6 @@ open class Game(
             gameName = GameCreationSettings.gameName
         )
     }
-
-    val board = Board(random)
-    val players = playerOrder.mapIndexed(::Player)
     var currentPlayerIndex = 0
         private set
     val currentPlayer get() = players[currentPlayerIndex]
@@ -97,6 +96,95 @@ open class Game(
         require(canBuildCity(player, vertex))
         vertex.isCity = true
         player.resources -= Constants.cityCost
+    }
+
+    fun getPossibleRoads(player: Player): List<Edge> {
+        val edges = mutableSetOf<Edge>()
+        player.roads.forEach {
+            edges += it.edges
+        }
+        player.settlements.forEach {
+            edges += it.edges
+        }
+        return edges.filter { it.isEmpty }
+    }
+
+    fun getPossibleSettlements(player: Player): List<Vertex> {
+        val possibleSettlements = mutableSetOf<Vertex>()
+        player.roads.flatMapTo(possibleSettlements) { it.vertices }
+        for (possibleSettlement in possibleSettlements) {
+            for (vertex in possibleSettlement.vertices) {
+                if (vertex.hasConstruction) {
+                    possibleSettlements -= possibleSettlement
+                    break
+                }
+                for (adjacentVertex in vertex.vertices) {
+                    if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
+                        possibleSettlements -= possibleSettlement
+                        break
+                    }
+                }
+            }
+        }
+        return possibleSettlements.toList()
+    }
+
+    fun longestRoad(player: Player): Int {
+        val roadGroups = mutableSetOf<MutableSet<Edge>>()
+        val unmarkedRoads = player.roads.toMutableSet()
+        fun findGroup(edge: Edge): MutableSet<Edge> {
+            val group = mutableSetOf<Edge>()
+            group += edge
+            unmarkedRoads -= edge
+            for (vertex in edge.vertices) {
+                if (vertex.player == player || vertex.player == null) {
+                    for (vertexEdges in vertex.edges) {
+                        if (vertexEdges != vertexEdges && vertexEdges.player == player && vertexEdges in unmarkedRoads) group += findGroup(
+                            vertexEdges
+                        )
+                    }
+                }
+            }
+            return group
+        }
+        player.roads.filter { it in unmarkedRoads }.mapTo(roadGroups) { findGroup(it) }
+        var longest = 0
+        for (edges in roadGroups) {
+            val needles = mutableListOf<Edge>()
+            for (edge in edges) {
+                var count = 0
+                for (vertex in edge.vertices) {
+                    if (vertex.edges.filter { it.player == player }.size > 1) count++
+                }
+                if (count > 0) needles += edge
+            }
+            when (needles.size) {
+                0 -> if (longest < edges.size) longest = edges.size
+                else -> {
+                    for (index in needles.indices) {
+                        val length = roadDFS(player, needles[index], edges).size
+                        if (longest < length) longest = length
+                    }
+                }
+            }
+        }
+        return longest
+    }
+
+    fun roadDFS(player: Player, edge: Edge, unmarkedRoads: MutableSet<Edge>): MutableSet<Edge> {
+        val roads = mutableSetOf<Edge>()
+        roads.add(edge)
+        unmarkedRoads.remove(edge)
+        edge.vertices.forEach { vertex ->
+            if (vertex.player == player || vertex.player == null) {
+                vertex.edges.forEach { edge1 ->
+                    if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
+                        roads += roadDFS(player, edge1, unmarkedRoads)
+                    }
+                }
+            }
+        }
+        return roads
     }
 }
 

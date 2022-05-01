@@ -15,7 +15,7 @@ data class Player(val id: Int, val color: Color) {
     val settlements: MutableList<Vertex> = mutableListOf()
     val resources = PlayerResourceMap(this)
     val cities get() = settlements.filter { it.isCity }
-    val developmentCards = null
+    val developmentCards = mutableMapOf<DevCardType, Int>()
     val name get() = color.name
 
     @Suppress("MemberVisibilityCanBePrivate")

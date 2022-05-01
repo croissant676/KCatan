@@ -1,7 +1,9 @@
 package dev.kason.catan.core.test
 
+import dev.kason.catan.core.Game
 import dev.kason.catan.core.board.Board
 import dev.kason.catan.core.board.Location
+import dev.kason.catan.ui.GameCreationSettings.gameName
 import mu.KLogging
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
@@ -31,6 +33,12 @@ class BoardTesting {
         board.forEach { tile ->
             assertTrue(tile.vertices.all { (location, vertex) -> vertex.tiles[location.opposite] == tile })
         }
+    }
+
+    @Test
+    fun possibleSettlementsTest() {
+        val game = Game()
+
     }
 
 }

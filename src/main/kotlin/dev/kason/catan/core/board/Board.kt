@@ -14,15 +14,16 @@ import kotlin.random.Random
 
 data class Board(
     private val random: Random,
-    private val tiles: List<Tile> = generateTiles(random)
+    private val tiles: List<Tile> = generateTiles(random),
+    val init: Boolean = true
 ) : List<Tile> by tiles {
 
     companion object : KLogging()
 
-    private val _edges = mutableListOf<Edge>()
+    val _edges = mutableListOf<Edge>()
     val edges by lazy { _edges.toList() }
 
-    private val _vertices = mutableListOf<Vertex>()
+    val _vertices = mutableListOf<Vertex>()
     val vertices by lazy { _vertices.toList() }
 
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
@@ -34,11 +35,13 @@ data class Board(
     // ----------------- Initialization -------------------
 
     init {
-        tileGraph()
-        edgeGraph()
-        vertexGraph()
-        generateTileValues()
-        generatePortValues()
+        if (init) {
+            tileGraph()
+            edgeGraph()
+            vertexGraph()
+            generateTileValues()
+            generatePortValues()
+        }
     }
 
     private fun tileGraph() = tiles.forEach {
@@ -143,9 +146,15 @@ data class Board(
         }
     }
 
-    private fun generatePortValues() {
+    private fun generatePortValues(
+        ports: ArrayDeque<ResourceType?> = ArrayDeque(
+            (listOf(*ResourceType.values()) + Collections.nCopies(
+                4,
+                null
+            )).shuffled(random)
+        )
+    ) {
         logger.debug { "Generating port values" }
-        val ports = ArrayDeque((listOf(*ResourceType.values()) + Collections.nCopies(4, null)).shuffled(random))
         _ports.apply {
             clear()
             var curPort = Port(ports.removeFirst(), size)

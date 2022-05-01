@@ -9,8 +9,8 @@ package dev.kason.catan.ui
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.Constants
 import dev.kason.catan.core.player.*
+import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
-import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
 import javafx.scene.paint.Color
@@ -19,18 +19,25 @@ import javafx.scene.shape.Line
 import javafx.scene.text.Text
 import mu.KLogging
 import tornadofx.*
-import kotlin.random.Random
 
-class BaseSidePanel(val player: Player) : View() {
+class BaseSidePanel(val player: Player) : Fragment() {
+    private val bottomPanelProperty = SimpleObjectProperty<UIComponent>(BaseSidePanelBottom(player))
+    var bottomPanel by bottomPanelProperty
     override val root: Parent = borderpane {
         top { add(costView(player.color.jfxColor)) }
         center { add(PlayerResourceCosts(player.resources)) }
-        bottom { add(BaseSidePanelBottom(player)) }
+        bottomPanelProperty.addListener { _, oldValue, newValue ->
+            oldValue.replaceWith(newValue, ViewTransition.Fade(0.5.seconds))
+        }
+        bottom {
+            add(bottomPanel)
+        }
     }
 }
 
 class BaseSidePanelBottom(val player: Player) : View() {
     companion object: KLogging()
+    private val gameView: GameView by inject()
     override val root: Parent by fxml("/fxml/base_side.fxml")
     private val buildCity: Button by fxid()
     private val buildConstruction: Button by fxid()
@@ -59,6 +66,14 @@ class BaseSidePanelBottom(val player: Player) : View() {
             }
         }
         devCardUseButton.action {
+
+        }
+        buildConstruction.action {
+            logger.info { "Switching to the build construction." }
+            (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView()
+        }
+        defaultTradeButton.action {
+            gameView.sidePanel = DefaultTradeFragment(player)
         }
     }
 }
