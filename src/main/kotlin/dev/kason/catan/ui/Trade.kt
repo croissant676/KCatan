@@ -9,7 +9,6 @@
 package dev.kason.catan.ui
 
 import dev.kason.catan.catanAlert
-import dev.kason.catan.core.board.Port
 import dev.kason.catan.core.player.*
 import javafx.scene.Parent
 import javafx.scene.control.*
@@ -88,10 +87,16 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
             }
             tradeValue?.let {
                 trade[ResourceType.valueOf(it)] = repeatSpinner.value * 4
-            } ?: catanAlert("Invalid trade", "You must trade least one resource.")
+            } ?:  run {
+                catanAlert("Invalid trade", "You must trade least one resource.")
+                return null
+            }
             forValue?.let {
                 result[ResourceType.valueOf(it)] = repeatSpinner.value
-            } ?: catanAlert("Invalid trade", "You must trade for least one resource.")
+            } ?: run {
+                catanAlert("Invalid trade", "You must trade for least one resource.")
+                return null
+            }
             return TradeInstance(trade, result)
         }
     }

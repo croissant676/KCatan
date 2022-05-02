@@ -8,7 +8,7 @@ package dev.kason.catan
 
 import com.google.common.io.Resources.getResource
 import com.google.common.io.Resources.readLines
-import dev.kason.catan.ui.*
+import dev.kason.catan.ui.MenuView
 import org.slf4j.bridge.SLF4JBridgeHandler
 import tornadofx.App
 import tornadofx.launch

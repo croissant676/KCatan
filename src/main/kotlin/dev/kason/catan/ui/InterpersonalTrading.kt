@@ -6,11 +6,13 @@
 
 package dev.kason.catan.ui
 
+import dev.kason.catan.core.Game
 import dev.kason.catan.core.player.Player
 import dev.kason.catan.core.player.ResourceType
 import javafx.scene.Parent
-import javafx.scene.control.Spinner
-import javafx.scene.control.SpinnerValueFactory
+import javafx.scene.control.*
+import javafx.scene.layout.AnchorPane
+import javafx.scene.text.Text
 import mu.KLogging
 import tornadofx.*
 
@@ -60,4 +62,40 @@ class OthersTradeFragmentWrap(val player: Player) : Fragment() {
         )
     }
 
+}
+
+@Suppress("unused")
+class OthersTradeSelection(val player: Player, val game: Game): Fragment() {
+    override val root: Parent by fxml("/fxml/trade_others.fxml")
+    private val pane0: AnchorPane by fxid()
+    private val resourceMap0: Map<ResourceType, Text> = ResourceType.values().associateWith {
+        (fxmlLoader.namespace["${it.name.lowercase()}Resources0"] as Text)
+    }
+    private val totalResources0: Text by fxid()
+    private val tradeButton0: Button by fxid()
+    private val showButton0: Button by fxid()
+    private val pane1: AnchorPane by fxid()
+    private val resourceMap1: Map<ResourceType, Text> = ResourceType.values().associateWith {
+        (fxmlLoader.namespace["${it.name.lowercase()}Resources1"] as Text)
+    }
+    private val totalResources1: Text by fxid()
+    private val tradeButton1: Button by fxid()
+    private val showButton1: Button by fxid()
+    private val pane2: AnchorPane by fxid()
+    private val resourceMap2: Map<ResourceType, Text> = ResourceType.values().associateWith {
+        (fxmlLoader.namespace["${it.name.lowercase()}Resources2"] as Text)
+    }
+    private val totalResources2: Text by fxid()
+    private val tradeButton2: Button by fxid()
+    private val showButton2: Button by fxid()
+
+    private val panes = listOf(pane0, pane1, pane2)
+    private val resourceMaps = listOf(resourceMap0, resourceMap1, resourceMap2)
+    private val totalResources = listOf(totalResources0, totalResources1, totalResources2)
+    private val tradeButtons = listOf(tradeButton0, tradeButton1, tradeButton2)
+    private val showButtons = listOf(showButton0, showButton1, showButton2)
+    init {
+        val list = game.players.filter { it != player }
+
+    }
 }

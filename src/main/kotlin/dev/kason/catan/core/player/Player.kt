@@ -7,8 +7,7 @@
 package dev.kason.catan.core.player
 
 import javafx.scene.paint.Color as JFXColor
-import dev.kason.catan.core.board.Edge
-import dev.kason.catan.core.board.Vertex
+import dev.kason.catan.core.board.*
 
 data class Player(val id: Int, val color: Color) {
     val roads: MutableList<Edge> = mutableListOf()
@@ -36,8 +35,13 @@ data class Player(val id: Int, val color: Color) {
     }
 
     fun giveRoad(edge: Edge) {
-        roads.add(edge)
+        roads += edge
         edge.player = this
         //recalculate longest road
+    }
+
+    fun accessiblePorts(): List<Port> = settlements.fold(mutableListOf()) { acc, vertex ->
+        vertex.port?.let { acc += (it) }
+        acc
     }
 }

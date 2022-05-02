@@ -8,7 +8,6 @@ package dev.kason.catan.ui
 
 import dev.kason.catan.catan
 import dev.kason.catan.core.Constants
-import dev.kason.catan.core.Game
 import dev.kason.catan.core.board.*
 import javafx.scene.Parent
 import javafx.scene.paint.Color

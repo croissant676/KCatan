@@ -22,7 +22,7 @@ class ConstSelectorView(player: Player) : Fragment(catan("Construction Selector"
     override val root: Parent by fxml("/fxml/construction_selector.fxml")
     private val roadButton: Button by fxid()
     private val settlementButton: Button by fxid()
-
+    private val gameView: GameView by inject()
     init {
         roadButton.action {
             if (player.resources.doesNotHave(Constants.roadCost)) {
@@ -42,8 +42,14 @@ class ConstSelectorView(player: Player) : Fragment(catan("Construction Selector"
                 )
                 return@action
             }
-
+            gameView.boardPanel = SettlementSelectionFragment()
         }
     }
 }
 
+class CityConstructionPanel(
+    val citySelectionFragment: CitySelectionFragment,
+): Fragment() {
+    override val root: Parent by fxml("/fxml/city_construction.fxml")
+
+}

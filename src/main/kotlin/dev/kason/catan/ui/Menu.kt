@@ -8,8 +8,8 @@ package dev.kason.catan.ui
 
 import dev.kason.catan.catan
 import javafx.scene.Parent
-import javafx.scene.layout.AnchorPane
 import javafx.scene.control.Button
+import javafx.scene.layout.AnchorPane
 import mu.KLogging
 import tornadofx.*
 

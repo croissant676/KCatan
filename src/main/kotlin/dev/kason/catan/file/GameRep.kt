@@ -105,8 +105,7 @@ class BoardRep(
     val vertices: List<VertexRep>,
     val robber: Int,
     val portOrder: List<ResourceType?>
-) {
-}
+)
 
 @Serializable
 class TileRep(

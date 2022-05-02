@@ -54,6 +54,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     "Not enough resources",
                     "You do not have enough resources to build a city."
                 )
+            } else {
+
             }
         }
         devCardBuyButton.action {
