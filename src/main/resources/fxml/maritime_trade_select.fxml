@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+
+<?import java.net.URL?>
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="245.0" layoutY="108.0" mnemonicParsing="false" text="Button" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/board.css" />
+      <URL value="@../css/generic.css" />
+      <URL value="@../css/costs.css" />
+   </stylesheets>
+</AnchorPane>

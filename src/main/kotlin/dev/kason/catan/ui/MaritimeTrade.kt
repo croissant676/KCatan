@@ -13,41 +13,25 @@ import dev.kason.catan.core.board.Port
 import dev.kason.catan.core.player.*
 import javafx.scene.Parent
 import javafx.scene.control.*
-import javafx.scene.text.Text
-import mu.KLogging
 import tornadofx.*
 
-class TradeInstance(
-    val trade: Map<ResourceType, Int> = mutableMapOf(),
-    val result: Map<ResourceType, Int> = mutableMapOf(),
-)
 
-fun ComboBox<String>.addResourceTypes() {
-    items.addAll(ResourceType.values().map { it.name })
-}
-
-abstract class TradeFragment: Fragment() {
-    abstract fun getTradeResult(): TradeInstance?
-}
-
-class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
-    companion object : KLogging()
-
+class MaritimeTradeFragment(val player: Player, val port: Port) : Fragment() {
+    lateinit var getTradeData: () -> TradeInstance?
     private val gameView: GameView by inject()
-    private lateinit var getTradeData: () -> TradeInstance?
-    override val root: Parent = borderpane {
+    override val root: Parent =  borderpane {
         top {
-            val defaultTradeFragment = DefaultTradeFragment(player)
+            val defaultTradeFragment = DefaultTradeFragmentWrap.DefaultTradeFragment(player)
             getTradeData = { defaultTradeFragment.getTradeResult() }
             add(defaultTradeFragment)
         }
         bottom {
             add(TradeResourceFragment(player.resources) {
-                logger.debug { "Attempting a trade." }
+                DefaultTradeFragmentWrap.logger.debug { "Attempting a trade." }
                 val tradeInstance = getTradeData()
-                    ?: return@TradeResourceFragment logger.debug { "Backed off trade due to null trade resource result." }
+                    ?: return@TradeResourceFragment DefaultTradeFragmentWrap.logger.debug { "Backed off trade due to null trade resource result." }
                 if (player.resources doesNotHave tradeInstance.trade) {
-                    logger.warn { "Player ${player.name} does not have resources to trade" }
+                    DefaultTradeFragmentWrap.logger.warn { "Player ${player.name} does not have resources to trade" }
                     catanAlert(
                         "Insufficient resources",
                         "You do not have enough resources to trade."
@@ -61,8 +45,10 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
         }
     }
 
-    class DefaultTradeFragment(player: Player) : TradeFragment() {
-        override val root: Parent by fxml("/fxml/default_trade.fxml")
+
+
+    class MaritimeTradeGenericFragment(val player: Player) : TradeFragment() {
+        override val root: Parent by fxml("/fxml/maritime_trade_generic.fxml")
         private val tradeComboBox: ComboBox<String> by fxid()
         private val forComboBox: ComboBox<String> by fxid()
         private val repeatSpinner: Spinner<Int> by fxid()
@@ -95,28 +81,20 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
             return TradeInstance(trade, result)
         }
     }
+
+    class MaritimeTradeSpecialFragment(val player: Player, val port: Port) : Fragment() {
+        override val root: Parent by fxml("/fxml/maritime_trade_special.fxml")
+        private val tradeComboBox: ComboBox<String> by fxid()
+        private val repeatSpinner: Spinner<Int> by fxid()
+        private val resourceLabel: Label by fxid()
+        private val titleLabel: Label by fxid()
+
+        init {
+
+        }
+    }
 }
 
-class TradeResourceFragment(playerResources: Map<ResourceType, Int>, onAction: () -> Unit): Fragment() {
-    override val root: Parent by fxml("/fxml/trade_resources.fxml")
-    private val tradeButton: Button by fxid()
-    private val hillResources: Text by fxid()
-    private val forestResources: Text by fxid()
-    private val pastureResources: Text by fxid()
-    private val mountainResources: Text by fxid()
-    private val fieldResources: Text by fxid()
-    private val totalResources: Text by fxid()
-    init {
-        hillResources.text = playerResources.brick.toString()
-        forestResources.text = playerResources.lumber.toString()
-        pastureResources.text = playerResources.wool.toString()
-        mountainResources.text = playerResources.ore.toString()
-        fieldResources.text = playerResources.grain.toString()
-        val total = playerResources.values.sum()
-        totalResources.text = total.toString()
-        if (total > 7) {
-            totalResources.fill = c("#ff002d")
-        }
-        tradeButton.action(onAction)
-    }
+class MaritimeTradeSelectorFragment(val player: Player) : Fragment() {
+    override val root: Parent by fxml("/fxml/maritime_trade_select.fxml")
 }

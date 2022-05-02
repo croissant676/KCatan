@@ -27,7 +27,7 @@ open class Game(
     val board: Board = Board(random)
 ) {
 
-    companion object Sample : KLogging() {
+    companion object : KLogging() {
         fun createGameFromSettings() = Game(
             Random(GameCreationSettings.seed),
             GameCreationSettings.numberOfPlayers,
@@ -57,6 +57,7 @@ open class Game(
         roll = this
         currentTurn.rolledDice = true
     }
+
     fun nextPlayer(): Player {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size
         currentTurn = Turn()
@@ -177,7 +178,7 @@ open class Game(
         unmarkedRoads.remove(edge)
         edge.vertices.forEach { vertex ->
             if (vertex.player == player || vertex.player == null) {
-                vertex.edges.forEach { edge1 ->
+                for (edge1 in vertex.edges) {
                     if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
                         roads += roadDFS(player, edge1, unmarkedRoads)
                     }
@@ -185,6 +186,16 @@ open class Game(
             }
         }
         return roads
+    }
+
+    @Deprecated(
+        "Testing only",
+        ReplaceWith("board.edges.forEach { it.player = players.random() }")
+    )
+    fun generateEdgesRandomly() {
+        board.edges.forEach {
+            it.player = players.random()
+        }
     }
 }
 

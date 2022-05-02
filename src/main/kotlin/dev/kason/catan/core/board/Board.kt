@@ -20,11 +20,11 @@ data class Board(
 
     companion object : KLogging()
 
-    val _edges = mutableListOf<Edge>()
-    val edges by lazy { _edges.toList() }
+    val _edges = mutableSetOf<Edge>()
+    val edges by lazy { _edges.sortedBy { it.id } }
 
-    val _vertices = mutableListOf<Vertex>()
-    val vertices by lazy { _vertices.toList() }
+    val _vertices = mutableSetOf<Vertex>()
+    val vertices by lazy { _vertices.sortedBy { it.id } }
 
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
@@ -121,7 +121,6 @@ data class Board(
             it._vertices[Location.Top] = topRight.vertices[Location.BottomLeft]!!
         }
         for (location in Location.vertexLocations) {
-            if (location !in it.vertices.keys) it._vertices[location] = Vertex()
             val vertex = it._vertices[location] ?: run {
                 val newVertex = Vertex().apply {
                     it._vertices[location] = this

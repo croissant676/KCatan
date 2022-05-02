@@ -35,12 +35,12 @@ data class PlayerResourceMap(
     val resources: MutableMap<ResourceType, Int> = EnumMap(ResourceType::class.java)
 ) : MutableMap<ResourceType, Int> by resources {
     init {
-        ResourceType.values().forEach { resources[it] = Random.nextInt(5) }
+        ResourceType.values().forEach { resources[it] = Random.nextInt(10) }
     }
 }
 
 @Serializable
-data class ResourceMap(val resources: Map<ResourceType, Int>) : Map<ResourceType, Int> by resources {
+data class ResourceMap(val resources: MutableMap<ResourceType, Int> ) : Map<ResourceType, Int> by resources {
     constructor(
         lumber: Int = 0,
         wool: Int = 0,

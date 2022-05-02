@@ -3,6 +3,7 @@
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <!--
   ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
@@ -11,7 +12,6 @@
   -->
 
 <AnchorPane layoutY="1.0" prefHeight="378.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-
     <stylesheets>
         <URL value="@../css/board.css" />
         <URL value="@../css/generic.css" />
@@ -20,5 +20,15 @@
    <children>
       <ComboBox layoutX="200.0" layoutY="110.0" prefWidth="150.0" />
       <Label layoutX="51.0" layoutY="117.0" text="Work" />
+      <Rectangle fill="#edba58" height="382.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="400.0" />
+      <ComboBox fx:id="tradeComboBox" layoutX="161.0" layoutY="95.0" prefWidth="150.0" />
+      <ComboBox fx:id="forComboBox" layoutX="161.0" layoutY="151.0" prefWidth="150.0" />
+      <Spinner fx:id="repeatSpinner" layoutX="187.0" layoutY="308.0" />
+      <Label layoutX="97.0" layoutY="99.0" text="Trade:" />
+      <Label layoutX="107.0" layoutY="156.0" text="For :" />
+      <Label layoutX="140.0" layoutY="225.0" text="At a 4 : 1 ratio" />
+      <Label layoutX="72.0" layoutY="309.0" text="Repeat:" />
+      <Label layoutX="141.0" layoutY="45.0" text="Default Trade" />
+      <Separator layoutY="267.0" prefHeight="7.0" prefWidth="400.0" />
    </children>
 </AnchorPane>

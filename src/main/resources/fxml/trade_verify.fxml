@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="213.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d8ecff" height="220.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="388.0" />
+        <Button layoutX="26.0" layoutY="106.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
+        <Button layoutX="202.0" layoutY="106.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
+        <Text layoutX="19.0" layoutY="31.0" text="Verify that both players agree to the trade">
+            <font>
+                <Font name="Century Gothic" size="17.0" />
+            </font>
+        </Text>
+        <Button layoutX="202.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
+        <Button layoutX="26.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
+        <Text layoutX="26.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
+            <font>
+                <Font name="Century Gothic" size="28.0" />
+            </font>
+        </Text>
+      <Text layoutX="202.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
+         <font>
+            <Font name="Century Gothic" size="28.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

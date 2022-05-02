@@ -17,7 +17,7 @@ data class Vertex(
     internal val _tiles: LocationMutableMap<Tile> = createLocationMap(),
     var player: Player? = null,
     var isCity: Boolean = false,
-    val vertexNum: Int = currentVertexNum++
+    val id: Int = currentVertexNum++
 ) {
     val tiles: LocationMap<Tile> = _tiles
     internal var _port: Port? = null
@@ -83,8 +83,8 @@ data class Vertex(
 
     enum class Rotation { Top, Bottom }
 
-    override fun equals(other: Any?): Boolean = other is Vertex && other.vertexNum == vertexNum
-    override fun hashCode(): Int = vertexNum
+    override fun equals(other: Any?): Boolean = other is Vertex && other.id == id
+    override fun hashCode(): Int = id
 }
 
 data class Port(

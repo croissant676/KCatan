@@ -51,8 +51,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
             logger.debug { "Attempted to build a city: $player :: ${player.resources}" }
             if (player.resources doesNotHave Constants.cityCost) {
                 catanAlert(
-                    header = "Not enough resources",
-                    content = "You do not have enough resources to build a city."
+                    "Not enough resources",
+                    "You do not have enough resources to build a city."
                 )
             }
         }
@@ -60,20 +60,31 @@ class BaseSidePanelBottom(val player: Player) : View() {
             logger.debug { "Attempted to buy a dev card: $player :: ${player.resources}" }
             if (player.resources doesNotHave Constants.developmentCardCost) {
                 catanAlert(
-                    header = "Not enough resources",
-                    content = "You do not have enough resources to buy a development card."
+                    "Not enough resources",
+                    "You do not have enough resources to buy a development card."
                 )
             }
         }
         devCardUseButton.action {
-
+            if (player.developmentCards.all { it.value == 0 }) {
+                catanAlert(
+                    "No development cards",
+                    "You do not have any development cards to use."
+                )
+            }
         }
         buildConstruction.action {
             logger.info { "Switching to the build construction." }
-            (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView()
+            (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView(player)
         }
         defaultTradeButton.action {
-            gameView.sidePanel = DefaultTradeFragment(player)
+            gameView.sidePanel = DefaultTradeFragmentWrap(player)
+        }
+        othersTradeButton.action {
+            gameView.sidePanel = OthersTradeFragmentWrap(player)
+        }
+        maritimeTradeButton.action {
+            gameView.sidePanel = MaritimeTradeSelectorFragment(player)
         }
     }
 }

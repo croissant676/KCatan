@@ -22,10 +22,15 @@ import kotlin.system.exitProcess
 
 class GameView : View(catan("Game")) {
     private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game.currentPlayer))
-    var sidePanel by sidePanelViewProperty
+    var sidePanel: UIComponent by sidePanelViewProperty
+    private val boardViewProperty = SimpleObjectProperty<UIComponent>(BoardView(game.board))
+    var boardPanel: UIComponent by boardViewProperty
     override val root: Parent = borderpane {
+        boardViewProperty.addListener { _, oldValue, newValue ->
+            oldValue.replaceWith(newValue, ViewTransition.Fade(0.3.seconds))
+        }
         left {
-            add(BoardView(game.board))
+            add(boardPanel)
         }
         sidePanelViewProperty.addListener { _, oldValue, newValue ->
             oldValue.replaceWith(newValue, ViewTransition.Slide(0.5.seconds, ViewTransition.Direction.UP))
@@ -96,8 +101,8 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                     gameView.sidePanel = BaseSidePanel(game.currentPlayer)
                 } else {
                     catanAlert(
-                        header = "You have not rolled the dice",
-                        content = "You must roll the dice before you can pass."
+                        "You have not rolled the dice",
+                        "You must roll the dice before you can pass."
                     )
                 }
             }

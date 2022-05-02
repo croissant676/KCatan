@@ -25,8 +25,8 @@
                 <Spinner fx:id="tradeSpinnerBrick" layoutX="79.0" layoutY="15.0" prefHeight="25.0" prefWidth="74.0" />
                 <Spinner fx:id="tradeSpinnerLumber" layoutX="79.0" layoutY="68.0" prefHeight="25.0" prefWidth="74.0" />
                 <Spinner fx:id="tradeSpinnerWool" layoutX="79.0" layoutY="116.0" prefHeight="25.0" prefWidth="74.0" />
-                <Spinner fx:id="tradeSpinnerOre" layoutX="237.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
-                <Spinner fx:id="tradeSpinnerGrain" layoutX="237.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerGrain" layoutX="237.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerOre" layoutX="237.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="17.0" layoutY="213.0" prefHeight="162.0" prefWidth="368.0">
@@ -39,8 +39,8 @@
                 <Spinner fx:id="forSpinnerBrick" layoutX="75.0" layoutY="15.0" prefHeight="25.0" prefWidth="74.0" />
                 <Spinner fx:id="forSpinnerLumber" layoutX="75.0" layoutY="68.0" prefHeight="25.0" prefWidth="74.0" />
                 <Spinner fx:id="forSpinnerWool" layoutX="75.0" layoutY="116.0" prefHeight="25.0" prefWidth="74.0" />
-                <Spinner fx:id="forSpinnerOre" layoutX="238.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
-                <Spinner fx:id="forSpinnerGrain" layoutX="238.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerGrain" layoutX="238.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="forSpinnerOre" layoutX="238.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
             </children>
         </AnchorPane>
         <Text layoutX="167.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade">

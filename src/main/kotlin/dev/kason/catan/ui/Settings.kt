@@ -50,7 +50,6 @@ class UserCountSettingView: View(catan("Creation")) {
             GameCreationSettings.numberOfPlayers = playerComboBox.selectionModel.selectedIndex + 2
             logger.info { "Selected ${playerComboBox.selectionModel.selectedItem} with name ${GameCreationSettings.gameName}" }
             game = Game.createGameFromSettings()
-            logger.info { game.board.debugString() }
             replaceWith<GameView>()
         }
     }

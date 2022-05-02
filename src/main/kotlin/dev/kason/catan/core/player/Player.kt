@@ -27,9 +27,9 @@ data class Player(val id: Int, val color: Color) {
 
         val colorHex: String
             get() = when (this) {
-                Red -> "5aa2ff"
+                Red -> "fe0040"
                 Blue -> "5ca4e5"
-                White -> "ffb75a"
+                White -> "efefef"
                 Orange -> "ffba67"
             }
         val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")

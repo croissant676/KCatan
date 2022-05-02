@@ -7,14 +7,17 @@
 package dev.kason.catan.ui
 
 import dev.kason.catan.catan
+import dev.kason.catan.core.Constants
+import dev.kason.catan.core.Game
 import dev.kason.catan.core.board.*
 import javafx.scene.Parent
-import javafx.scene.shape.Circle
-import javafx.scene.shape.Polygon
+import javafx.scene.paint.Color
+import javafx.scene.shape.*
 import javafx.scene.text.*
 import mu.KLogging
 import tornadofx.*
 
+@Suppress("LocalVariableName")
 class BoardView(
     private val board: Board
 ) : View(catan("Board")) {
@@ -41,6 +44,45 @@ class BoardView(
 
     private val listOfSails = List(9) {
         fxmlLoader.namespace["sail$it"] as Polygon
+    }
+
+    private val mapOfEdges: Map<Edge, Line> = run {
+        logger.debug { "Creating lines." }
+        val _mapOfEdges = mutableMapOf<Edge, Line>()
+        for (edge in board.edges) {
+            val mainTile = edge.first
+            val location = mainTile.edges.keys.first { mainTile.edges[it] == edge }
+            val tileHexagon = listOfTiles[mainTile.id]
+            val translationValue = Constants.lineTranslations[location]!!
+            val line = Line(
+                tileHexagon.layoutX + translationValue.startX,
+                tileHexagon.layoutY + translationValue.startY,
+                tileHexagon.layoutX + translationValue.endX,
+                tileHexagon.layoutY + translationValue.endY
+            )
+            _mapOfEdges[edge] = line
+            line.stroke = Color.BLACK
+            line.strokeWidth = 5.0
+            line.isVisible = false
+            this.add(line)
+        }
+        _mapOfEdges
+    }
+
+    private fun Vertex.drawCircle(color: Color = Color.TRANSPARENT, isCity: Boolean = false) {
+        for (location in tiles.keys) {
+            val mainTile = tiles[location]!!
+            val tileHexagon = listOfTiles[mainTile.id]
+            val translationValue = Constants.pointTranslations[location]!!
+            val circle = Circle(
+                tileHexagon.layoutX + translationValue.x,
+                tileHexagon.layoutY + translationValue.y,
+                if (isCity) Constants.cityRadius else Constants.settlementRadius
+            )
+            circle.fill = Color.BLACK
+            circle.isVisible = true
+            add(circle)
+        }
     }
 
     val hexagonRetriever = object {

@@ -11,6 +11,7 @@ import dev.kason.catan.core.player.Player
 import javafx.scene.Parent
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.shape.Circle
 import mu.KLogging
 import tornadofx.View
 import tornadofx.action
@@ -22,6 +23,7 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
     private val nextPlayerLabel: Label by fxid()
     private val continueButton: Button by fxid()
     private val exitButton: Button by fxid()
+    private val playerCircle: Circle by fxid()
 
     init {
         nextPlayerLabel.text = "Next Player: ${player.color.name}"
@@ -31,6 +33,7 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
         exitButton.action {
             logger.info { "Closing application" }
         }
+        playerCircle.fill = player.color.jfxColor
     }
 
     override fun onDock() {
