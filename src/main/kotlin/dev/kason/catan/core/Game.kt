@@ -71,6 +71,12 @@ open class Game(
         return true
     }
 
+    fun buildRoad(player: Player, edge: Edge) {
+        require(canBuildRoad(player, edge))
+        edge.player = player
+        player.resources -= Constants.roadCost
+    }
+
     fun canBuildSettlement(player: Player, vertex: Vertex): Boolean {
         if (player.resources doesNotHave Constants.settlementCost) return false
         if (vertex.hasConstruction) return false
@@ -107,7 +113,8 @@ open class Game(
         player.settlements.forEach {
             edges += it.edges
         }
-        return edges.filter { it.isEmpty }
+        edges -= player.roads.toSet()
+        return edges.filter { it.player == null }
     }
 
     fun getPossibleSettlements(player: Player): List<Vertex> {
@@ -115,7 +122,7 @@ open class Game(
         player.roads.flatMapTo(possibleSettlements) { it.vertices }
         for (possibleSettlement in possibleSettlements) {
             for (vertex in possibleSettlement.vertices) {
-                if (vertex.hasConstruction) {
+                if (vertex.player != null) {
                     possibleSettlements -= possibleSettlement
                     break
                 }
@@ -140,15 +147,19 @@ open class Game(
             for (vertex in edge.vertices) {
                 if (vertex.player == player || vertex.player == null) {
                     for (vertexEdges in vertex.edges) {
-                        if (vertexEdges != vertexEdges && vertexEdges.player == player && vertexEdges in unmarkedRoads) group += findGroup(
-                            vertexEdges
-                        )
+                        if (vertexEdges != edge && vertexEdges.player == player && vertexEdges in unmarkedRoads) group += findGroup(vertexEdges)
                     }
                 }
             }
             return group
         }
-        player.roads.filter { it in unmarkedRoads }.mapTo(roadGroups) { findGroup(it) }
+        while (unmarkedRoads.isNotEmpty()) {
+            roadGroups += findGroup(unmarkedRoads.first())
+        }
+        roadGroups.forEach {
+            logger.debug(it.toString())
+        }
+        //player.roads.filter { it in unmarkedRoads }.mapTo(roadGroups) { findGroup(it) }
         var longest = 0
         for (edges in roadGroups) {
             val needles = mutableListOf<Edge>()
@@ -178,11 +189,14 @@ open class Game(
         unmarkedRoads.remove(edge)
         edge.vertices.forEach { vertex ->
             if (vertex.player == player || vertex.player == null) {
-                for (edge1 in vertex.edges) {
+                var longest = mutableSetOf<Edge>()
+                vertex.edges.forEach { edge1 ->
                     if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
-                        roads += roadDFS(player, edge1, unmarkedRoads)
+                        var route = roadDFS(player, edge1, unmarkedRoads)
+                        if (route.size > longest.size) longest = route
                     }
                 }
+                roads += longest
             }
         }
         return roads
