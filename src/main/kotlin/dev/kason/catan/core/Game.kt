@@ -160,39 +160,45 @@ open class Game(
             logger.debug(it.toString())
         }
         //player.roads.filter { it in unmarkedRoads }.mapTo(roadGroups) { findGroup(it) }
-        var longest = 0
-        for (edges in roadGroups) {
+        var longest = mutableListOf<Edge>()
+        for (roadGroup in roadGroups) {
             val needles = mutableListOf<Edge>()
-            for (edge in edges) {
+            for (edge in roadGroup) {
                 var count = 0
                 for (vertex in edge.vertices) {
                     if (vertex.edges.filter { it.player == player }.size > 1) count++
                 }
-                if (count > 0) needles += edge
+                if (count == 1) needles += edge
             }
             when (needles.size) {
-                0 -> if (longest < edges.size) longest = edges.size
+                0 -> {
+                    val temp = roadGroup.toList()
+                    for (edge in temp) {
+                        val list = roadDFS(player, edge, null, roadGroup.toMutableSet())
+                        if (longest.size < list.size) longest = list
+                    }
+                }
                 else -> {
                     for (index in needles.indices) {
-                        val length = roadDFS(player, needles[index], edges).size
-                        if (longest < length) longest = length
+                        val list = roadDFS(player, needles[index], null, roadGroup.toMutableSet())
+                        if (longest.size < list.size) longest = list
                     }
                 }
             }
         }
-        return longest
+        return longest.size
     }
 
-    fun roadDFS(player: Player, edge: Edge, unmarkedRoads: MutableSet<Edge>): MutableSet<Edge> {
-        val roads = mutableSetOf<Edge>()
+    fun roadDFS(player: Player, edge: Edge, previousVertex: Vertex?, unmarkedRoads: MutableSet<Edge>): MutableList<Edge> {
+        val roads = mutableListOf<Edge>()
         roads.add(edge)
         unmarkedRoads.remove(edge)
         edge.vertices.forEach { vertex ->
-            if (vertex.player == player || vertex.player == null) {
-                var longest = mutableSetOf<Edge>()
+            if (vertex.player == player || vertex.player == null && vertex != previousVertex) {
+                var longest = mutableListOf<Edge>()
                 vertex.edges.forEach { edge1 ->
                     if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
-                        var route = roadDFS(player, edge1, unmarkedRoads)
+                        var route = roadDFS(player, edge1, vertex, unmarkedRoads)
                         if (route.size > longest.size) longest = route
                     }
                 }
