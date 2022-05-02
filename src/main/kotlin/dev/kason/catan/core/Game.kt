@@ -112,7 +112,8 @@ open class Game(
         player.settlements.forEach {
             edges += it.edges
         }
-        return edges.filter { it.isEmpty }
+        edges -= player.roads.toSet()
+        return edges.filter { it.player == null }
     }
 
     fun getPossibleSettlements(player: Player): List<Vertex> {
@@ -120,7 +121,7 @@ open class Game(
         player.roads.flatMapTo(possibleSettlements) { it.vertices }
         for (possibleSettlement in possibleSettlements) {
             for (vertex in possibleSettlement.vertices) {
-                if (vertex.hasConstruction) {
+                if (vertex.player != null) {
                     possibleSettlements -= possibleSettlement
                     break
                 }
