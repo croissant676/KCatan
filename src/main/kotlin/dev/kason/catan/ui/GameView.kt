@@ -18,13 +18,14 @@ import javafx.scene.shape.Circle
 import javafx.scene.shape.Polygon
 import mu.KLogging
 import tornadofx.*
+import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 class GameView : View(catan("Game")) {
     private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game.currentPlayer))
     var sidePanel: UIComponent by sidePanelViewProperty
-    private val boardViewProperty = SimpleObjectProperty<UIComponent>(BoardView(game.board))
-    var boardPanel: UIComponent by boardViewProperty
+    private val boardViewProperty = SimpleObjectProperty(BoardView(game.board))
+    var boardPanel: BoardView by boardViewProperty
     override val root: Parent = borderpane {
         boardViewProperty.addListener { _, oldValue, newValue ->
             oldValue.replaceWith(newValue, ViewTransition.Fade(0.3.seconds))
@@ -88,6 +89,7 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                 game.generateRoll()
                 updateDice()
                 isDisable = true
+                ((gameView.sidePanel as? BaseSidePanel)?.bottomPanel as? BaseSidePanelBottom)?.updateButtons()
             }
         }
         passButton.apply {
@@ -110,6 +112,14 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
         backButton.action {
             logger.info { "Back button pressed, switching to a base side panel" }
             gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+            gameView.boardPanel = BoardView(game.board)
+            backButton.isDisable = true
+            thread {
+                Thread.sleep(500)
+                runLater {
+                    backButton.isDisable = false
+                }
+            }
         }
         updateCurrentPlayer()
     }
@@ -138,8 +148,5 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
                 polygon.fill = Color.TRANSPARENT
             }
         }
-    }
-
-    override fun onDock() {
     }
 }

@@ -90,8 +90,8 @@ object Constants {
         ),
     )
 
-    const val settlementRadius = 4.0
-    const val cityRadius = 7.0
+    const val settlementRadius = 10.0
+    const val cityRadius = 20.0
 
 }
 

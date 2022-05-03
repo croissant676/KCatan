@@ -13,7 +13,7 @@
   -->
 
 <AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="187.0" prefWidth="400.0" styleClass="player-resource-background">
+    <AnchorPane prefHeight="204.0" prefWidth="400.0" styleClass="player-resource-background">
         <Circle layoutX="41.0" layoutY="67.0" radius="15.0" styleClass="hills" />
         <Circle layoutX="41.0" layoutY="110.0" radius="15.0" styleClass="forest" />
         <Circle layoutX="41.0" layoutY="154.0" radius="15.0" styleClass="pasture" />
@@ -60,7 +60,7 @@
          </font>
       </Text>
     </AnchorPane>
-   <Button fx:id="tradeButton" layoutY="183.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="400.0" styleClass="red-button" text="Trade!" />
+   <Button fx:id="tradeButton" layoutY="204.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="400.0" styleClass="red-button" text="Trade!" />
     <stylesheets>
         <URL value="@../css/board.css" />
         <URL value="@../css/generic.css" />

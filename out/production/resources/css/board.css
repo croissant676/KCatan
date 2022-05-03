@@ -234,3 +234,41 @@
 .purple-button2:hover {
     -fx-background-color: #7054c2;
 }
+
+.board-selection-item {
+    -fx-fill: #27ff20;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.board-selection-item:hover {
+    -fx-fill: #14c714;
+}
+
+.board-unselected-item {
+    -fx-fill: #98c797;
+    -fx-stroke: #b3b3b3;
+    -fx-stroke-width: 3px;
+}
+
+.board-unselected-item:hover {
+    -fx-fill: #75b675;
+}
+
+.board-selection-line {
+    -fx-stroke: #27ff20;
+    -fx-stroke-width: 7px;
+}
+
+.board-selection-line:hover {
+    -fx-stroke: #14c714;
+}
+
+.board-unselected-line {
+    -fx-stroke: #98c797;
+    -fx-stroke-width: 7px;
+}
+
+.board-unselected-line:hover {
+    -fx-stroke: #75b675;
+}

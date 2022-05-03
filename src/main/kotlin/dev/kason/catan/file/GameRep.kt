@@ -19,7 +19,6 @@ class GameRep(
     var currentTurn: Int,
     val devCardDeck: List<DevCardType>
 ) {
-    // Ahhh so much work
     fun createGame(name: String): Game {
         @Suppress("LocalVariableName")
         val _players = players.map { it.createPlayer() }

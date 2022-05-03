@@ -8,6 +8,7 @@ package dev.kason.catan.ui
 
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.Constants
+import dev.kason.catan.core.game
 import dev.kason.catan.core.player.*
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
@@ -22,7 +23,7 @@ import tornadofx.*
 
 class BaseSidePanel(val player: Player) : Fragment() {
     private val bottomPanelProperty = SimpleObjectProperty<UIComponent>(BaseSidePanelBottom(player))
-    var bottomPanel by bottomPanelProperty
+    var bottomPanel: UIComponent by bottomPanelProperty
     override val root: Parent = borderpane {
         top { add(costView(player.color.jfxColor)) }
         center { add(PlayerResourceCosts(player.resources)) }
@@ -36,7 +37,8 @@ class BaseSidePanel(val player: Player) : Fragment() {
 }
 
 class BaseSidePanelBottom(val player: Player) : View() {
-    companion object: KLogging()
+    companion object : KLogging()
+
     private val gameView: GameView by inject()
     override val root: Parent by fxml("/fxml/base_side.fxml")
     private val buildCity: Button by fxid()
@@ -46,6 +48,20 @@ class BaseSidePanelBottom(val player: Player) : View() {
     private val devCardUseButton: Button by fxid()
     private val defaultTradeButton: Button by fxid()
     private val othersTradeButton: Button by fxid()
+
+
+    fun updateButtons() {
+        val turn = game.currentTurn
+        devCardUseButton.isDisable = turn.usedDevelopmentCard
+        buildCity.isDisable = !turn.rolledDice
+        buildConstruction.isDisable = !turn.rolledDice
+        devCardBuyButton.isDisable = !turn.rolledDice
+        maritimeTradeButton.isDisable = !turn.rolledDice
+        othersTradeButton.isDisable = !turn.rolledDice
+        defaultTradeButton.isDisable = !turn.rolledDice
+    }
+
+
     init {
         buildCity.action {
             logger.debug { "Attempted to build a city: $player :: ${player.resources}" }
@@ -54,9 +70,12 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     "Not enough resources",
                     "You do not have enough resources to build a city."
                 )
-            } else {
-
+                return@action
             }
+            val citySelectionFragment = CitySelectionFragment(player, game.board)
+            gameView.boardPanel = citySelectionFragment
+            val cityConstructionFragment = CityConstructionPanel(citySelectionFragment, player)
+            gameView.sidePanel = cityConstructionFragment
         }
         devCardBuyButton.action {
             logger.debug { "Attempted to buy a dev card: $player :: ${player.resources}" }
@@ -76,18 +95,27 @@ class BaseSidePanelBottom(val player: Player) : View() {
             }
         }
         buildConstruction.action {
-            logger.info { "Switching to the build construction." }
+            logger.info { "Switching to the build construction from base side panel." }
             (gameView.sidePanel as? BaseSidePanel)?.bottomPanel = ConstSelectorView(player)
         }
         defaultTradeButton.action {
             gameView.sidePanel = DefaultTradeFragmentWrap(player)
         }
         othersTradeButton.action {
-            gameView.sidePanel = OthersTradeFragmentWrap(player)
+            gameView.sidePanel = OthersTradeSelection(player, game)
         }
         maritimeTradeButton.action {
-            gameView.sidePanel = MaritimeTradeSelectorFragment(player)
+            val possiblePorts = player.accessiblePorts()
+            if(possiblePorts.isEmpty()) {
+                catanAlert(
+                    "No ports",
+                    "You do not have any ports to trade with."
+                )
+                return@action
+            }
+            gameView.sidePanel = MaritimeTradeSelectorFragment(player, possiblePorts)
         }
+        updateButtons()
     }
 }
 

@@ -10,7 +10,7 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<AnchorPane prefHeight="0.0" prefWidth="1200.0" styleClass="bottom-pane" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="57.0" prefWidth="1200.0" styleClass="bottom-pane" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="56.0" layoutX="1122.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="56.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="56.0" layoutX="1057.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="56.0" />

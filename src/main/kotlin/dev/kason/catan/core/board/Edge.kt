@@ -16,9 +16,7 @@ data class Edge(val first: Tile, val id: Int = currentEdgeNumber++) {
         internal set
     var player: Player? = null
     val isEmpty get() = player == null
-    val vertices: List<Vertex> by lazy {
-        first.vertices.values.filter { this in it.edges }
-    }
+    var vertices = mutableListOf<Vertex>()
     val edges: List<Edge> by lazy {
         val _edges = mutableSetOf<Edge>()
         vertices.flatMapTo(_edges) { it.edges }

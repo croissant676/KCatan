@@ -26,7 +26,7 @@ data class Player(val id: Int, val color: Color) {
 
         val colorHex: String
             get() = when (this) {
-                Red -> "fe0040"
+                Red -> "ff3a3a"
                 Blue -> "5ca4e5"
                 White -> "efefef"
                 Orange -> "ffba67"

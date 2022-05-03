@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane layoutY="1.0" prefHeight="378.0" prefWidth="400.0" styleClass="blue-button" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane layoutY="1.0" prefHeight="380.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="359.0" layoutX="12.0" layoutY="14.0" stroke="#d7d7d7" strokeType="INSIDE" width="377.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcdda8" height="378.0" stroke="#d7d7d7" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
         <AnchorPane layoutX="21.0" layoutY="35.0" prefHeight="148.0" prefWidth="360.0">
             <children>
                 <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />

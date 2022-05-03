@@ -35,7 +35,7 @@ class UserCountSettingView: View(catan("Creation")) {
     private val seedSpinner: Spinner<Int> by fxid()
     init {
         playerComboBox.items.addAll("2 Players", "3 Players", "4 Players")
-        playerComboBox.selectionModel.select(0)
+        playerComboBox.selectionModel.select(2)
         gameNameField.apply {
             isEditable = true
             textProperty().bind(GameCreationSettings.gameNameStringProperty)
@@ -50,7 +50,7 @@ class UserCountSettingView: View(catan("Creation")) {
             GameCreationSettings.numberOfPlayers = playerComboBox.selectionModel.selectedIndex + 2
             logger.info { "Selected ${playerComboBox.selectionModel.selectedItem} with name ${GameCreationSettings.gameName}" }
             game = Game.createGameFromSettings()
-            replaceWith<GameView>()
+            replaceWith<GameView>(ViewTransition.Fade(1.seconds))
         }
     }
 }

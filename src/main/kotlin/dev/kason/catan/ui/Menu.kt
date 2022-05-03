@@ -21,7 +21,7 @@ class MenuView: View(catan("Menu")) {
     private val ruleButton: Button by fxid()
     override fun onDock() {
         startButton.setOnAction {
-            replaceWith<UserCountSettingView>(ViewTransition.Fade(0.5.seconds))
+            replaceWith<UserCountSettingView>(ViewTransition.Slide(1.5.seconds))
         }
         continueButton.setOnAction {
             logger.info("Continue button clicked")

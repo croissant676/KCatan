@@ -21,21 +21,21 @@
     </stylesheets>
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d8ecff" height="220.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="388.0" />
-        <Button layoutX="26.0" layoutY="106.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
-        <Button layoutX="202.0" layoutY="106.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
+        <Button fx:id="agree0" layoutX="26.0" layoutY="106.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
+        <Button fx:id="agree1" layoutX="202.0" layoutY="106.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="green-button" text="Agree" />
         <Text layoutX="19.0" layoutY="31.0" text="Verify that both players agree to the trade">
             <font>
                 <Font name="Century Gothic" size="17.0" />
             </font>
         </Text>
-        <Button layoutX="202.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
-        <Button layoutX="26.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
-        <Text layoutX="26.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
+        <Button fx:id="decline1" layoutX="202.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
+        <Button fx:id="decline0" layoutX="26.0" layoutY="156.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="red-button" text="Decline" />
+        <Text fx:id="trader" layoutX="26.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
             <font>
                 <Font name="Century Gothic" size="28.0" />
             </font>
         </Text>
-      <Text layoutX="202.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
+      <Text fx:id="to" layoutX="202.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orange" wrappingWidth="157.0">
          <font>
             <Font name="Century Gothic" size="28.0" />
          </font>

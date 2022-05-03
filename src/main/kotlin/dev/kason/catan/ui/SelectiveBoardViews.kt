@@ -7,50 +7,83 @@
 package dev.kason.catan.ui
 
 import dev.kason.catan.core.Constants
-import dev.kason.catan.core.board.Board
-import dev.kason.catan.core.board.Vertex
+import dev.kason.catan.core.board.*
+import dev.kason.catan.core.game
 import dev.kason.catan.core.player.Player
 import javafx.scene.Parent
-import javafx.scene.paint.Color
-import javafx.scene.shape.Circle
-import javafx.scene.shape.Polygon
-import tornadofx.Fragment
-import tornadofx.c
+import mu.KLogging
+import tornadofx.*
 
-class RoadSelectionFragment() : Fragment() {
-    override val root: Parent by fxml("/fxml/board.fxml")
-}
+class RoadSelectionFragment(player: Player, board: Board) : BoardView(board) {
+    companion object : KLogging()
 
-class SettlementSelectionFragment() : Fragment() {
-    override val root: Parent by fxml("/fxml/board.fxml")
-
-}
-
-class CitySelectionFragment(player: Player) : Fragment() {
-    override val root: Parent by fxml("/fxml/board.fxml")
-    private val listOfTiles = List(19) {
-        fxmlLoader.namespace["tile$it"] as Polygon
-    }
+    lateinit var block: (Edge) -> Unit
 
     init {
-        player.settlements.forEach {
-            it.drawCircle(c("93c47d"), isCity = true)
+        for (edge in game.board.edges) {
+            mapOfEdges[edge]!!.apply {
+                addClass("board-selection-line")
+                setOnMouseClicked {
+                    mapOfEdges.values.withEach {
+                        if (this@apply == this) return@withEach
+                        removeClass("board-selection-line")
+                        addClass("board-unselected-line")
+                    }
+                    removeClass("board-unselected-line")
+                    addClass("board-selection-line")
+                    block(edge)
+                }
+                isVisible = true
+            }
         }
     }
+}
 
-    private fun Vertex.drawCircle(color: Color = Color.TRANSPARENT, isCity: Boolean = false) {
-        for (location in tiles.keys) {
-            val mainTile = tiles[location]!!
-            val tileHexagon = listOfTiles[mainTile.id]
-            val translationValue = Constants.pointTranslations[location]!!
-            val circle = Circle(
-                tileHexagon.layoutX + translationValue.x,
-                tileHexagon.layoutY + translationValue.y,
-                if (isCity) Constants.cityRadius else Constants.settlementRadius
-            )
-            circle.fill = Color.BLACK
-            circle.isVisible = true
-            add(circle)
+class SettlementSelectionFragment(player: Player, board: Board) : BoardView(board) {
+    companion object : KLogging()
+
+    lateinit var block: (Vertex) -> Unit
+
+    init {
+        for (vertex in game.getPossibleSettlements(player)) {
+            mapOfVertices[vertex]!!.apply {
+                addClass("board-selection-item")
+                setOnMouseClicked {
+                    mapOfVertices.values.withEach {
+                        if (this@apply == this) return@withEach
+                        removeClass("board-selection-item")
+                        addClass("board-unselected-item")
+                    }
+                    removeClass("board-unselected-item")
+                    addClass("board-selection-item")
+                    block(vertex)
+                }
+                isVisible = true
+                radius = Constants.settlementRadius
+            }
+        }
+    }
+}
+
+class CitySelectionFragment(player: Player, board: Board) : BoardView(board) {
+    lateinit var block: (Vertex) -> Unit
+
+    init {
+        for (vertex in player.settlements.filter { it.isSettlement }) {
+            mapOfVertices[vertex]!!.apply {
+                addClass("board-selection-item")
+                setOnMouseClicked {
+                    mapOfVertices.values.withEach {
+                        if (this@apply == this) return@withEach
+                        removeClass("board-selection-item")
+                        addClass("board-unselected-item")
+                    }
+                    removeClass("board-unselected-item")
+                    addClass("board-selection-item")
+                    block(vertex)
+                }
+                isVisible = true
+            }
         }
     }
 }

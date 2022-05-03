@@ -35,7 +35,7 @@ data class PlayerResourceMap(
     val resources: MutableMap<ResourceType, Int> = EnumMap(ResourceType::class.java)
 ) : MutableMap<ResourceType, Int> by resources {
     init {
-        ResourceType.values().forEach { resources[it] = Random.nextInt(10) }
+        ResourceType.values().forEach { resources[it] = Random.nextInt(5) + 6 }
     }
 }
 

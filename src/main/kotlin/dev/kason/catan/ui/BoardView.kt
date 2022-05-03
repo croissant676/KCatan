@@ -16,37 +16,35 @@ import javafx.scene.text.*
 import mu.KLogging
 import tornadofx.*
 
-@Suppress("LocalVariableName")
-class BoardView(
-    private val board: Board
+@Suppress("LocalVariableName", "MemberVisibilityCanBePrivate")
+open class BoardView(
+    protected val board: Board
 ) : View(catan("Board")) {
-
     companion object : KLogging()
 
     override val root: Parent by fxml("/fxml/board.fxml")
 
-    private val listOfTiles = List(19) {
+    protected val listOfTiles = List(19) {
         fxmlLoader.namespace["tile$it"] as Polygon
     }
 
-    private val listOfCircles = List(19) {
+    protected val listOfCircles = List(19) {
         fxmlLoader.namespace["circle$it"] as Circle
     }
 
-    private val listOfLabels = List(19) {
+    protected val listOfLabels = List(19) {
         fxmlLoader.namespace["label$it"] as Text
     }
 
-    private val listOfBoats = List(9) {
+    protected val listOfBoats = List(9) {
         fxmlLoader.namespace["boat$it"] as Polygon
     }
 
-    private val listOfSails = List(9) {
+    protected val listOfSails = List(9) {
         fxmlLoader.namespace["sail$it"] as Polygon
     }
 
-    private val mapOfEdges: Map<Edge, Line> = run {
-        logger.debug { "Creating lines." }
+    protected val mapOfEdges: Map<Edge, Line> = run {
         val _mapOfEdges = mutableMapOf<Edge, Line>()
         for (edge in board.edges) {
             val mainTile = edge.first
@@ -68,46 +66,33 @@ class BoardView(
         _mapOfEdges
     }
 
-    private fun Vertex.drawCircle(color: Color = Color.TRANSPARENT, isCity: Boolean = false) {
-        for (location in tiles.keys) {
-            val mainTile = tiles[location]!!
-            val tileHexagon = listOfTiles[mainTile.id]
-            val translationValue = Constants.pointTranslations[location]!!
-            val circle = Circle(
-                tileHexagon.layoutX + translationValue.x,
-                tileHexagon.layoutY + translationValue.y,
-                if (isCity) Constants.cityRadius else Constants.settlementRadius
-            )
-            circle.fill = Color.BLACK
-            circle.isVisible = true
-            add(circle)
+    protected val mapOfVertices: Map<Vertex, Circle> = run {
+        val _mapOfVertices = mutableMapOf<Vertex, Circle>()
+        for (vertex in board.vertices) {
+            _mapOfVertices[vertex] = vertex.tiles.values.first().run {
+                val location = vertices.keys.first { vertices[it] == vertex }
+                val tileHexagon = listOfTiles[id]
+                val translationValue = Constants.pointTranslations[location]!!
+                val circle = Circle(
+                    tileHexagon.layoutX + translationValue.x,
+                    tileHexagon.layoutY + translationValue.y,
+                    Constants.cityRadius
+                )
+                circle.isVisible = false
+                circle.stroke = c("#b3b3b3")
+                circle.strokeWidth = 3.0
+                this@BoardView.add(circle)
+                circle
+            }
         }
+        _mapOfVertices
     }
 
-    val hexagonRetriever = object {
-        operator fun get(tile: Tile): Polygon {
-            return listOfTiles[tile.id]
-        }
-    }
-
-    val circleRetriever = object {
-        operator fun get(tile: Tile): Circle {
-            return listOfCircles[tile.id]
-        }
-    }
-
-    val labelRetriever = object {
-        operator fun get(tile: Tile): Text {
-            return listOfLabels[tile.id]
-        }
-    }
-
-
-    private fun Polygon.findTileId(): Int = listOfTiles.indexOf(this)
-    private fun Circle.findId(): Int = listOfCircles.indexOf(this)
-    private fun Text.findId(): Int = listOfLabels.indexOf(this)
-    private fun Polygon.findSailId(): Int = listOfSails.indexOf(this)
-    private fun Polygon.findBoatId(): Int = this.id.takeLast(1).toInt()
+    protected fun Polygon.findTileId(): Int = listOfTiles.indexOf(this)
+    protected fun Circle.findId(): Int = listOfCircles.indexOf(this)
+    protected fun Text.findId(): Int = listOfLabels.indexOf(this)
+    protected fun Polygon.findSailId(): Int = listOfSails.indexOf(this)
+    protected fun Polygon.findBoatId(): Int = this.id.takeLast(1).toInt()
 
     init {
         listOfTiles.withEach {
@@ -130,7 +115,6 @@ class BoardView(
             if (tile.type == Tile.Type.Desert) isVisible = false
             if (value == 6 || value == 8) {
                 fill = c("#ff002d")
-                logger.debug { "Styled ${tile.id} with red, value = ${tile.value}" }
             }
             font = Font.font("Century Gothic", 20.0)
             textAlignment = TextAlignment.CENTER
@@ -148,5 +132,6 @@ class BoardView(
                 PortFragment(port).openModal()
             }
         }
+        updateConstructions()
     }
 }

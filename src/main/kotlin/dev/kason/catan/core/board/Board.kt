@@ -32,6 +32,27 @@ data class Board(
     private val _ports = mutableListOf<Port>()
     val ports: List<Port> = _ports
 
+    private val edgesToVertices = listOf(
+        0 to 1, 0 to 2, 1 to 4, 2 to 5,
+        3 to 4, 3 to 5, 2 to 6, 6 to 7,
+        7 to 9, 5 to 8, 8 to 9, 7 to 10,
+        10 to 11, 11 to 13, 9 to 12, 12 to 13,
+        4 to 14, 14 to 16, 3 to 17, 15 to 16,
+        15 to 17, 8 to 19, 17 to 18, 18 to 19,
+        12 to 21, 19 to 20, 20 to 21, 13 to 23,
+        22 to 24, 21 to 23, 23 to 24, 16 to 25,
+        24 to 26, 15 to 28, 27 to 28, 26 to 28,
+        18 to 30, 28 to 29, 29 to 30, 20 to 32,
+        30 to 31, 31 to 32, 23 to 34, 32 to 33,
+        33 to 34, 24 to 35, 35 to 37, 34 to 36,
+        36 to 37, 26 to 39, 29 to 40, 38 to 39,
+        38 to 40, 31 to 42, 40 to 41, 41 to 42,
+        33 to 44, 42 to 43, 43 to 44, 36 to 46,
+        44 to 45, 45 to 46, 38 to 48, 41 to 49,
+        47 to 48, 47 to 49, 43 to 51, 49 to 50,
+        50 to 51, 45 to 53, 51 to 52, 52 to 53
+    )
+
     // ----------------- Initialization -------------------
 
     init {
@@ -39,6 +60,10 @@ data class Board(
             tileGraph()
             edgeGraph()
             vertexGraph()
+            edgesToVertices.mapIndexed { index, (vertex1, vertex2) ->
+                edges[index].vertices += vertices[vertex1]
+                edges[index].vertices += vertices[vertex2]
+            }
             generateTileValues()
             generatePortValues()
         }

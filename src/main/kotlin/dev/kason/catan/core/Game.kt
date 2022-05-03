@@ -45,6 +45,7 @@ open class Game(
 
     data class Turn(
         var rolledDice: Boolean = false,
+        var usedDevelopmentCard: Boolean = false
     )
 
     val developmentCardDeck by lazy {
@@ -69,6 +70,12 @@ open class Game(
         if (!edge.isEmpty) return false
         if (player.roads.size > Constants.maxRoads) return false
         return true
+    }
+
+    fun buildRoad(player: Player, edge: Edge) {
+        require(canBuildRoad(player, edge))
+        edge.player = player
+        player.resources -= Constants.roadCost
     }
 
     fun canBuildSettlement(player: Player, vertex: Vertex): Boolean {
@@ -107,27 +114,29 @@ open class Game(
         player.settlements.forEach {
             edges += it.edges
         }
-        return edges.filter { it.isEmpty }
+        edges -= player.roads.toSet()
+        return edges.filter { it.player == null }
     }
 
     fun getPossibleSettlements(player: Player): List<Vertex> {
         val possibleSettlements = mutableSetOf<Vertex>()
         player.roads.flatMapTo(possibleSettlements) { it.vertices }
+        val finalSettlements = possibleSettlements.toMutableSet()
         for (possibleSettlement in possibleSettlements) {
             for (vertex in possibleSettlement.vertices) {
-                if (vertex.hasConstruction) {
-                    possibleSettlements -= possibleSettlement
+                if (vertex.player != null) {
+                    finalSettlements -= possibleSettlement
                     break
                 }
                 for (adjacentVertex in vertex.vertices) {
                     if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
-                        possibleSettlements -= possibleSettlement
+                        finalSettlements -= possibleSettlement
                         break
                     }
                 }
             }
         }
-        return possibleSettlements.toList()
+        return finalSettlements.toList()
     }
 
     fun longestRoad(player: Player): Int {
@@ -140,7 +149,7 @@ open class Game(
             for (vertex in edge.vertices) {
                 if (vertex.player == player || vertex.player == null) {
                     for (vertexEdges in vertex.edges) {
-                        if (vertexEdges != vertexEdges && vertexEdges.player == player && vertexEdges in unmarkedRoads) group += findGroup(
+                        if (vertexEdges != edge && vertexEdges.player == player && vertexEdges in unmarkedRoads) group += findGroup(
                             vertexEdges
                         )
                     }
@@ -148,41 +157,60 @@ open class Game(
             }
             return group
         }
-        player.roads.filter { it in unmarkedRoads }.mapTo(roadGroups) { findGroup(it) }
-        var longest = 0
-        for (edges in roadGroups) {
+        while (unmarkedRoads.isNotEmpty()) {
+            roadGroups += findGroup(unmarkedRoads.first())
+        }
+        roadGroups.forEach {
+            logger.debug(it.toString())
+        }
+        var longest = mutableListOf<Edge>()
+        for (roadGroup in roadGroups) {
             val needles = mutableListOf<Edge>()
-            for (edge in edges) {
+            for (edge in roadGroup) {
                 var count = 0
                 for (vertex in edge.vertices) {
                     if (vertex.edges.filter { it.player == player }.size > 1) count++
                 }
-                if (count > 0) needles += edge
+                if (count == 1) needles += edge
             }
             when (needles.size) {
-                0 -> if (longest < edges.size) longest = edges.size
+                0 -> {
+                    val temp = roadGroup.toList()
+                    for (edge in temp) {
+                        val list = roadDFS(player, edge, null, roadGroup.toMutableSet())
+                        if (longest.size < list.size) longest = list
+                    }
+                }
                 else -> {
                     for (index in needles.indices) {
-                        val length = roadDFS(player, needles[index], edges).size
-                        if (longest < length) longest = length
+                        val list = roadDFS(player, needles[index], null, roadGroup.toMutableSet())
+                        if (longest.size < list.size) longest = list
                     }
                 }
             }
         }
-        return longest
+        return longest.size
     }
 
-    fun roadDFS(player: Player, edge: Edge, unmarkedRoads: MutableSet<Edge>): MutableSet<Edge> {
-        val roads = mutableSetOf<Edge>()
+    fun roadDFS(
+        player: Player,
+        edge: Edge,
+        previousVertex: Vertex?,
+        unmarkedRoads: MutableSet<Edge>
+    ): MutableList<Edge> {
+        val roads = mutableListOf<Edge>()
         roads.add(edge)
         unmarkedRoads.remove(edge)
         edge.vertices.forEach { vertex ->
-            if (vertex.player == player || vertex.player == null) {
-                for (edge1 in vertex.edges) {
+            if (vertex.player == player || vertex.player == null && vertex != previousVertex) {
+                var longest = mutableListOf<Edge>()
+                vertex.edges.forEach { edge1 ->
                     if (edge1 != edge && edge1.player == player && unmarkedRoads.contains(edge1)) {
-                        roads += roadDFS(player, edge1, unmarkedRoads)
+                        val route = roadDFS(player, edge1, vertex, unmarkedRoads)
+                        if (route.size > longest.size) longest = route
                     }
                 }
+                roads += longest
             }
         }
         return roads
