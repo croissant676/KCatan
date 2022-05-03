@@ -32,48 +32,13 @@ data class Vertex(
     }
 
     val edges: List<Edge> by lazy {
-        val _edges = mutableSetOf<Edge>()
-        if(rotation == Rotation.Top) {
-            val tileKeys = tiles.keys
-            if(Location.TopLeft in tileKeys) {
-                val tile = tiles[Location.TopLeft]!!
-                _edges += tile.edges[Location.Right]!!
-                _edges += tile.edges[Location.BottomRight]!!
-            }
-            if(Location.Bottom in tileKeys) {
-                val tile = tiles[Location.Bottom]!!
-                _edges += tile.edges[Location.TopLeft]!!
-                _edges += tile.edges[Location.TopRight]!!
-            }
-            if(Location.TopRight in tileKeys) {
-                val tile = tiles[Location.TopRight]!!
-                _edges += tile.edges[Location.BottomLeft]!!
-                _edges += tile.edges[Location.Left]!!
-            }
-        } else {
-            val tileKeys = tiles.keys
-            if(Location.Top in tileKeys) {
-                val tile = tiles[Location.Top]!!
-                _edges += tile.edges[Location.BottomLeft]!!
-                _edges += tile.edges[Location.BottomRight]!!
-            }
-            if(Location.BottomLeft in tileKeys) {
-                val tile = tiles[Location.BottomLeft]!!
-                _edges += tile.edges[Location.TopRight]!!
-                _edges += tile.edges[Location.Right]!!
-            }
-            if(Location.BottomRight in tileKeys) {
-                val tile = tiles[Location.BottomRight]!!
-                _edges += tile.edges[Location.TopLeft]!!
-                _edges += tile.edges[Location.Left]!!
-            }
-        }
-        _edges.toList()
+        game.board.edges.filter { this in it.vertices }
     }
 
     val vertices: List<Vertex> by lazy {
         val _vertices = mutableSetOf<Vertex>()
         edges.flatMapTo(_vertices) { it.vertices }
+        _vertices -= this
         _vertices.toList()
     }
 
