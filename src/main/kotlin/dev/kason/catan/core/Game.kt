@@ -120,21 +120,22 @@ open class Game(
     fun getPossibleSettlements(player: Player): List<Vertex> {
         val possibleSettlements = mutableSetOf<Vertex>()
         player.roads.flatMapTo(possibleSettlements) { it.vertices }
+        var finalSettlements = possibleSettlements.toSet()
         for (possibleSettlement in possibleSettlements) {
             for (vertex in possibleSettlement.vertices) {
                 if (vertex.player != null) {
-                    possibleSettlements -= possibleSettlement
+                    finalSettlements -= possibleSettlement
                     break
                 }
                 for (adjacentVertex in vertex.vertices) {
                     if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
-                        possibleSettlements -= possibleSettlement
+                        finalSettlements -= possibleSettlement
                         break
                     }
                 }
             }
         }
-        return possibleSettlements.toList()
+        return finalSettlements.toList()
     }
 
     fun longestRoad(player: Player): Int {
