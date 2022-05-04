@@ -26,6 +26,5 @@
       <Circle layoutX="119.0" layoutY="461.0" radius="7.0" styleClass="pasture" />
       <Line endX="-61.80000305175781" layoutX="218.0" layoutY="243.0" startX="-100.0" />
       <Line endX="-65.80000305175781" layoutX="219.0" layoutY="266.0" startX="-100.0" />
-      <Circle fill="DODGERBLUE" layoutX="340.0" layoutY="273.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
