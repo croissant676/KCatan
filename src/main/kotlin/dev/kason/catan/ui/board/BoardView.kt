@@ -115,6 +115,30 @@ open class BoardView(
     protected fun Polygon.findSailId(): Int = listOfSails.indexOf(this)
     protected fun Polygon.findBoatId(): Int = this.id.takeLast(1).toInt()
 
+    fun updateConstructions() {
+        board.edges.filter { !it.isEmpty }.forEach {
+            with(mapOfEdges[it]!!) {
+                isVisible = true
+                stroke = it.player!!.color.jfxColor
+            }
+        }
+        board.vertices.filter { !it.isEmpty }.map {
+            mapOfVertices[it]!!.apply {
+                isVisible = true
+                fill = it.player!!.color.jfxColor
+                radius = if (it.isCity) Constants.cityRadius else Constants.settlementRadius
+            }
+        }
+    }
+
+    fun updateRobber(tile: Tile = board.robberTile) {
+        mapOfRobberIndicators.values.forEach {
+            it.isVisible = false
+        }
+        val robberCircle = mapOfRobberIndicators[tile]!!
+        robberCircle.isVisible = true
+    }
+
     init {
         listOfTiles.withEach {
             val tile = board[findTileId()]

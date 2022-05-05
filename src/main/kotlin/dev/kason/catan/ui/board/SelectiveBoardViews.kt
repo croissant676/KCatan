@@ -52,7 +52,7 @@ class SettlementSelectionFragment(
     lateinit var block: (Vertex) -> Unit
 
     init {
-        for (vertex in game.getPossibleSettlements(player)) {
+        for (vertex in settlements) {
             mapOfVertices[vertex]!!.apply {
                 addClass("board-selection-item")
                 setOnMouseClicked {

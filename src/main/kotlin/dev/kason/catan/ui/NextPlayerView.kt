@@ -29,9 +29,11 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
         nextPlayerLabel.text = "Player ${player.color.name}"
         continueButton.action {
             logger.info { "Next player button clicked!" }
+            replaceWith<GameView>(ViewTransition.Fade(0.5.seconds))
         }
         exitButton.action {
             logger.info { "Closing application" }
+            exitProcess(0)
         }
         playerCircle.fill = player.color.jfxColor
     }

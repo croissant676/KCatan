@@ -40,7 +40,7 @@ open class Game(
     val currentPlayer get() = players[currentPlayerIndex]
     var roll: RollResults = 6 to 6
         private set
-
+    var currentLongestRoadPlayer: Player by Delegates.notNull()
     var currentTurn: Turn = Turn()
         private set
 
@@ -97,6 +97,7 @@ open class Game(
         }
         edge.player = player
         player.resources -= Constants.roadCost
+        player.roads += edge
     }
 
     fun canBuildSettlement(player: Player, vertex: Vertex): Boolean {
@@ -141,7 +142,7 @@ open class Game(
             edges += it.edges
         }
         edges -= player.roads.toSet()
-        return edges.filter { it.player == null }
+        return edges.filter { it.isEmpty }
     }
 
     fun getPossibleSettlements(player: Player): List<Vertex> {
@@ -179,7 +180,35 @@ open class Game(
         return finalSettlements
     }
 
-    fun longestRoad(player: Player): Int {
+    fun getPossibleSettlementsInit(): List<Vertex> {
+        val possibleSettlements = board.vertices.toSet()
+        val finalSettlements = possibleSettlements.toMutableSet()
+        for (possibleSettlement in possibleSettlements) {
+            for (vertex in possibleSettlement.vertices) {
+                if (!vertex.isEmpty) {
+                    finalSettlements -= possibleSettlement
+                    break
+                }
+            }
+        }
+        return finalSettlements.filter { it.isEmpty }
+    }
+
+    fun getLongestRoadPlayer(): Player? {
+        val lengths = players.associateWith { game.longestRoad(it).size }
+        val max = lengths.values.maxOrNull() ?: 0
+        if (lengths[currentLongestRoadPlayer] == max) return currentLongestRoadPlayer
+        val list = lengths.keys.filter { lengths[it] == max }
+        currentLongestRoadPlayer = when {
+            list.size == 1 -> list.first()
+            currentLongestRoadPlayer in list -> list.first()
+            else -> list.random()
+        }
+        if (max < 5) return null // We still calculate the longest road if it's less than 5
+        return currentLongestRoadPlayer
+    }
+
+    fun longestRoad(player: Player): List<Edge> {
         val roadGroups = mutableSetOf<MutableSet<Edge>>()
         val unmarkedRoads = player.roads.toMutableSet()
         fun findGroup(edge: Edge): MutableSet<Edge> {
@@ -254,6 +283,12 @@ open class Game(
             }
         }
         return roads
+    }
+
+    fun cutCards(): List<Player> = players.filter { it.resources.values.sum() >= 7 }
+
+    private fun activateRobber(currentPlayer: Player) {
+        TODO("Not yet implemented")
     }
 
     @Deprecated(

@@ -40,11 +40,5 @@ data class Player(val id: Int, val color: Color) {
         val jfxColor: JFXColor get() = JFXColor.web("#${colorHex}")
     }
 
-    fun giveRoad(edge: Edge) {
-        roads += edge
-        edge.player = this
-        //recalculate longest road
-    }
-
     fun accessiblePorts(): Set<Port> = settlements.mapNotNull { it._port }.toSet()
 }

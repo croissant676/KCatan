@@ -87,6 +87,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     "Not enough resources",
                     "You do not have enough resources to buy a development card."
                 )
+            } else {
+                game.buyDevelopmentCard(player)
             }
         }
         devCardUseButton.action {
@@ -95,6 +97,8 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     "No development cards",
                     "You do not have any development cards to use."
                 )
+            } else {
+                // kekws deez nuts
             }
         }
         buildConstruction.action {
