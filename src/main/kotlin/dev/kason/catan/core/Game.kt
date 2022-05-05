@@ -159,6 +159,26 @@ open class Game(
         return finalSettlements.filter { it.isEmpty }
     }
 
+    fun getPossibleSettlementsInit(player: Player): List<Vertex> {
+        val possibleSettlements = board.vertices.toList()
+        var finalSettlements = possibleSettlements.toList()
+        for (possibleSettlement in possibleSettlements) {
+            for (vertex in possibleSettlement.vertices) {
+                if (vertex.player != null) {
+                    finalSettlements -= possibleSettlement
+                    break
+                }
+                for (adjacentVertex in vertex.vertices) {
+                    if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
+                        finalSettlements -= possibleSettlement
+                        break
+                    }
+                }
+            }
+        }
+        return finalSettlements
+    }
+
     fun longestRoad(player: Player): Int {
         val roadGroups = mutableSetOf<MutableSet<Edge>>()
         val unmarkedRoads = player.roads.toMutableSet()
