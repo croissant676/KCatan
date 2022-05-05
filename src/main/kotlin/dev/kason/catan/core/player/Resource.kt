@@ -11,7 +11,6 @@ package dev.kason.catan.core.player
 import dev.kason.catan.core.board.Tile
 import java.util.EnumMap
 import kotlinx.serialization.Serializable
-import kotlin.random.Random
 
 enum class ResourceType {
     Lumber,
@@ -35,7 +34,9 @@ data class PlayerResourceMap(
     val resources: MutableMap<ResourceType, Int> = EnumMap(ResourceType::class.java)
 ) : MutableMap<ResourceType, Int> by resources {
     init {
-        ResourceType.values().forEach { resources[it] = Random.nextInt(5) + 6 }
+        for (resource in ResourceType.values()) {
+            resources[resource] = 0
+        }
     }
 }
 
@@ -97,6 +98,10 @@ operator fun PlayerResourceMap.plusAssign(other: Map<ResourceType, Int>) {
     for (key in other.keys) {
         this[key] = this[key]!! + other[key]!!
     }
+}
+
+operator fun PlayerResourceMap.plusAssign(other: ResourceType) {
+    this[other] = this[other]!! + 1
 }
 
 operator fun PlayerResourceMap.minusAssign(other: Map<ResourceType, Int>) {

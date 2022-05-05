@@ -9,6 +9,10 @@ package dev.kason.catan.ui
 import dev.kason.catan.catan
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.*
+import dev.kason.catan.file.exitAndSave
+import dev.kason.catan.ui.board.BoardView
+import dev.kason.catan.ui.init.InitBottomView
+import dev.kason.catan.ui.side.BaseSidePanel
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
 import javafx.scene.control.Button
@@ -26,6 +30,8 @@ class GameView : View(catan("Game")) {
     var sidePanel: UIComponent by sidePanelViewProperty
     private val boardViewProperty = SimpleObjectProperty(BoardView(game.board))
     var boardPanel: BoardView by boardViewProperty
+    private val boardBottomViewProperty = SimpleObjectProperty<UIComponent>(InitBottomView())
+    var boardBottomView: UIComponent by boardBottomViewProperty
     override val root: Parent = borderpane {
         boardViewProperty.addListener { _, oldValue, newValue ->
             oldValue.replaceWith(newValue, ViewTransition.Fade(0.3.seconds))
@@ -34,18 +40,19 @@ class GameView : View(catan("Game")) {
             add(boardPanel)
         }
         sidePanelViewProperty.addListener { _, oldValue, newValue ->
-            oldValue.replaceWith(newValue, ViewTransition.Slide(0.5.seconds, ViewTransition.Direction.UP))
+            oldValue.replaceWith(newValue, ViewTransition.Fade(0.3.seconds))
         }
         right { add(sidePanelViewProperty.value) }
-        bottom {
-            add(BoardBottomView(game, this@GameView))
+        boardBottomViewProperty.addListener { _, oldValue, newValue ->
+            oldValue.replaceWith(newValue, ViewTransition.Fade(0.3.seconds))
         }
-        primaryStage.width = 1215.0
-        primaryStage.height = 720.0
+        bottom {
+            add(boardBottomView)
+        }
     }
 }
 
-class BoardBottomView(val game: Game, val gameView: GameView): View() {
+class BoardBottomView(val game: Game, private val gameView: GameView): View() {
     companion object : KLogging()
 
     override val root: Parent by fxml("/fxml/board_bottom.fxml")
@@ -82,14 +89,17 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
             exitProcess(0)
         }
         exitSaveButton.action {
-            exitProcess(0)
+            exitAndSave()
         }
         rollButton.apply {
             action {
                 game.generateRoll()
                 updateDice()
                 isDisable = true
-                ((gameView.sidePanel as? BaseSidePanel)?.bottomPanel as? BaseSidePanelBottom)?.updateButtons()
+                if (gameView.sidePanel is BaseSidePanel) {
+                    // Refresh
+                    gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+                }
             }
         }
         passButton.apply {
@@ -140,13 +150,12 @@ class BoardBottomView(val game: Game, val gameView: GameView): View() {
         } ?: logger.warn { "Roll right is not valid: ${roll.second}" }
     }
 
-    fun updateCurrentPlayer() {
-        playerIndicators.forEachIndexed { index, polygon ->
-            if (index == game.currentPlayerIndex) {
-                polygon.fill = c("#b3b3b3")
-            } else {
-                polygon.fill = Color.TRANSPARENT
-            }
+    fun updateCurrentPlayer() = playerIndicators.forEachIndexed { index, polygon ->
+        if (index == game.currentPlayerIndex) {
+            polygon.fill = c("#b3b3b3")
+        } else {
+            polygon.fill = Color.TRANSPARENT
         }
     }
+
 }

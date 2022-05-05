@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="72.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/board.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79b379" height="77.0" stroke="#b9b9b9" strokeType="INSIDE" strokeWidth="3.0" width="360.0" />
+        <Label layoutX="25.0" layoutY="14.0" text="Game - ${name}" fx:id="nameLabel"/>
+        <Text fill="WHITE" layoutX="25.0" layoutY="61.0" text="File: ${file path}" fx:id="text">
+            <font>
+                <Font name="Century Gothic" size="11.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

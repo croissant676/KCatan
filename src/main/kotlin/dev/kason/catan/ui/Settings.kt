@@ -10,6 +10,9 @@ import dev.kason.catan.catan
 import dev.kason.catan.core.Game
 import dev.kason.catan.core.game
 import dev.kason.catan.ui.GameCreationSettings.seedIntegerProperty
+import dev.kason.catan.ui.board.SettlementSelectionFragment
+import dev.kason.catan.ui.init.InitNextPlayerView
+import dev.kason.catan.ui.init.InitSettlementConstructionPanel
 import java.time.LocalDate
 import javafx.beans.property.*
 import javafx.scene.Parent
@@ -17,10 +20,9 @@ import javafx.scene.control.*
 import mu.KLogging
 import tornadofx.*
 
-
 object GameCreationSettings {
     val gameNameStringProperty = SimpleStringProperty("Game_${LocalDate.now()}")
-    var gameName by gameNameStringProperty
+    var gameName: String by gameNameStringProperty
     var numberOfPlayers = -1
     var seedIntegerProperty : IntegerProperty = SimpleIntegerProperty(0)
     var seed by seedIntegerProperty
@@ -28,7 +30,9 @@ object GameCreationSettings {
 
 class UserCountSettingView: View(catan("Creation")) {
     companion object: KLogging()
+
     override val root: Parent by fxml("/fxml/user_count_setting.fxml")
+    private val gameView: GameView by inject()
     private val playerComboBox: ComboBox<String> by fxid()
     private val nextButton: Button by fxid()
     private val gameNameField: TextField by fxid()
@@ -50,7 +54,13 @@ class UserCountSettingView: View(catan("Creation")) {
             GameCreationSettings.numberOfPlayers = playerComboBox.selectionModel.selectedIndex + 2
             logger.info { "Selected ${playerComboBox.selectionModel.selectedItem} with name ${GameCreationSettings.gameName}" }
             game = Game.createGameFromSettings()
-            replaceWith<GameView>(ViewTransition.Fade(1.seconds))
+            primaryStage.width = 1215.0
+            primaryStage.height = 720.0
+            replaceWith(InitNextPlayerView(game.currentPlayer) {
+                val settlementSelectionFragment = SettlementSelectionFragment(settlements = game.getPossibleSettlementsInit())
+                gameView.boardPanel = settlementSelectionFragment
+                gameView.sidePanel = InitSettlementConstructionPanel(settlementSelectionFragment, game.currentPlayer)
+            }, ViewTransition.Fade(1.seconds))
         }
     }
 }

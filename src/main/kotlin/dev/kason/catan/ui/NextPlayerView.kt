@@ -13,8 +13,8 @@ import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.shape.Circle
 import mu.KLogging
-import tornadofx.View
-import tornadofx.action
+import tornadofx.*
+import kotlin.system.exitProcess
 
 class NextPlayerView(val player: Player) : View(catan("Next Player")) {
     companion object : KLogging()
@@ -26,7 +26,7 @@ class NextPlayerView(val player: Player) : View(catan("Next Player")) {
     private val playerCircle: Circle by fxid()
 
     init {
-        nextPlayerLabel.text = "Next Player: ${player.color.name}"
+        nextPlayerLabel.text = "Player ${player.color.name}"
         continueButton.action {
             logger.info { "Next player button clicked!" }
         }

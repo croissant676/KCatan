@@ -4,11 +4,13 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.board
 
 import dev.kason.catan.catan
 import dev.kason.catan.core.Constants
 import dev.kason.catan.core.board.*
+import dev.kason.catan.ui.PortFragment
+import dev.kason.catan.ui.TileFragment
 import javafx.scene.Parent
 import javafx.scene.paint.Color
 import javafx.scene.shape.*
@@ -88,6 +90,25 @@ open class BoardView(
         _mapOfVertices
     }
 
+    protected val mapOfRobberIndicators: Map<Tile, Circle> = run {
+        val _mapOfRobberIndicators = mutableMapOf<Tile, Circle>()
+        for (tile in board) {
+            val baseCircle = listOfCircles[tile.id]
+            val circle = Circle(
+                baseCircle.layoutX,
+                if (tile.type == Tile.Type.Desert) baseCircle.layoutY else baseCircle.layoutY + 20,
+                Constants.robberRadius
+            )
+            circle.fill = c("#515151")
+            circle.stroke = c("#b3b3b3")
+            circle.strokeWidth = 2.0
+            circle.isVisible = false
+            _mapOfRobberIndicators[tile] = circle
+            this.add(circle)
+        }
+        _mapOfRobberIndicators
+    }
+
     protected fun Polygon.findTileId(): Int = listOfTiles.indexOf(this)
     protected fun Circle.findId(): Int = listOfCircles.indexOf(this)
     protected fun Text.findId(): Int = listOfLabels.indexOf(this)
@@ -133,5 +154,6 @@ open class BoardView(
             }
         }
         updateConstructions()
+        updateRobber()
     }
 }

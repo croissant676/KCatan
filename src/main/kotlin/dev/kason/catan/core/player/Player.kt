@@ -17,6 +17,12 @@ data class Player(val id: Int, val color: Color) {
     val developmentCards = mutableMapOf<DevCardType, Int>()
     val name get() = color.name
 
+    init {
+        DevCardType.values().forEach {
+            developmentCards[it] = 0
+        }
+    }
+
     @Suppress("MemberVisibilityCanBePrivate")
     enum class Color {
         Red,
@@ -40,8 +46,5 @@ data class Player(val id: Int, val color: Color) {
         //recalculate longest road
     }
 
-    fun accessiblePorts(): List<Port> = settlements.fold(mutableListOf()) { acc, vertex ->
-        vertex.port?.let { acc += (it) }
-        acc
-    }
+    fun accessiblePorts(): Set<Port> = settlements.mapNotNull { it._port }.toSet()
 }

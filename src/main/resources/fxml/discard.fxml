@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane layoutY="1.0" prefHeight="221.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcdda8" height="306.0" stroke="#d7d7d7" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
+        <AnchorPane layoutX="20.0" layoutY="79.0" prefHeight="148.0" prefWidth="360.0">
+            <children>
+                <Circle layoutX="41.0" layoutY="27.0" radius="15.0" styleClass="hills" />
+                <Circle layoutX="41.0" layoutY="80.0" radius="15.0" styleClass="forest" />
+                <Circle layoutX="41.0" layoutY="128.0" radius="15.0" styleClass="pasture" />
+                <Circle layoutX="207.0" layoutY="100.0" radius="15.0" styleClass="fields" />
+                <Circle layoutX="207.0" layoutY="47.0" radius="15.0" styleClass="mountains" />
+                <Spinner fx:id="tradeSpinnerBrick" layoutX="79.0" layoutY="15.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerLumber" layoutX="79.0" layoutY="68.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerWool" layoutX="79.0" layoutY="116.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerGrain" layoutX="237.0" layoutY="88.0" prefHeight="25.0" prefWidth="74.0" />
+                <Spinner fx:id="tradeSpinnerOre" layoutX="237.0" layoutY="35.0" prefHeight="25.0" prefWidth="74.0" />
+            </children>
+        </AnchorPane>
+        <Text layoutX="156.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discard">
+            <font>
+                <Font name="Century Gothic" size="24.0" />
+            </font>
+        </Text>
+      <Button fx:id="finishButton" layoutY="269.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="400.0" styleClass="red-button" text="Finalize" />
+    </children>
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+</AnchorPane>

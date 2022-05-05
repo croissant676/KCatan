@@ -14,10 +14,10 @@ import kotlin.random.Random
 
 @Serializable
 class GameRep(
-    val players: List<PlayerRep>,
-    val boardRep: BoardRep,
-    var currentTurn: Int,
-    val devCardDeck: List<DevCardType>
+    private val players: List<PlayerRep>,
+    private val boardRep: BoardRep,
+    private var currentTurn: Int,
+    private val devCardDeck: List<DevCardType>
 ) {
     fun createGame(name: String): Game {
         @Suppress("LocalVariableName")
@@ -25,7 +25,9 @@ class GameRep(
         val game = Game(
             Random,
             players.size,
-            players.map { it.color },
+            players.map {
+                it.color
+            },
             _players,
             name,
             boardRep.run {
@@ -47,9 +49,34 @@ class GameRep(
                     edge.player = edgeRep.player?.let { _players[it] }
                     board._edges += edge
                 }
+                tiles.forEachIndexed { index, tileRep ->
+                    val edgeMap = tileRep.edges.mapValues { board.edges[it.value] }
+                    board[index]._edges += edgeMap
+                }
+                vertices.forEach { vertexRep ->
+                    val vertex = Vertex()
+                    vertex.isCity = vertexRep.isCity
+                    if (vertexRep.owner != null) {
+                        vertex.player = _players[vertexRep.owner]
+                    }
+                    vertexRep.neighbors.forEach { (location, value) ->
+                        vertex._tiles[location] = board[value]
+                        board[value]._vertices[location] = vertex
+                    }
+                }
+                board.generatePortValues(
+                    ArrayDeque(
+                        portOrder
+                    )
+                )
+                board.robberIndex = robber
                 board
             }
         )
+        game.developmentCardDeck.clear()
+        game.developmentCardDeck += devCardDeck
+        game.currentPlayerIndex = currentTurn % game.players.size
+        game.currentLongestRoadPlayer = game.players.random() // We don't have the longest road yet
         return game
     }
 }
@@ -64,15 +91,15 @@ fun createGameRepFromGame(game: Game) = GameRep(
 fun createPlayerRepFromPlayer(player: Player) = PlayerRep(
     player.id,
     player.color,
-    ResourceMap(player.resources)
+    ResourceMap(player.resources).toMap()
 )
 
 @Serializable
 class PlayerRep(
     val id: Int,
     val color: Player.Color,
-    val resources: ResourceMap,
-    val devCards: Map<DevCardType, Int> = mapOf()
+    val resources: Map<ResourceType, Int>,
+    private val devCards: Map<DevCardType, Int> = mapOf()
 ) {
     fun createPlayer() = Player(id, color).apply {
         resources.forEach { (type, amount) ->
@@ -92,7 +119,7 @@ internal fun createBoardRep(board: Board): BoardRep {
     return BoardRep(tiles, edges, vertices, board.robberIndex, portOrder)
 }
 
-internal fun createTileRep(tile: Tile): TileRep = TileRep(tile.type, tile.value)
+internal fun createTileRep(tile: Tile): TileRep = TileRep(tile.type, tile.value, tile.edges.mapValues { it.value.id })
 internal fun createEdgeRep(edge: Edge): EdgeRep = EdgeRep(edge.first.id to edge.second?.id, edge.player?.id)
 internal fun createVertexRep(vertex: Vertex): VertexRep =
     VertexRep(vertex.player?.id, vertex.isCity, vertex.tiles.mapValues { it.value.id })
@@ -110,6 +137,7 @@ class BoardRep(
 class TileRep(
     val type: Tile.Type,
     val number: Int,
+    val edges: LocationMap<Int>
 )
 
 @Serializable
@@ -122,5 +150,5 @@ class EdgeRep(
 class VertexRep(
     val owner: Int?,
     val isCity: Boolean,
-    val numbers: LocationMap<Int>
+    val neighbors: LocationMap<Int>
 )

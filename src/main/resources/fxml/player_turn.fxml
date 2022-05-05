@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1215.0" styleClass="new_player_screen" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nextPlayerLabel" layoutX="528.0" layoutY="186.0" styleClass="title" stylesheets="@../css/menu.css" text="Next player thingy" textFill="WHITE" />
+      <Label fx:id="nextPlayerLabel" alignment="CENTER" layoutX="495.0" layoutY="187.0" prefHeight="23.0" prefWidth="227.0" styleClass="title" stylesheets="@../css/menu.css" text="Next player thingy" textFill="WHITE" />
       <Button fx:id="continueButton" layoutX="543.0" layoutY="507.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="129.0" styleClass="blue-button" text="Ok" />
       <Button fx:id="exitButton" layoutX="14.0" layoutY="626.0" mnemonicParsing="false" styleClass="red-button" text="Exit Game" />
       <Circle fx:id="playerCircle" layoutX="608.0" layoutY="314.0" radius="40.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" />

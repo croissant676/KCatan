@@ -4,12 +4,15 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.side
 
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.Constants
 import dev.kason.catan.core.game
 import dev.kason.catan.core.player.*
+import dev.kason.catan.ui.GameView
+import dev.kason.catan.ui.board.CitySelectionFragment
+import dev.kason.catan.ui.trade.*
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
 import javafx.scene.control.Button

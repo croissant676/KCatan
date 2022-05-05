@@ -4,7 +4,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.board
 
 import dev.kason.catan.core.Constants
 import dev.kason.catan.core.board.*
@@ -14,20 +14,23 @@ import javafx.scene.Parent
 import mu.KLogging
 import tornadofx.*
 
-class RoadSelectionFragment(player: Player, board: Board) : BoardView(board) {
+class RoadSelectionFragment(
+    player: Player = game.currentPlayer,
+    board: Board = game.board,
+    edges: List<Edge> = game.getPossibleRoads(player)
+) : BoardView(board) {
     companion object : KLogging()
 
     lateinit var block: (Edge) -> Unit
 
     init {
-        for (edge in game.board.edges) {
+        for (edge in edges) {
             mapOfEdges[edge]!!.apply {
                 addClass("board-selection-line")
                 setOnMouseClicked {
-                    mapOfEdges.values.withEach {
-                        if (this@apply == this) return@withEach
-                        removeClass("board-selection-line")
+                    edges.map { mapOfEdges[it]!! }.withEach {
                         addClass("board-unselected-line")
+                        removeClass("board-selection-line")
                     }
                     removeClass("board-unselected-line")
                     addClass("board-selection-line")
@@ -39,7 +42,11 @@ class RoadSelectionFragment(player: Player, board: Board) : BoardView(board) {
     }
 }
 
-class SettlementSelectionFragment(player: Player, board: Board) : BoardView(board) {
+class SettlementSelectionFragment(
+    player: Player = game.currentPlayer,
+    board: Board = game.board,
+    settlements: List<Vertex> = game.getPossibleSettlements(player)
+) : BoardView(board) {
     companion object : KLogging()
 
     lateinit var block: (Vertex) -> Unit
@@ -49,8 +56,7 @@ class SettlementSelectionFragment(player: Player, board: Board) : BoardView(boar
             mapOfVertices[vertex]!!.apply {
                 addClass("board-selection-item")
                 setOnMouseClicked {
-                    mapOfVertices.values.withEach {
-                        if (this@apply == this) return@withEach
+                    settlements.map { mapOfVertices[it]!! }.withEach {
                         removeClass("board-selection-item")
                         addClass("board-unselected-item")
                     }
@@ -69,12 +75,12 @@ class CitySelectionFragment(player: Player, board: Board) : BoardView(board) {
     lateinit var block: (Vertex) -> Unit
 
     init {
-        for (vertex in player.settlements.filter { it.isSettlement }) {
+        val settlements = player.settlements.filter { it.isSettlement }
+        for (vertex in settlements) {
             mapOfVertices[vertex]!!.apply {
                 addClass("board-selection-item")
                 setOnMouseClicked {
-                    mapOfVertices.values.withEach {
-                        if (this@apply == this) return@withEach
+                    settlements.map { mapOfVertices[it]!! }.withEach {
                         removeClass("board-selection-item")
                         addClass("board-unselected-item")
                     }
@@ -88,6 +94,25 @@ class CitySelectionFragment(player: Player, board: Board) : BoardView(board) {
     }
 }
 
-class RobberSelectionFragment(val board: Board): Fragment() {
+class RobberSelectionFragment(board: Board) : BoardView(board) {
     override val root: Parent by fxml("/fxml/board.fxml")
+    lateinit var block: (Tile) -> Unit
+
+    init {
+        listOfTiles.withEach {
+            setOnMouseClicked {
+                val tileId = findTileId()
+                val tile = board[tileId]
+                if (tile.type == Tile.Type.Desert) {
+                    logger.warn("Attempted to move to desert tile")
+                    return@setOnMouseClicked
+                } else if (board.robberIndex == tileId) {
+                    logger.warn("Attempted to move to same tile")
+                    return@setOnMouseClicked
+                }
+                updateRobber(tile)
+                block(tile)
+            }
+        }
+    }
 }

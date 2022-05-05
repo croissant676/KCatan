@@ -8,7 +8,6 @@ package dev.kason.catan.file
 
 import com.sun.security.auth.module.NTSystem
 import dev.kason.catan.core.Game
-import dev.kason.catan.core.game
 import java.io.File
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -18,6 +17,8 @@ import mu.KotlinLogging
 val fileJson = Json {
     prettyPrint = true
 }
+
+private val username = NTSystem().name
 
 val readmeText = """
     This folder contains all the game files (ie, previous games).
@@ -62,19 +63,12 @@ fun loadFileJson(fileName: File): Game? {
     return fileJson.decodeFromString<GameRep>(fileName.readText()).createGame(fileName.nameWithoutExtension)
 }
 
+fun loadFileJson(name: String): Game? = loadFileJson(File("C:\\Users\\$username\\AppData\\Local\\Catan\\games\\${name}.json"))
+
 fun Game.saveJson(): Boolean = kotlin.runCatching {
-    val fileName = NTSystem().name
-    val file = File("C:\\Users\\$fileName\\AppData\\Local\\Catan\\games\\${gameName}.json")
+    val file = File("C:\\Users\\$username\\AppData\\Local\\Catan\\games\\${gameName}.json")
     if (!file.exists()) {
         file.createNewFile()
     }
-    file.writeText(fileJson.encodeToString(createGameRepFromGame(game)))
+    file.writeText(fileJson.encodeToString(createGameRepFromGame(this)))
 }.isSuccess
-
-// testing
-fun main() {
-    val files = listAllFiles()
-    files.forEach { println(it.name) }
-    val game = Game(gameName = "TestGame")
-    game.saveJson()
-}

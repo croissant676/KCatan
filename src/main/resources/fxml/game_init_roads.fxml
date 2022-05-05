@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane prefHeight="470.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+    <children>
+        <Button fx:id="buildButton" layoutY="407.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="400.0" styleClass="red-button" text="Build Road" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#93c47d" height="407.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="400.0" />
+        <Label layoutX="55.0" layoutY="46.0" prefHeight="83.0" prefWidth="291.0" text="This game is currently being initialized" wrapText="true" />
+        <Label layoutX="55.0" layoutY="144.0" prefHeight="117.0" prefWidth="291.0" text="Every round, you will get the opportunity to place a settlement and a road next to that settlement" wrapText="true" />
+        <Label layoutX="55.0" layoutY="276.0" prefHeight="83.0" prefWidth="291.0" text="Select a road on the left and press the button to build it" wrapText="true" />
+    </children>
+
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+    </stylesheets>
+</AnchorPane>

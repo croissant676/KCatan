@@ -6,11 +6,14 @@
 
 @file:Suppress("DuplicatedCode")
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.trade
 
 import dev.kason.catan.catanAlert
+import dev.kason.catan.core.Constants
 import dev.kason.catan.core.board.Port
 import dev.kason.catan.core.player.*
+import dev.kason.catan.ui.GameView
+import dev.kason.catan.ui.side.BaseSidePanel
 import javafx.scene.Parent
 import javafx.scene.control.*
 import mu.KLogging
@@ -61,7 +64,7 @@ class MaritimeTradeFragment(
             tradeComboBox.addResourceTypes()
             forComboBox.addResourceTypes()
             repeatSpinner.valueFactory =
-                SpinnerValueFactory.IntegerSpinnerValueFactory(1, player.resources.values.sum() / 4)
+                SpinnerValueFactory.IntegerSpinnerValueFactory(1, Constants.maxRepeat)
         }
 
         override fun getTradeResult(): TradeInstance? {
@@ -96,7 +99,9 @@ class MaritimeTradeFragment(
         init {
             resourceLabel.text = port.resourceType!!.name
             titleLabel.text = "Port trade for ${port.resourceType.name}"
-            tradeComboBox.addResourceTypes()
+            repeatSpinner.valueFactory =
+                SpinnerValueFactory.IntegerSpinnerValueFactory(1, Constants.maxRepeat)
+            tradeComboBox.items.addAll(ResourceType.values().filter { it != port.resourceType }.map { it.name })
         }
 
         override fun getTradeResult(): TradeInstance {
@@ -112,7 +117,7 @@ class MaritimeTradeFragment(
     }
 }
 
-class MaritimeTradeSelectorFragment(val player: Player, accessiblePorts: List<Port>) : Fragment() {
+class MaritimeTradeSelectorFragment(val player: Player, accessiblePorts: Set<Port>) : Fragment() {
     override val root: Parent by fxml("/fxml/maritime_trade_select.fxml")
     private val gameView: GameView by inject()
     private val portComboBox: ComboBox<String> by fxid()
@@ -123,7 +128,7 @@ class MaritimeTradeSelectorFragment(val player: Player, accessiblePorts: List<Po
         portComboBox.items = names.toObservable()
         selectButton.action {
             val name = portComboBox.value
-            if (name.isEmpty()) {
+            if (name.isNullOrEmpty()) {
                 catanAlert("Invalid trade", "You must select a port.")
                 return@action
             }

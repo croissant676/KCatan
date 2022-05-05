@@ -9,7 +9,9 @@ package dev.kason.catan.core
 import dev.kason.catan.core.board.*
 import dev.kason.catan.core.player.*
 import dev.kason.catan.ui.GameCreationSettings
+import java.util.Collections
 import mu.KLogging
+import tornadofx.withEach
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -35,9 +37,8 @@ open class Game(
         )
     }
     var currentPlayerIndex = 0
-        private set
     val currentPlayer get() = players[currentPlayerIndex]
-    var roll: RollResults = 3 to 4
+    var roll: RollResults = 6 to 6
         private set
 
     var currentTurn: Turn = Turn()
@@ -49,14 +50,32 @@ open class Game(
     )
 
     val developmentCardDeck by lazy {
-        ArrayDeque(
-            DevCardType.values().toMutableList().shuffled(random)
-        )
+        ArrayDeque(DevCardType.values().flatMap { Collections.nCopies(it.numberOfCards, it) }.shuffled(random))
     }
 
     fun generateRoll(): RollResults = (random.nextInt(1..6) to random.nextInt(1..6)).apply {
         roll = this
         currentTurn.rolledDice = true
+        if (roll.sum() == 7) {
+            cutCards()
+            activateRobber(currentPlayer)
+        } else {
+            giveResources(roll.sum())
+        }
+    }
+
+    fun buyDevelopmentCard(player: Player) {
+        val card = developmentCardDeck.removeFirst()
+        player.developmentCards[card] = player.developmentCards[card]!! + 1
+    }
+
+    fun giveResources(number: Int) = board.withEach {
+        if (this.value != number) return@withEach
+        for (vertex in vertices.values) {
+            val player = vertex.player ?: continue
+            player.resources += type.resource!!
+            if (vertex.isCity) player.resources += type.resource!!
+        }
     }
 
     fun nextPlayer(): Player {
@@ -72,8 +91,10 @@ open class Game(
         return true
     }
 
-    fun buildRoad(player: Player, edge: Edge) {
-        require(canBuildRoad(player, edge))
+    fun buildRoad(player: Player, edge: Edge, doChecks: Boolean = true) {
+        if (doChecks) {
+            require(canBuildRoad(player, edge))
+        }
         edge.player = player
         player.resources -= Constants.roadCost
     }
@@ -86,10 +107,13 @@ open class Game(
         return true
     }
 
-    fun buildSettlement(player: Player, vertex: Vertex) {
-        require(canBuildSettlement(player, vertex))
+    fun buildSettlement(player: Player, vertex: Vertex, doChecks: Boolean = true) {
+        if (doChecks) {
+            require(canBuildSettlement(player, vertex))
+        }
         vertex.player = player
         player.resources -= Constants.settlementCost
+        player.settlements += vertex
     }
 
     fun canBuildCity(player: Player, vertex: Vertex): Boolean {
@@ -100,8 +124,10 @@ open class Game(
         return true
     }
 
-    fun buildCity(player: Player, vertex: Vertex) {
-        require(canBuildCity(player, vertex))
+    fun buildCity(player: Player, vertex: Vertex, doChecks: Boolean = true) {
+        if (doChecks) {
+            require(canBuildCity(player, vertex))
+        }
         vertex.isCity = true
         player.resources -= Constants.cityCost
     }
@@ -124,19 +150,13 @@ open class Game(
         val finalSettlements = possibleSettlements.toMutableSet()
         for (possibleSettlement in possibleSettlements) {
             for (vertex in possibleSettlement.vertices) {
-                if (vertex.player != null) {
+                if (!vertex.isEmpty) {
                     finalSettlements -= possibleSettlement
                     break
                 }
-                for (adjacentVertex in vertex.vertices) {
-                    if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
-                        finalSettlements -= possibleSettlement
-                        break
-                    }
-                }
             }
         }
-        return finalSettlements.toList()
+        return finalSettlements.filter { it.isEmpty }
     }
 
     fun longestRoad(player: Player): Int {
@@ -189,7 +209,7 @@ open class Game(
                 }
             }
         }
-        return longest.size
+        return longest
     }
 
     fun roadDFS(
@@ -225,7 +245,29 @@ open class Game(
             it.player = players.random()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Game) return false
+        if (players != other.players) return false
+        if (gameName != other.gameName) return false
+        if (board != other.board) return false
+        if (developmentCardDeck != other.developmentCardDeck) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = random.hashCode()
+        result = 31 * result + players.hashCode()
+        result = 31 * result + gameName.hashCode()
+        result = 31 * result + board.hashCode()
+        result = 31 * result + developmentCardDeck.hashCode()
+        return result
+    }
+
+
 }
+
 
 typealias RollResults = Pair<Int, Int>
 

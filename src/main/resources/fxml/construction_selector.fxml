@@ -9,10 +9,10 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<AnchorPane prefHeight="164.0" prefWidth="400.0" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="182.0" prefWidth="401.0" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="72.0" layoutY="22.0" prefHeight="23.0" prefWidth="256.0" styleClass="dark-label" text="Which type of construction?" textFill="WHITE" />
-      <Button fx:id="roadButton" layoutY="65.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="201.0" styleClass="red-button" text="Road" />
-      <Button fx:id="settlementButton" layoutX="200.0" layoutY="65.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="201.0" styleClass="blue-button" text="Settlement" />
+      <Button fx:id="roadButton" layoutY="76.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="201.0" styleClass="red-button" text="Road" />
+      <Button fx:id="settlementButton" layoutX="200.0" layoutY="76.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="201.0" styleClass="blue-button" text="Settlement" />
    </children>
 </AnchorPane>

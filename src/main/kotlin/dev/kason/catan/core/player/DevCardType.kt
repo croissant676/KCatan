@@ -12,5 +12,11 @@ enum class DevCardType {
     RoadBuilding,
     Monopoly,
     Knight;
+
+    val numberOfCards: Int get() = when (this) {
+        VictoryPoint -> 5
+        Knight -> 14
+        else -> 2
+    }
 }
 

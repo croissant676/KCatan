@@ -87,12 +87,14 @@ object Constants {
         Location.BottomLeft to PointTransValue(
             x = -112,
             y = 27
-        ),
+        )
     )
 
     const val settlementRadius = 10.0
     const val cityRadius = 20.0
 
+    const val robberRadius = 9.0
+    const val maxRepeat = 10
 }
 
 class LineTransValue(

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane prefHeight="57.0" prefWidth="1200.0" styleClass="bottom-pane" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="135.0" styleClass="purple-button" text="Exit Game" />
+        <Button fx:id="exitSaveButton" layoutX="135.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="149.0" styleClass="purple-button" text="Exit and Save" />
+        <Circle fx:id="player0" layoutX="791.0" layoutY="23.0" radius="13.0" styleClass="bordered" />
+        <Circle fx:id="player1" layoutX="835.0" layoutY="23.0" radius="13.0" styleClass="bordered" />
+        <Circle fx:id="player2" layoutX="878.0" layoutY="23.0" radius="13.0" styleClass="bordered" />
+        <Circle fx:id="player3" layoutX="920.0" layoutY="23.0" radius="13.0" styleClass="bordered" />
+        <Polygon fx:id="playerIndicator0" layoutX="823.0" layoutY="20.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+        <Polygon fx:id="playerIndicator1" layoutX="867.0" layoutY="20.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+        <Polygon fx:id="playerIndicator2" layoutX="910.0" layoutY="20.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+        <Polygon fx:id="playerIndicator3" layoutX="952.0" layoutY="20.0" points="-43.0, 28.0, -21.0, 28.0, -33.0, 21.0" />
+    </children>
+</AnchorPane>

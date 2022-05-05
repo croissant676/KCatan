@@ -4,7 +4,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.side
 
 import dev.kason.catan.catan
 import dev.kason.catan.catanAlert
@@ -12,7 +12,10 @@ import dev.kason.catan.core.Constants
 import dev.kason.catan.core.board.Edge
 import dev.kason.catan.core.board.Vertex
 import dev.kason.catan.core.game
-import dev.kason.catan.core.player.*
+import dev.kason.catan.core.player.Player
+import dev.kason.catan.core.player.doesNotHave
+import dev.kason.catan.ui.GameView
+import dev.kason.catan.ui.board.*
 import javafx.scene.Parent
 import javafx.scene.control.Button
 import mu.KLogging
@@ -34,7 +37,7 @@ class ConstSelectorView(player: Player) : Fragment(catan("Construction Selector"
                 )
                 return@action
             }
-            val roadSelectionFragment = RoadSelectionFragment(player, game.board)
+            val roadSelectionFragment = RoadSelectionFragment(player, game.board, game.getPossibleRoads(player))
             gameView.boardPanel = roadSelectionFragment
             gameView.sidePanel = RoadConstructionPanel(roadSelectionFragment, player)
         }
@@ -66,8 +69,7 @@ class CityConstructionPanel(
         }
         bottom {
             add(CityConstructionFragment {
-                currentVertex.isCity = true
-                player.resources -= Constants.cityCost
+                game.buildCity(player, currentVertex)
                 gameView.boardPanel = BoardView(game.board)
                 gameView.sidePanel = BaseSidePanel(player)
                 // Reset both the board and the side panel
@@ -105,9 +107,7 @@ class SettlementConstructionPanel(
         }
         bottom {
             add(SettlementConstructionFragment {
-                currentVertex.player = player
-                player.settlements += currentVertex
-                player.resources -= Constants.settlementCost
+                game.buildSettlement(player, currentVertex, doChecks = false)
                 gameView.boardPanel = BoardView(game.board)
                 gameView.sidePanel = BaseSidePanel(player)
             }.also {
@@ -144,9 +144,7 @@ class RoadConstructionPanel(
         }
         bottom {
             add(RoadConstructionFragment {
-                currentEdge.player = player
-                player.roads += currentEdge
-                player.resources -= Constants.roadCost
+                game.buildRoad(player, currentEdge)
                 gameView.boardPanel = BoardView(game.board)
                 gameView.sidePanel = BaseSidePanel(player)
             }.also {

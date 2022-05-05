@@ -16,7 +16,7 @@
       <Button fx:id="devCardBuyButton" layoutY="45.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="blue-button" text="Buy Dev Card" />
       <Button fx:id="maritimeTradeButton" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="green-button" text="Maritime Trade" />
       <Button fx:id="devCardUseButton" layoutX="201.0" layoutY="45.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="blue-button" text="Use Dev Card" />
-      <Button fx:id="defaultTradeButton" layoutX="201.0" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="green-button" text="Default Trade" />
-      <Button fx:id="othersTradeButton" layoutY="134.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="403.0" styleClass="green-button" text="Trade with others" />
+      <Button fx:id="defaultTradeButton" layoutX="201.0" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="202.0" styleClass="green-button" text="Bank Trade" />
+      <Button fx:id="othersTradeButton" layoutY="134.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="403.0" styleClass="green-button" text="View other players" />
    </children>
 </AnchorPane>

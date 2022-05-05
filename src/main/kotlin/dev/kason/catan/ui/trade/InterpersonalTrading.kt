@@ -4,13 +4,14 @@
  * https://opensource.org/licenses/MIT
  */
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.trade
 
 import dev.kason.catan.catan
 import dev.kason.catan.catanAlert
 import dev.kason.catan.core.Game
-import dev.kason.catan.core.player.Player
-import dev.kason.catan.core.player.ResourceType
+import dev.kason.catan.core.player.*
+import dev.kason.catan.ui.GameView
+import dev.kason.catan.ui.side.BaseSidePanel
 import javafx.scene.Parent
 import javafx.scene.control.*
 import javafx.scene.shape.Rectangle
@@ -40,7 +41,12 @@ class OthersTradeFragmentWrap(val player: Player, val to: Player) : Fragment() {
                         logger.debug { "Trade instance $tradeInstance declined." }
                         gameView.sidePanel = BaseSidePanel(player)
                     }, {
-                        logger.debug { "Accepted" }
+                        logger.debug { "Trade instance $tradeInstance accepted." }
+                        player.resources += tradeInstance.result
+                        player.resources -= tradeInstance.trade
+                        to.resources += tradeInstance.trade
+                        to.resources -= tradeInstance.result
+                        gameView.sidePanel = BaseSidePanel(player)
                     }
                 ).openModal()
             })
@@ -76,17 +82,31 @@ class OthersTradeFragmentWrap(val player: Player, val to: Player) : Fragment() {
                     "You have to trade something."
                 )
                 return null
-            } else if(forPropertySpinners.values.any { it.value == 0 }) {
+            } else if (forPropertySpinners.values.all { it.value == 0 }) {
                 catanAlert(
                     "Invalid trade",
                     "You can't trade for nothing."
                 )
                 return null
             }
-            return TradeInstance(
+            val instance = TradeInstance(
                 tradePropertySpinners.mapValues { it.value.value },
                 forPropertySpinners.mapValues { it.value.value }
             )
+            if (instance.trade has instance.result) {
+                catanAlert(
+                    "Invalid trade",
+                    "You can't trade for more than you're giving."
+                )
+                return null
+            } else if (instance.result has instance.trade) {
+                catanAlert(
+                    "Invalid trade",
+                    "You can't trade for less than you're giving."
+                )
+                return null
+            }
+            return instance
         }
     }
 

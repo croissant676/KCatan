@@ -21,7 +21,7 @@ data class Vertex(
 ) {
     val tiles: LocationMap<Tile> = _tiles
     internal var _port: Port? = null
-    val port: Port? = _port
+    val port: Port get() = _port ?: throw IllegalStateException("No port on vertex $id")
     val hasPort: Boolean get() = _port != null
     val rotation: Rotation by lazy {
         val locations = tiles.keys

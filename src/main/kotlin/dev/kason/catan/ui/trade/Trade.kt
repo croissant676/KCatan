@@ -6,10 +6,13 @@
 
 @file:Suppress("DuplicatedCode")
 
-package dev.kason.catan.ui
+package dev.kason.catan.ui.trade
 
 import dev.kason.catan.catanAlert
+import dev.kason.catan.core.Constants
 import dev.kason.catan.core.player.*
+import dev.kason.catan.ui.GameView
+import dev.kason.catan.ui.side.BaseSidePanel
 import javafx.scene.Parent
 import javafx.scene.control.*
 import javafx.scene.text.Text
@@ -36,7 +39,7 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
     private lateinit var getTradeData: () -> TradeInstance?
     override val root: Parent = borderpane {
         top {
-            val defaultTradeFragment = DefaultTradeFragment(player)
+            val defaultTradeFragment = DefaultTradeFragment()
             getTradeData = { defaultTradeFragment.getTradeResult() }
             add(defaultTradeFragment)
         }
@@ -60,7 +63,7 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
         }
     }
 
-    class DefaultTradeFragment(player: Player) : TradeFragment() {
+    class DefaultTradeFragment : TradeFragment() {
         override val root: Parent by fxml("/fxml/default_trade.fxml")
         private val tradeComboBox: ComboBox<String> by fxid()
         private val forComboBox: ComboBox<String> by fxid()
@@ -70,7 +73,7 @@ class DefaultTradeFragmentWrap(val player: Player) : Fragment() {
             tradeComboBox.addResourceTypes()
             forComboBox.addResourceTypes()
             repeatSpinner.valueFactory =
-                SpinnerValueFactory.IntegerSpinnerValueFactory(1, player.resources.values.sum() / 4)
+                SpinnerValueFactory.IntegerSpinnerValueFactory(1, Constants.maxRepeat)
         }
 
         override fun getTradeResult(): TradeInstance? {

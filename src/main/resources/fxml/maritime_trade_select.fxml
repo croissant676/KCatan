@@ -11,9 +11,9 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73ae73" height="600.0" stroke="#bcbcbc" strokeType="INSIDE" strokeWidth="3.0" width="400.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73ae73" height="650.0" stroke="#bcbcbc" strokeType="INSIDE" strokeWidth="3.0" width="400.0" />
       <ComboBox fx:id="portComboBox" layoutX="125.0" layoutY="177.0" prefWidth="150.0" />
       <Button fx:id="selectButton" layoutX="101.0" layoutY="365.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="194.0" styleClass="green-button" text="Select port" />
       <Label layoutX="59.0" layoutY="452.0" prefHeight="92.0" prefWidth="277.0" text="You will only be allowed the trade with the ports that you have access to." wrapText="true" />

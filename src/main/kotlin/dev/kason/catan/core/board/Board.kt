@@ -170,7 +170,7 @@ data class Board(
         }
     }
 
-    private fun generatePortValues(
+    fun generatePortValues(
         ports: ArrayDeque<ResourceType?> = ArrayDeque(
             (listOf(*ResourceType.values()) + Collections.nCopies(
                 4,
