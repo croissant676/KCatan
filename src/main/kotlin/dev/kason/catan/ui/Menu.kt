@@ -12,6 +12,7 @@ import java.awt.Desktop
 import java.net.URI
 import javafx.scene.Parent
 import javafx.scene.control.Button
+import javafx.scene.image.Image
 import javafx.scene.layout.AnchorPane
 import mu.KLogging
 import tornadofx.*
@@ -35,6 +36,8 @@ class MenuView: View(catan("Menu")) {
     }
 
     override fun onDock() {
+        primaryStage.isResizable = false
+        primaryStage.icons.add(Image("/img.png"));
         primaryStage.width = 600.0
         primaryStage.height = 440.0
     }
