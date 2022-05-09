@@ -24,4 +24,7 @@ data class Edge(val first: Tile, val id: Int = currentEdgeNumber++) {
         _edges.toList()
     }
     val isPort = false
+    override fun toString(): String {
+        return "Edge(id=$id, player=$player)"
+    }
 }
