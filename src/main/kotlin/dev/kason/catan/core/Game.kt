@@ -303,8 +303,6 @@ open class Game(
         result = 31 * result + developmentCardDeck.hashCode()
         return result
     }
-
-
 }
 
 
