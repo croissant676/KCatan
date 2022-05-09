@@ -6,8 +6,58 @@
   ~ https://opensource.org/licenses/MIT
   -->
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            prefHeight="400.0" prefWidth="600.0">
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
+<AnchorPane prefHeight="541.0" prefWidth="600.0" styleClass="menu-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fill="WHITE" layoutX="17.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highlighted edges or vertices can be clicked on to select a candidate for the next action." wrappingWidth="222.13671875">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+      <Region layoutY="465.0" prefHeight="109.0" prefWidth="635.0" styleClass="catan-grass" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3fff21" height="10.0" layoutX="24.0" layoutY="151.0" stroke="#9e9e9e" strokeType="INSIDE" width="82.0" />
+        <Circle fill="#3fff21" layoutX="134.0" layoutY="156.0" radius="12.0" stroke="#9e9e9e" strokeType="INSIDE" />
+        <Text fill="WHITE" layoutX="317.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pressing the Save button will save the current game onto your computer in the form of a json." wrappingWidth="252.189453125">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Text fill="WHITE" layoutX="17.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking the board tiles and ports will show a popup with more information about that given part." wrappingWidth="244.201171875">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Text fill="WHITE" layoutX="379.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The robber will be represented by a small black circle on a tile." wrappingWidth="192.7109375">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Circle fill="#404040" layoutX="347.0" layoutY="216.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+        <Text fill="WHITE" layoutX="20.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This game will not be using resource images; instead, colors will be used. The amount of each resource is shown next to the icon." wrappingWidth="252.189453125">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Text fill="WHITE" layoutX="329.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The current player’s turn can be seen on the bottom panel with an arrow pointing to it." wrappingWidth="266.384765625">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Text fill="WHITE" layoutX="329.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The View Other Players button will show information about other players, but only after clicking View with the other player’s consent. This screen also allows you to trade with the other person." wrappingWidth="252.189453125">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font></Text>
+        <Text fill="WHITE" layoutX="32.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special Rules" wrappingWidth="214.126953125">
+            <font>
+                <Font name="Century Gothic" size="30.0" />
+            </font>
+        </Text>
+      <Button fx:id="backButton" layoutX="35.0" layoutY="495.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="222.0" styleClass="green-button" text="Back" />
+      <Button fx:id="openRulesButton" layoutX="329.0" layoutY="495.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="237.0" styleClass="red-button" text="View Rules online" />
+    </children>
+    <stylesheets>
+        <URL value="@../css/board.css" />
+        <URL value="@../css/generic.css" />
+        <URL value="@../css/costs.css" />
+        <URL value="@../css/menu.css" />
+    </stylesheets>
 </AnchorPane>

@@ -16,39 +16,52 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1806a" height="630.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2ebea" height="588.0" layoutX="16.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="369.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#86c392" height="160.0" layoutX="195.0" layoutY="435.0" stroke="BLACK" strokeType="INSIDE" width="167.0" />
-      <Button layoutX="57.0" layoutY="83.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="purple-button" text="Card ig" />
-      <Button layoutX="57.0" layoutY="256.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="red-button" text="Card ig" />
-      <Button layoutX="57.0" layoutY="435.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="purple-button2" text="Card ig" />
-      <Button layoutX="242.0" layoutY="83.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="green-button" text="Card ig" />
-      <Text layoutX="76.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight - 0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#86c392" height="68.0" layoutX="206.0" layoutY="483.0" stroke="#d7d7d7" strokeType="INSIDE" strokeWidth="3.0" width="167.0" />
+      <Button fx:id="useKnightButton" layoutX="57.0" layoutY="83.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="purple-button2" />
+      <Button fx:id="useVPButton" layoutX="57.0" layoutY="256.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="red-button" />
+      <Button fx:id="useYOPButton" layoutX="57.0" layoutY="435.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="green-button" />
+      <Button fx:id="useRBButton" layoutX="242.0" layoutY="83.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="green-button" />
+      <Button fx:id="useMonopolyButton" layoutX="244.0" layoutY="256.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="green-button" />
+      <Text fx:id="labelKnight" layoutX="76.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight - 0">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Text>
-      <Text layoutX="53.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Victory Point - 0">
+      <Text fx:id="labelVP" layoutX="53.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Victory Point - 0">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Text>
-      <Text layoutX="43.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year of Plenty - 0" wrappingWidth="131.408203125">
+      <Text fx:id="labelYOP" layoutX="43.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year of Plenty - 0" wrappingWidth="131.408203125">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Text>
-      <Text layoutX="235.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Road Building - 0">
+      <Text fx:id="labelRB" layoutX="235.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Road Building - 0">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Text>
-      <Button layoutX="244.0" layoutY="256.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="104.0" styleClass="blue-button" text="Card ig" />
-      <Text layoutX="242.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monopoly - 0">
+      <Text fx:id="labelMonopoly" layoutX="242.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monopoly - 0">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Text>
-      <Button layoutX="218.0" layoutY="547.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="121.0" styleClass="green-button" text="Use" />
-      <Label layoutX="201.0" layoutY="435.0" prefHeight="126.0" prefWidth="154.0" text="Press the &quot;Use&quot; button to use the currently selected card." wrapText="true" />
+      <Label layoutX="212.0" layoutY="454.0" prefHeight="126.0" prefWidth="154.0" text="Press a card to activate it" wrapText="true" />
+      <Polygon fill="#b9b9b9" layoutX="109.0" layoutY="213.0" points="-15, -33, 15, -33, 0.0, -80.0" stroke="#a4a4a4" strokeType="OUTSIDE" strokeWidth="3.0" />
+      <Circle fill="#fcfcb9" layoutX="109.0" layoutY="324.0" radius="37.0" stroke="#ff4848" strokeType="INSIDE" strokeWidth="5.0" />
+      <Arc fill="DODGERBLUE" layoutX="109.0" layoutY="334.0" length="180.0" radiusX="30.0" radiusY="23.0" startAngle="180.0" stroke="TRANSPARENT" strokeType="INSIDE" type="CHORD" />
+      <Circle fill="#c3c3c3" layoutX="109.0" layoutY="135.0" radius="9.0" stroke="#aeaeae" strokeType="OUTSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="109.0" layoutY="330.0" radius="12.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="111.0" layoutY="483.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="110.0" layoutY="524.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Line endY="-20.0" layoutX="319.0" layoutY="142.0" startX="-50.0" strokeWidth="3.0" />
+      <Line endY="-20.0" layoutX="319.0" layoutY="173.0" startX="-50.0" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="275.0" layoutY="301.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="275.0" layoutY="342.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="312.0" layoutY="300.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#b9b9b9" layoutX="313.0" layoutY="341.0" radius="16.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
+      <Circle fill="#797878" layoutX="295.0" layoutY="321.0" radius="19.0" stroke="#c9c9c9" strokeType="INSIDE" strokeWidth="3.0" />
    </children>
    <stylesheets>
       <URL value="@../css/board.css" />

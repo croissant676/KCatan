@@ -242,6 +242,9 @@ class OthersTradeSelection(val player: Player, val game: Game): Fragment() {
         internal val tradeButton: Button by fxid()
         internal val showButton: Button by fxid()
         private val backgroundRect: Rectangle by fxid()
+        private val largestRoad: Text by fxid()
+        private val largestArmy: Text by fxid()
+
         var showing = false
 
         init {
@@ -254,6 +257,12 @@ class OthersTradeSelection(val player: Player, val game: Game): Fragment() {
             if (total > 7) totalResources.fill = c("#ff002d")
             tradeButton.apply {
                 isDisable = true
+            }
+            if (game.calculateLongestRoad() == player) {
+                largestRoad.isVisible = true
+            }
+            if (game.largestArmy() == player) {
+                largestArmy.isVisible = true
             }
         }
 

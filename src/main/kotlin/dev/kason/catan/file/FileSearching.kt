@@ -65,10 +65,11 @@ fun loadFileJson(fileName: File): Game? {
 
 fun loadFileJson(name: String): Game? = loadFileJson(File("C:\\Users\\$username\\AppData\\Local\\Catan\\games\\${name}.json"))
 
-fun Game.saveJson(): Boolean = kotlin.runCatching {
+fun Game.saveJson(): File? = kotlin.runCatching {
     val file = File("C:\\Users\\$username\\AppData\\Local\\Catan\\games\\${gameName}.json")
     if (!file.exists()) {
         file.createNewFile()
     }
     file.writeText(fileJson.encodeToString(createGameRepFromGame(this)))
-}.isSuccess
+    file
+}.getOrNull()

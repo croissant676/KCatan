@@ -46,7 +46,11 @@ class GameRep(
                     edgeRep.tiles.second?.let { second ->
                         edge.second = board[second]
                     }
-                    edge.player = edgeRep.player?.let { _players[it] }
+                    edge.player = edgeRep.player?.let {
+                        val player = _players[it]
+                        player.roads += edge
+                        player
+                    }
                     board._edges += edge
                 }
                 tiles.forEachIndexed { index, tileRep ->
@@ -58,11 +62,13 @@ class GameRep(
                     vertex.isCity = vertexRep.isCity
                     if (vertexRep.owner != null) {
                         vertex.player = _players[vertexRep.owner]
+                        _players[vertexRep.owner].settlements += vertex
                     }
                     vertexRep.neighbors.forEach { (location, value) ->
                         vertex._tiles[location] = board[value]
-                        board[value]._vertices[location] = vertex
+                        board[value]._vertices[location.opposite] = vertex
                     }
+                    board._vertices += vertex
                 }
                 board.generatePortValues(
                     ArrayDeque(

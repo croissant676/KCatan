@@ -10,7 +10,6 @@ import dev.kason.catan.core.Constants
 import dev.kason.catan.core.board.*
 import dev.kason.catan.core.game
 import dev.kason.catan.core.player.Player
-import javafx.scene.Parent
 import mu.KLogging
 import tornadofx.*
 
@@ -95,9 +94,7 @@ class CitySelectionFragment(player: Player, board: Board) : BoardView(board) {
 }
 
 class RobberSelectionFragment(board: Board) : BoardView(board) {
-    override val root: Parent by fxml("/fxml/board.fxml")
     lateinit var block: (Tile) -> Unit
-
     init {
         listOfTiles.withEach {
             setOnMouseClicked {

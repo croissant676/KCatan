@@ -18,12 +18,14 @@
         <URL value="@../css/board.css" />
     </stylesheets>
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79b379" height="77.0" stroke="#b9b9b9" strokeType="INSIDE" strokeWidth="3.0" width="360.0" />
-        <Label layoutX="25.0" layoutY="14.0" text="Game - ${name}" fx:id="nameLabel"/>
-        <Text fill="WHITE" layoutX="25.0" layoutY="61.0" text="File: ${file path}" fx:id="text">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#79b379" height="77.0" stroke="#b9b9b9" strokeType="INSIDE" strokeWidth="3.0" width="523.0" />
+        <Label fx:id="nameLabel" layoutX="25.0" layoutY="14.0" text="Game - ${name}" />
+        <Text fx:id="text" fill="WHITE" layoutX="25.0" layoutY="61.0" text="File: ${file path}">
             <font>
                 <Font name="Century Gothic" size="11.0" />
             </font>
         </Text>
+      <Button fx:id="deleteButton" layoutX="423.0" layoutY="8.0" mnemonicParsing="false" styleClass="red-button" text="Delete" />
+      <Button fx:id="openButton" layoutX="333.0" layoutY="8.0" mnemonicParsing="false" styleClass="green-button" text="Open" />
     </children>
 </AnchorPane>

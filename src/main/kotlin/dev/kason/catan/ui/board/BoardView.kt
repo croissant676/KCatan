@@ -109,11 +109,16 @@ open class BoardView(
         _mapOfRobberIndicators
     }
 
+    protected val listOfPortIndicators = List(9) {
+        fxmlLoader.namespace["portIndicator$it"] as Circle
+    }
+
     protected fun Polygon.findTileId(): Int = listOfTiles.indexOf(this)
     protected fun Circle.findId(): Int = listOfCircles.indexOf(this)
     protected fun Text.findId(): Int = listOfLabels.indexOf(this)
     protected fun Polygon.findSailId(): Int = listOfSails.indexOf(this)
     protected fun Polygon.findBoatId(): Int = this.id.takeLast(1).toInt()
+    protected fun Circle.findPortIndicator(): Int = listOfPortIndicators.indexOf(this)
 
     fun updateConstructions() {
         board.edges.filter { !it.isEmpty }.forEach {
@@ -176,6 +181,10 @@ open class BoardView(
                 val port = board.ports[findSailId()]
                 PortFragment(port).openModal()
             }
+        }
+        listOfPortIndicators.withEach {
+            val port = board.ports[findPortIndicator()]
+            this.addClass(port.cssName)
         }
         updateConstructions()
         updateRobber()

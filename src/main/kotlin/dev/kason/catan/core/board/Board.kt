@@ -21,10 +21,11 @@ data class Board(
     companion object : KLogging()
 
     val _edges = mutableSetOf<Edge>()
-    val edges by lazy { _edges.sortedBy { it.id } }
+    val edges get() = _edges.sortedBy { it.id }
+
 
     val _vertices = mutableSetOf<Vertex>()
-    val vertices by lazy { _vertices.sortedBy { it.id } }
+    val vertices get() = _vertices.sortedBy { it.id }
 
     var robberIndex = tiles.indexOfFirst { it.type == Tile.Type.Desert }
     val robberTile get() = tiles[robberIndex]
@@ -39,9 +40,9 @@ data class Board(
         10 to 11, 11 to 13, 9 to 12, 12 to 13,
         4 to 14, 14 to 16, 3 to 17, 15 to 16,
         15 to 17, 8 to 19, 17 to 18, 18 to 19,
-        12 to 21, 19 to 20, 20 to 21, 13 to 23,
+        12 to 21, 19 to 20, 20 to 21, 13 to 22,
         22 to 24, 21 to 23, 23 to 24, 16 to 25,
-        24 to 26, 15 to 28, 27 to 28, 26 to 28,
+        25 to 27, 15 to 28, 27 to 26, 26 to 28,
         18 to 30, 28 to 29, 29 to 30, 20 to 32,
         30 to 31, 31 to 32, 23 to 34, 32 to 33,
         33 to 34, 24 to 35, 35 to 37, 34 to 36,

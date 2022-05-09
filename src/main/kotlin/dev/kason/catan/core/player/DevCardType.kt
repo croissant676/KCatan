@@ -18,5 +18,13 @@ enum class DevCardType {
         Knight -> 14
         else -> 2
     }
+
+    val formalName: String get() = when (this) {
+        VictoryPoint -> "Victory Point"
+        YearOfPlenty -> "Year of Plenty"
+        RoadBuilding -> "Road Building"
+        Monopoly -> "Monopoly"
+        Knight -> "Knight"
+    }
 }
 

@@ -21,12 +21,12 @@ javafx {
 }
 
 dependencies {
-    implementation("com.google.guava:guava:28.2-jre")
+    implementation("com.google.guava:guava:31.1-jre")
     implementation("no.tornado:tornadofx:1.7.20")
-    implementation("io.github.microutils:kotlin-logging-jvm:2.1.20")
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("org.slf4j:jul-to-slf4j:1.7.36")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

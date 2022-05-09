@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import java.net.URL?>
+<AnchorPane layoutY="1.0" prefHeight="159.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../css/board.css"/>
+        <URL value="@../css/generic.css"/>
+        <URL value="@../css/costs.css"/>
+    </stylesheets>
+    <children>
+        <Label layoutX="51.0" layoutY="117.0" text="Work"/>
+        <Rectangle fill="#93c47d" height="249.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" width="400.0"/>
+        <ComboBox fx:id="resourceComboBox" layoutX="125.0" layoutY="86.0" prefWidth="150.0"/>
+        <Label fx:id="titleLabel" alignment="CENTER" layoutX="68.0" layoutY="41.0" prefHeight="23.0" prefWidth="264.0"
+               text="You can get 2 resources."/>
+        <ComboBox fx:id="resourceComboBox2" layoutX="125.0" layoutY="145.0" prefWidth="150.0"/>
+        <Button fx:id="tradeButton" layoutY="204.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="400.0"
+                styleClass="red-button" text="Get resources"/>
+    </children>
+</AnchorPane>

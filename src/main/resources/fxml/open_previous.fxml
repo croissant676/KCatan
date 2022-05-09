@@ -12,14 +12,12 @@
 
 <AnchorPane prefHeight="535.0" prefWidth="601.0" styleClass="menu-background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <Region layoutY="325.0" prefHeight="210.0" prefWidth="601.0" styleClass="catan-grass" />
-   <ScrollPane layoutX="29.0" layoutY="36.0" prefHeight="422.0" prefWidth="380.0">
+   <ScrollPane layoutX="29.0" layoutY="36.0" prefHeight="422.0" prefWidth="536.0">
       <content>
-         <VBox fx:id="box" prefHeight="561.0" prefWidth="360.0" />
+         <VBox fx:id="box" prefHeight="0.0" prefWidth="360.0" />
       </content>
    </ScrollPane>
-   <Button fx:id="selectButton" layoutX="428.0" layoutY="356.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0" styleClass="blue-button" text="Select" />
-   <Button fx:id="deleteButton" layoutX="428.0" layoutY="419.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0" styleClass="red-button" text="Delete" />
-   <Button fx:id="openFileLocation" layoutX="385.0" layoutY="474.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="206.0" styleClass="green-button" text="Open File location" />
+   <Button fx:id="backButton" layoutX="226.0" layoutY="467.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0" styleClass="green-button" text="Back" />
     <stylesheets>
         <URL value="@../css/generic.css" />
         <URL value="@../css/menu.css" />

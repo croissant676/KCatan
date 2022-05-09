@@ -110,6 +110,7 @@ class SettlementConstructionPanel(
                 game.buildSettlement(player, currentVertex, doChecks = false)
                 gameView.boardPanel = BoardView(game.board)
                 gameView.sidePanel = BaseSidePanel(player)
+                game.calculateLongestRoad()
             }.also {
                 with(it.buildButton) {
                     isDisable = true
@@ -134,7 +135,8 @@ class SettlementConstructionPanel(
 
 class RoadConstructionPanel(
     private val roadSelectionFragment: RoadSelectionFragment,
-    val player: Player
+    val player: Player,
+    costsResources: Boolean = true
 ): Fragment() {
     private val gameView: GameView by inject()
     private var currentEdge: Edge by Delegates.notNull()
@@ -144,9 +146,15 @@ class RoadConstructionPanel(
         }
         bottom {
             add(RoadConstructionFragment {
-                game.buildRoad(player, currentEdge)
+                if (costsResources) {
+                    game.buildRoad(player, currentEdge)
+                } else {
+                    currentEdge.player = player
+                    player.roads += currentEdge
+                }
                 gameView.boardPanel = BoardView(game.board)
                 gameView.sidePanel = BaseSidePanel(player)
+                game.calculateLongestRoad()
             }.also {
                 with(it.buildButton) {
                     isDisable = true

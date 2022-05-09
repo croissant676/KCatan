@@ -13,7 +13,6 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="213.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-
     <stylesheets>
         <URL value="@../css/board.css" />
         <URL value="@../css/generic.css" />

@@ -11,8 +11,9 @@ import dev.kason.catan.catanAlert
 import dev.kason.catan.core.*
 import dev.kason.catan.file.exitAndSave
 import dev.kason.catan.ui.board.BoardView
+import dev.kason.catan.ui.board.RobberSelectionFragment
 import dev.kason.catan.ui.init.InitBottomView
-import dev.kason.catan.ui.side.BaseSidePanel
+import dev.kason.catan.ui.side.*
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
 import javafx.scene.control.Button
@@ -26,6 +27,7 @@ import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 class GameView : View(catan("Game")) {
+    companion object : KLogging()
     private val sidePanelViewProperty = SimpleObjectProperty<UIComponent>(BaseSidePanel(game.currentPlayer))
     var sidePanel: UIComponent by sidePanelViewProperty
     private val boardViewProperty = SimpleObjectProperty(BoardView(game.board))
@@ -50,14 +52,52 @@ class GameView : View(catan("Game")) {
             add(boardBottomView)
         }
     }
+
+    fun onRollOfSeven() {
+        discardExtraResources()
+        val robberPanel = RobberSelectionFragment(game.board)
+        boardPanel = robberPanel
+        sidePanel = RobberSideTileSelection(robberPanel, game.currentPlayer)
+        val boardBottomView = boardBottomView as BoardBottomView
+        boardBottomView.apply {
+            rollButton.isDisable = true
+            passButton.isDisable = true
+            backButton.isDisable = true
+        }
+    }
+
+    private fun discardExtraResources() {
+        val extraResourcePlayers = game.players.filter { it.resources.values.sum() >= 7 }
+        if (extraResourcePlayers.isEmpty()) {
+            return
+        }
+        val arrayDeque = ArrayDeque(extraResourcePlayers)
+        sidePanel = DiscardFragment(arrayDeque.removeFirst(), arrayDeque)
+    }
+
+    fun enableButtons() {
+        val boardBottomView = boardBottomView as BoardBottomView
+        boardBottomView.apply {
+            rollButton.isDisable = false
+            passButton.isDisable = false
+            backButton.isDisable = false
+        }
+    }
+
+    fun checkPlayerVictory() {
+        val player = game.checkPlayerVictory()
+        if (player != null) {
+            sidePanel = VictorySidePanel(player)
+        }
+    }
 }
 
 class BoardBottomView(val game: Game, private val gameView: GameView): View() {
     companion object : KLogging()
 
     override val root: Parent by fxml("/fxml/board_bottom.fxml")
-    private val rollButton: Button by fxid()
-    private val passButton: Button by fxid()
+    val rollButton: Button by fxid()
+    val passButton: Button by fxid()
     private val exitButton: Button by fxid()
     private val exitSaveButton: Button by fxid()
     private val sum: Label by fxid()
@@ -65,7 +105,7 @@ class BoardBottomView(val game: Game, private val gameView: GameView): View() {
     private val playerIndicators = List(4) { fxmlLoader.namespace["playerIndicator$it"] as Polygon }
     private val leftDice = List(7) { fxmlLoader.namespace["leftDice$it"] as Circle }
     private val rightDice = List(7) { fxmlLoader.namespace["rightDice$it"] as Circle }
-    private val backButton: Button by fxid()
+    val backButton: Button by fxid()
 
     private val mapOfResults = mapOf(
         1 to arrayOf(3),
@@ -93,42 +133,41 @@ class BoardBottomView(val game: Game, private val gameView: GameView): View() {
         }
         rollButton.apply {
             action {
-                game.generateRoll()
+                val shouldRunRobber = game.generateRoll()
                 updateDice()
+                if (shouldRunRobber) gameView.onRollOfSeven()
+                else if (gameView.sidePanel is BaseSidePanel) gameView.sidePanel = BaseSidePanel(game.currentPlayer)
                 isDisable = true
-                if (gameView.sidePanel is BaseSidePanel) {
-                    // Refresh
+                passButton.apply {
+                    action {
+                        if (game.currentTurn.rolledDice) {
+                            rollButton.isDisable = false
+                            gameView.replaceWith(
+                                NextPlayerView(game.nextPlayer())
+                            )
+                            updateCurrentPlayer()
+                            gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+                        } else {
+                            catanAlert(
+                                "You have not rolled the dice",
+                                "You must roll the dice before you can pass."
+                            )
+                        }
+                    }
+                }
+                backButton.action {
+                    logger.info { "Back button pressed, switching to a base side panel" }
                     gameView.sidePanel = BaseSidePanel(game.currentPlayer)
+                    gameView.boardPanel = BoardView(game.board)
+                    backButton.isDisable = true
+                    thread {
+                        Thread.sleep(500)
+                        runLater {
+                            backButton.isDisable = false
+                        }
+                    }
                 }
-            }
-        }
-        passButton.apply {
-            action {
-                if (game.currentTurn.rolledDice) {
-                    rollButton.isDisable = false
-                    gameView.replaceWith(
-                        NextPlayerView(game.nextPlayer())
-                    )
-                    updateCurrentPlayer()
-                    gameView.sidePanel = BaseSidePanel(game.currentPlayer)
-                } else {
-                    catanAlert(
-                        "You have not rolled the dice",
-                        "You must roll the dice before you can pass."
-                    )
-                }
-            }
-        }
-        backButton.action {
-            logger.info { "Back button pressed, switching to a base side panel" }
-            gameView.sidePanel = BaseSidePanel(game.currentPlayer)
-            gameView.boardPanel = BoardView(game.board)
-            backButton.isDisable = true
-            thread {
-                Thread.sleep(500)
-                runLater {
-                    backButton.isDisable = false
-                }
+                updateCurrentPlayer()
             }
         }
         updateCurrentPlayer()
@@ -157,5 +196,4 @@ class BoardBottomView(val game: Game, private val gameView: GameView): View() {
             polygon.fill = Color.TRANSPARENT
         }
     }
-
 }

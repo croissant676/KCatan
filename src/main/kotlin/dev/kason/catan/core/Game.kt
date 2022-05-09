@@ -9,6 +9,7 @@ package dev.kason.catan.core
 import dev.kason.catan.core.board.*
 import dev.kason.catan.core.player.*
 import dev.kason.catan.ui.GameCreationSettings
+import dev.kason.catan.ui.dev.DevCardPurchased
 import java.util.Collections
 import mu.KLogging
 import tornadofx.withEach
@@ -46,27 +47,32 @@ open class Game(
 
     data class Turn(
         var rolledDice: Boolean = false,
-        var usedDevelopmentCard: Boolean = false
+        var usedDevelopmentCard: Boolean = false,
+        var drawnDevCards: MutableList<DevCardType> = mutableListOf(),
     )
 
     val developmentCardDeck by lazy {
         ArrayDeque(DevCardType.values().flatMap { Collections.nCopies(it.numberOfCards, it) }.shuffled(random))
     }
 
-    fun generateRoll(): RollResults = (random.nextInt(1..6) to random.nextInt(1..6)).apply {
+    fun generateRoll(): Boolean = (random.nextInt(1..6) to random.nextInt(1..6)).run {
         roll = this
         currentTurn.rolledDice = true
-        if (roll.sum() == 7) {
-            cutCards()
-            activateRobber(currentPlayer)
-        } else {
+        if (roll.sum() != 7) {
             giveResources(roll.sum())
+            return@run false
         }
+        true
     }
 
     fun buyDevelopmentCard(player: Player) {
         val card = developmentCardDeck.removeFirst()
         player.developmentCards[card] = player.developmentCards[card]!! + 1
+        if (card == DevCardType.VictoryPoint) {
+            player.devCardVP++
+        }
+        currentTurn.drawnDevCards += card
+        DevCardPurchased(player, card).openModal()
     }
 
     fun giveResources(number: Int) = board.withEach {
@@ -80,7 +86,7 @@ open class Game(
 
     fun nextPlayer(): Player {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size
-        currentTurn = Turn()
+        currentTurn = Game.Turn()
         return currentPlayer
     }
 
@@ -160,26 +166,6 @@ open class Game(
         return finalSettlements.filter { it.isEmpty }
     }
 
-    fun getPossibleSettlementsInit(player: Player): List<Vertex> {
-        val possibleSettlements = board.vertices.toList()
-        var finalSettlements = possibleSettlements.toList()
-        for (possibleSettlement in possibleSettlements) {
-            for (vertex in possibleSettlement.vertices) {
-                if (vertex.player != null) {
-                    finalSettlements -= possibleSettlement
-                    break
-                }
-                for (adjacentVertex in vertex.vertices) {
-                    if (adjacentVertex.player != null && adjacentVertex != possibleSettlement) {
-                        finalSettlements -= possibleSettlement
-                        break
-                    }
-                }
-            }
-        }
-        return finalSettlements
-    }
-
     fun getPossibleSettlementsInit(): List<Vertex> {
         val possibleSettlements = board.vertices.toSet()
         val finalSettlements = possibleSettlements.toMutableSet()
@@ -194,7 +180,7 @@ open class Game(
         return finalSettlements.filter { it.isEmpty }
     }
 
-    fun getLongestRoadPlayer(): Player? {
+    fun calculateLongestRoad(): Player? {
         val lengths = players.associateWith { game.longestRoad(it).size }
         val max = lengths.values.maxOrNull() ?: 0
         if (lengths[currentLongestRoadPlayer] == max) return currentLongestRoadPlayer
@@ -285,11 +271,7 @@ open class Game(
         return roads
     }
 
-    fun cutCards(): List<Player> = players.filter { it.resources.values.sum() >= 7 }
-
-    private fun activateRobber(currentPlayer: Player) {
-        TODO("Not yet implemented")
-    }
+    fun largestArmy(): Player? = players.maxByOrNull { it.armyStrength }?.takeIf { it.armyStrength > 3 }
 
     @Deprecated(
         "Testing only",
@@ -300,6 +282,8 @@ open class Game(
             it.player = players.random()
         }
     }
+
+    fun checkPlayerVictory(): Player? = players.firstOrNull { it.totalVP >= 10 }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -62,5 +62,15 @@
         </Text>
         <Button fx:id="tradeButton" layoutX="221.0" layoutY="156.0" mnemonicParsing="false" styleClass="purple-button2" text="Trade" />
         <Button fx:id="showButton" layoutX="310.0" layoutY="156.0" mnemonicParsing="false" styleClass="purple-button2" text="Show" />
+        <Text fx:id="longestRoad" layoutX="14.0" layoutY="174.0" text="Longest Road">
+            <font>
+                <Font name="Century Gothic" size="17.0" />
+            </font>
+        </Text>
+      <Text fx:id="longestArmy" layoutX="14.0" layoutY="192.0" text="Largest Army">
+         <font>
+            <Font name="Century Gothic" size="17.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

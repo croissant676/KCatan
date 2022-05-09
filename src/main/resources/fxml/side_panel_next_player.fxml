@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<!--
+  ~ Copyright (C) 2022 Kason Gu, Michael Xiang, Manas Pathak, Ashley Yang.
+  ~ Use of this code is governed by the MIT Licensed, which can be obtained at:
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<AnchorPane prefHeight="614.0" prefWidth="400.0" styleClass="new_player_screen" stylesheets="@../css/board.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="nextPlayerLabel" alignment="CENTER" layoutX="87.0" layoutY="193.0" prefHeight="23.0" prefWidth="227.0" styleClass="title" stylesheets="@../css/menu.css" text="Next player thingy" textFill="WHITE" />
+        <Button fx:id="continueButton" layoutX="136.0" layoutY="371.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="129.0" styleClass="blue-button" text="Ok" />
+        <Circle fx:id="playerCircle" layoutX="200.0" layoutY="300.0" radius="40.0" stroke="#b3b3b3" strokeType="INSIDE" strokeWidth="3.0" />
+    </children>
+</AnchorPane>

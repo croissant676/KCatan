@@ -17,7 +17,7 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
 import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
-import javafx.scene.paint.Color
+import javafx.scene.layout.BorderPane
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
 import javafx.scene.text.Text
@@ -27,8 +27,8 @@ import tornadofx.*
 class BaseSidePanel(val player: Player) : Fragment() {
     private val bottomPanelProperty = SimpleObjectProperty<UIComponent>(BaseSidePanelBottom(player))
     var bottomPanel: UIComponent by bottomPanelProperty
-    override val root: Parent = borderpane {
-        top { add(costView(player.color.jfxColor)) }
+    override val root: BorderPane = borderpane {
+        top { add(CostsFragment(player)) }
         center { add(PlayerResourceCosts(player.resources)) }
         bottomPanelProperty.addListener { _, oldValue, newValue ->
             oldValue.replaceWith(newValue, ViewTransition.Fade(0.5.seconds))
@@ -52,7 +52,6 @@ class BaseSidePanelBottom(val player: Player) : View() {
     private val defaultTradeButton: Button by fxid()
     private val othersTradeButton: Button by fxid()
 
-
     fun updateButtons() {
         val turn = game.currentTurn
         devCardUseButton.isDisable = turn.usedDevelopmentCard
@@ -63,7 +62,6 @@ class BaseSidePanelBottom(val player: Player) : View() {
         othersTradeButton.isDisable = !turn.rolledDice
         defaultTradeButton.isDisable = !turn.rolledDice
     }
-
 
     init {
         buildCity.action {
@@ -98,7 +96,7 @@ class BaseSidePanelBottom(val player: Player) : View() {
                     "You do not have any development cards to use."
                 )
             } else {
-                // kekws deez nuts
+                gameView.sidePanel = DevCardsSidePanel(player)
             }
         }
         buildConstruction.action {
@@ -126,24 +124,33 @@ class BaseSidePanelBottom(val player: Player) : View() {
     }
 }
 
-class CostsView(color: Color) : Fragment() {
+class CostsFragment(private val player: Player) : Fragment() {
     override val root: AnchorPane by fxml("/fxml/costs.fxml")
     private val roadLine: Line by fxid()
     private val settlementCircle: Circle by fxid()
     private val cityCircle: Circle by fxid()
     private val rootPane: AnchorPane by fxid()
 
+    private val roadLeft: Text by fxid()
+    private val cityLeft: Text by fxid()
+    private val settlementLeft: Text by fxid()
+    private val devCardLeft: Text by fxid()
+
     init {
+        val color = player.color.jfxColor
         roadLine.stroke = color
         settlementCircle.fill = color
         cityCircle.fill = color
         rootPane.style = "-fx-background-color: ${color.css};"
+        update()
     }
-}
 
-private val costsViewMap = mutableMapOf<Color, CostsView>()
-fun costView(color: Color): CostsView {
-    return costsViewMap.getOrPut(color) { CostsView(color) }
+    private fun update() {
+        devCardLeft.text = "${game.developmentCardDeck.size} left"
+        roadLeft.text = "${player.roadsLeft} left"
+        settlementLeft.text = "${player.settlementsLeft} left"
+        cityLeft.text = "${player.citiesLeft} left"
+    }
 }
 
 class PlayerResourceCosts(playerResources: PlayerResourceMap): Fragment() {

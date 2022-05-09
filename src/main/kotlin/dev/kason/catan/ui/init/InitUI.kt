@@ -9,7 +9,6 @@ package dev.kason.catan.ui.init
 import dev.kason.catan.catan
 import dev.kason.catan.core.game
 import dev.kason.catan.core.player.Player
-import dev.kason.catan.file.exitAndSave
 import dev.kason.catan.ui.GameView
 import javafx.scene.Parent
 import javafx.scene.control.Button
@@ -47,7 +46,6 @@ class InitBottomView: View(catan("Bottom")) {
     companion object: KLogging()
     override val root: Parent by fxml("/fxml/init_bottom.fxml")
     private val exitButton: Button by fxid()
-    private val exitSaveButton: Button by fxid()
     private val players = List(4) { fxmlLoader.namespace["player$it"] as Circle }
     private val playerIndicators = List(4) { fxmlLoader.namespace["playerIndicator$it"] as Polygon }
     init {
@@ -60,9 +58,6 @@ class InitBottomView: View(catan("Bottom")) {
         }
         exitButton.action {
             exitProcess(0)
-        }
-        exitSaveButton.action {
-            exitAndSave()
         }
         updateCurrentPlayer()
     }

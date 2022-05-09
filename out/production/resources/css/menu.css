@@ -19,6 +19,22 @@
     -fx-border-radius: 5px;
 }
 
+
+.menu-background-dark {
+    -fx-background-color: radial-gradient(
+            focus-distance 0%,
+            center 50% 60%,
+            radius 80%,
+            reflect,
+            #d5c09e,
+            #f5c16c,
+            #e79565,
+            #de847a,
+            #e57ca6
+    );
+    -fx-border-radius: 5px;
+}
+
 .catan-menu-button {
     -fx-padding: 10px;
     -fx-background-color: #79b379;
